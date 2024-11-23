@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
 class LanguageResource extends Resource
@@ -37,7 +38,7 @@ class LanguageResource extends Resource
             ->columns([
                 TextColumn::make('name')->label('Dil'),
                 TextColumn::make('code')->label('Kod'),
-
+                ToggleColumn::make('is_active')->label('Durum')
             ])
             ->filters([
                 //
