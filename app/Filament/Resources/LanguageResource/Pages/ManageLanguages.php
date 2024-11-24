@@ -13,7 +13,7 @@ class ManageLanguages extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make()->modalHeading('Yeni Dil Ekle')
+            Actions\CreateAction::make()->modalHeading('Yeni Dil Ekle'),
         ];
     }
 }

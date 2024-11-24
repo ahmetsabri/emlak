@@ -21,6 +21,7 @@ class LanguageResource extends Resource
     protected static ?string $navigationLabel = 'Diller';
 
     protected static ?string $modelLabel = 'Dil';
+
     protected static ?string $pluralModelLabel = 'Diller';
 
     public static function form(Form $form): Form
@@ -38,7 +39,7 @@ class LanguageResource extends Resource
             ->columns([
                 TextColumn::make('name')->label('Dil'),
                 TextColumn::make('code')->label('Kod'),
-                ToggleColumn::make('is_active')->label('Durum')
+                ToggleColumn::make('is_active')->label('Durum'),
             ])
             ->filters([
                 //
