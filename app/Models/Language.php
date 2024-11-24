@@ -9,5 +9,14 @@ class Language extends Model
 {
     /** @use HasFactory<\Database\Factories\LanguageFactory> */
     use HasFactory;
-    
+
+    public static function booted()
+    {
+        static::saved(function () {
+            cache()->forget('supported_locales');
+            cache()->rememberForever('supported_locales', function () {
+                return Language::all();
+            });
+        });
+    }
 }

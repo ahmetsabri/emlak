@@ -1,0 +1,12 @@
+<?php
+
+return [
+
+    'laravellocalization' => false,
+
+    'locales' => [
+        'tr' => 'Türkçe',
+        'en' => 'English',
+    ],
+
+];
