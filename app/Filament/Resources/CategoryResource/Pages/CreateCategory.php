@@ -9,5 +9,6 @@ class CreateCategory extends CreateRecord
 {
     protected static string $resource = CategoryResource::class;
 
-    protected function beforeCreate(): void {}
+    // protected function beforeCreate(): void {
+    // }
 }

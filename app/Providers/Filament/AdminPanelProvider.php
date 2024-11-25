@@ -54,6 +54,6 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])->plugins([
                 FilamentTranslateFieldPlugin::make(),
-            ]);
+            ])->breadcrumbs(false);
     }
 }

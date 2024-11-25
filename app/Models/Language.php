@@ -15,7 +15,7 @@ class Language extends Model
         static::saved(function () {
             cache()->forget('supported_locales');
             cache()->rememberForever('supported_locales', function () {
-                return Language::all();
+                return Language::where('is_active',true)->get();
             });
         });
     }

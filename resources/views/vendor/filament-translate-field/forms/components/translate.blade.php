@@ -4,7 +4,7 @@
 
     $locales = $getLocales() ?? [];
     $defaultLocale = $locales[0] ?? null;
-    
+
     $isContained = $isContained();
 
     $visibleTabClasses = \Illuminate\Support\Arr::toCssClasses([
@@ -22,12 +22,12 @@
     $livewireKey = "{$this->getId()}.{$getStatePath()}." . \SolutionForest\FilamentTranslateField\Forms\Component\Translate::class . '.container';
 @endphp
 
-<div 
+<div
     wire:ignore.self
     x-cloak
-    x-data="{ 
+    x-data="{
         tab: @if ($isTabPersisted() && filled($persistenceId = $getId())) $persist(null).as('tabs-{{ $persistenceId }}') @else null @endif,
-        
+
         getTabs: function () {
             if (! this.$refs.tabsData) {
                 return []
@@ -47,7 +47,7 @@
             history.pushState(null, document.title, url.toString())
         },
     }"
-    x-init="() => { 
+    x-init="() => {
         $watch('tab', () => updateQueryString())
 
         const tabs = getTabs()

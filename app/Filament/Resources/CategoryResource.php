@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
+use App\Filament\Resources\CategoryResource\RelationManagers\ChildrenRelationManager;
 use App\Models\Category;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -10,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use SolutionForest\FilamentTranslateField\Forms\Component\Translate;
 
 class CategoryResource extends Resource
@@ -24,6 +26,7 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+
     public static function form(Form $form): Form
     {
         return $form
@@ -32,7 +35,7 @@ class CategoryResource extends Resource
                     Translate::make()
                         ->schema([
                             TextInput::make('name')->label('Kategori Adı')->required(),
-                        ]),
+                        ])->columnSpanFull(),
                 ]
             );
     }
@@ -41,7 +44,7 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label('Kategori'),
+                TextColumn::make('name')->label('Kategori')->searchable()
             ])
             ->filters([
                 //
@@ -53,13 +56,15 @@ class CategoryResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->modifyQueryUsing(function ($query) {
+                $query->whereNull('parent_id');
+            });
     }
 
     public static function getRelations(): array
     {
         return [
-            //
+            ChildrenRelationManager::class
         ];
     }
 
@@ -69,6 +74,8 @@ class CategoryResource extends Resource
             'index' => Pages\ListCategories::route('/'),
             'create' => Pages\CreateCategory::route('/create'),
             'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'edit-child' => Pages\EditCategory::route('/{parent}/edit/{record}/edit'),
         ];
     }
+
 }
