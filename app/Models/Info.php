@@ -10,11 +10,18 @@ class Info extends Model
 {
     /** @use HasFactory<\Database\Factories\InfoFactory> */
     use HasFactory;
+
     use HasTranslations;
 
     public $translatable = ['name'];
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 }

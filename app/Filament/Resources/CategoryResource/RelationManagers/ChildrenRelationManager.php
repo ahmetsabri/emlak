@@ -21,10 +21,6 @@ class ChildrenRelationManager extends RelationManager
 
     protected static ?string $pluralModelLabel = 'Kategoriler';
 
-
-
-
-
     public static function getTitle(Model $ownerRecord, string $pageClass): string
     {
         return 'Alt Kategoriler';
@@ -44,7 +40,8 @@ class ChildrenRelationManager extends RelationManager
 
     public function table(Table $table): Table
     {
-        $parent = $this->getOwnerRecord();
+        $parent = $this->getOwnerRecord()?->parent;
+
         return $table
             ->recordTitleAttribute('name')
             ->columns([
@@ -57,9 +54,9 @@ class ChildrenRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make()->visible($parent->parent_id == null),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()->url($parent->parent_id != null ? null : fn ($record) =>CategoryResource::getUrl('edit-child', [
+                Tables\Actions\EditAction::make()->url($parent->parent_id != null ? null : fn ($record) => CategoryResource::getUrl('edit-child', [
                     'parent' => $this->getOwnerRecord()->id,
-                    'record' => $record->id
+                    'record' => $record->id,
                 ]))->modal(true),
                 Tables\Actions\DeleteAction::make(),
             ])
