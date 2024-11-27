@@ -34,7 +34,6 @@ class ChildrenRelationManager extends RelationManager
                     ->schema([
                         TextInput::make('name')->label('Kategori Adı')->required(),
                     ])->columnSpanFull(),
-
             ]);
     }
 
@@ -51,10 +50,10 @@ class ChildrenRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make()->visible($parent->parent_id == null),
+                Tables\Actions\CreateAction::make()->visible($parent?->parent_id == null),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()->url($parent->parent_id != null ? null : fn ($record) => CategoryResource::getUrl('edit-child', [
+                Tables\Actions\EditAction::make()->url($parent?->parent_id != null ? null : fn ($record) => CategoryResource::getUrl('edit-child', [
                     'parent' => $this->getOwnerRecord()->id,
                     'record' => $record->id,
                 ]))->modal(true),

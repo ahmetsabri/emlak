@@ -34,7 +34,7 @@ class FeatureResource extends Resource
 
                     SelectTree::make('category_id')
                         ->label('Kategori')
-                        ->relationship('category', 'name','parent_id')
+                        ->relationship('category', 'name', 'parent_id')
                         ->withCount()
                         ->searchable()
                         ->required()
