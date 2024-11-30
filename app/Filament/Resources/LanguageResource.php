@@ -16,7 +16,7 @@ class LanguageResource extends Resource
 {
     protected static ?string $model = Language::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-language';
+    protected static ?string $navigationIcon = 'heroicon-s-language';
 
     protected static ?string $navigationLabel = 'Diller';
 
@@ -35,22 +35,24 @@ class LanguageResource extends Resource
 
     public static function table(Table $table): Table
     {
+        $isSingleLanguage = Language::count() == 1;
+
         return $table
             ->columns([
                 TextColumn::make('name')->label('Dil'),
                 TextColumn::make('code')->label('Kod'),
-                ToggleColumn::make('is_active')->label('Durum'),
+                ToggleColumn::make('is_active')->label('Durum')->disabled($isSingleLanguage),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()->disabled($isSingleLanguage),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()->disabled($isSingleLanguage),
                 ]),
             ]);
     }

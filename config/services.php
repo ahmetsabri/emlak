@@ -35,6 +35,6 @@ return [
         ],
     ],
     'exchange_rate' => [
-        'url' => env('EXCHANGE_RATE_URL')
-    ]
+        'url' => env('EXCHANGE_RATE_URL'),
+    ],
 ];

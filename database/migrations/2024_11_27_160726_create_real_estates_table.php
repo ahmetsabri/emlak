@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('price');
             $table->unsignedInteger('net_area')->nullable();
             $table->unsignedInteger('gross_area')->nullable();
-            $table->text('location');
+            $table->string('location');
             $table->timestamps();
         });
     }

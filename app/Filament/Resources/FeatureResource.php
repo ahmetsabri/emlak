@@ -12,13 +12,16 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use SolutionForest\FilamentTranslateField\Forms\Component\Translate;
 
 class FeatureResource extends Resource
 {
+    protected static ?int $order = 10;
+
     protected static ?string $model = Feature::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-sparkles';
 
     protected static ?string $navigationLabel = 'Özelliklerler';
 
@@ -60,8 +63,8 @@ class FeatureResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label('Ad'),
-                TextColumn::make('category.name')->label('Kategori'),
+                TextColumn::make('name')->label('Ad')->searchable(),
+                TextColumn::make('CategoryTree')->label('Kategori'),
                 TextColumn::make('group.name')->label('Grup'),
 
             ])
@@ -69,13 +72,13 @@ class FeatureResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                  Tables\Actions\EditAction::make(),
+                  Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                  Tables\Actions\BulkActionGroup::make([
+                      Tables\Actions\DeleteBulkAction::make(),
+                  ]),
             ]);
     }
 
@@ -84,5 +87,10 @@ class FeatureResource extends Resource
         return [
             'index' => Pages\ManageFeatures::route('/'),
         ];
+    }
+
+    public static function modifyGlobalSearchQuery(Builder $query, string $search): void
+    {
+        dump($search);
     }
 }

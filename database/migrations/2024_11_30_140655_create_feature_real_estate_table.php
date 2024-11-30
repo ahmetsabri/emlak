@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Feature;
+use App\Models\RealEstate;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,12 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exchange_rates', function (Blueprint $table) {
+        Schema::create('feature_real_estate', function (Blueprint $table) {
             $table->id();
-            $table->decimal('usd');
-            $table->decimal('eur');
-            $table->decimal('gbp');
-            $table->date('date');
+            $table->foreignIdFor(Feature::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(RealEstate::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exchange_rates');
+        Schema::dropIfExists('feature_real_estate');
     }
 };

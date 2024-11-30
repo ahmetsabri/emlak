@@ -22,7 +22,7 @@ class GroupResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Gruplar';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-folder-open';
 
     public static function form(Form $form): Form
     {
@@ -42,7 +42,9 @@ class GroupResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label('Group Adı'),
+                TextColumn::make('name')->label('Group Adı')->searchable(query: function ($query, array $data) {
+                    dump($data);
+                }),
             ])
             ->filters([
                 //

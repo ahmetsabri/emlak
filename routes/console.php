@@ -11,7 +11,7 @@ Artisan::command('exchange-rate', function () {
     $data = json_decode(file_get_contents(config('services.exchange_rate.url')), 1)['try'];
 
     ExchangeRate::firstOrCreate([
-        'date' => now()->toDateString()
+        'date' => now()->toDateString(),
     ], [
         'usd' => 1 / $data['usd'],
         'eur' => 1 / $data['eur'],
