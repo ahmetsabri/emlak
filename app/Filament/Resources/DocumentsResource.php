@@ -60,7 +60,7 @@ class DocumentsResource extends Resource
                 Tables\Actions\DeleteAction::make(),
 
                 Tables\Actions\Action::make('Download')
-        ->label('Download')
+        ->label('İndir')
         ->action(fn ($record) => Storage::disk('public')->download($record->path))
         ->link()
         ->icon('heroicon-o-arrow-down-tray')
