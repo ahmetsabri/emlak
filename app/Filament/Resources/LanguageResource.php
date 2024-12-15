@@ -16,6 +16,8 @@ class LanguageResource extends Resource
 {
     protected static ?string $model = Language::class;
 
+    protected static ?int $navigationSort = -2;
+
     protected static ?string $navigationIcon = 'heroicon-s-language';
 
     protected static ?string $navigationLabel = 'Diller';

@@ -10,7 +10,7 @@ class ExchangeRate extends Model
     {
         static::created(function ($model) {
             cache()->forget('exchange:rate');
-            cache()->remember('exchange:rate', now()->endOfDay(), function () use ($model) {
+            cache()->rememberForever('exchange:rate', function () use ($model) {
                 return $model;
             });
         });

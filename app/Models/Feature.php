@@ -13,6 +13,7 @@ class Feature extends Model
 
     /** @use HasFactory<\Database\Factories\FeatureFactory> */
     use HasFactory;
+
     use HasTranslations;
 
     public $translatable = ['name'];

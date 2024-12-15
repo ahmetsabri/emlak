@@ -39,17 +39,19 @@ class RealEstateResource extends Resource
                 [
                     Translate::make()
                         ->schema([
-                            TextInput::make('title')->label('Başlık')->required(),
-                            RichEditor::make('description')->label('Açıklama')->required(),
+                            TextInput::make('title')->label('Başlık')->required()->columnSpanFull(),
+                            RichEditor::make('description')->label('Açıklama')->required()->columnSpanFull(),
                         ])->columnSpanFull()->contained(false),
 
                     SpatieMediaLibraryFileUpload::make('images')
                         ->reorderable()
                         ->collection('realestates')
-                        ->columnSpanFull()
+                        ->imageEditor()
                         ->multiple()
-                        ->responsiveImages()
+                        ->responsiveImages(false)
                         ->live()
+                        ->columnSpanFull()
+                            ->minFiles(1)
                         ->maxFiles(20)
                         ->panelLayout('grid'),
 
@@ -68,8 +70,7 @@ class RealEstateResource extends Resource
 
                     TextInput::make('price')
                         ->label('Fiyat')
-                        ->required()
-                        ->columnSpanFull(),
+                        ->required(),
 
                     TextInput::make('net_area')
                         ->label('Net m2')
@@ -100,7 +101,8 @@ class RealEstateResource extends Resource
                         }),
 
                     LocationPicker::make('location')
-                        ->afterStateUpdated(function (string $state) {})
+                        ->afterStateUpdated(function (string $state) {
+                        })
                         ->label('Konum')
                         ->columnSpanFull(),
 
