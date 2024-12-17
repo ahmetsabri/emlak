@@ -6,6 +6,7 @@ use App\Filament\Resources\LanguageResource\Pages;
 use App\Models\Language;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
@@ -43,19 +44,26 @@ class LanguageResource extends Resource
             ->columns([
                 TextColumn::make('name')->label('Dil'),
                 TextColumn::make('code')->label('Kod'),
-                ToggleColumn::make('is_active')->label('Durum')->disabled($isSingleLanguage),
+                ToggleColumn::make('is_active')->label('Durum')->disabled($isSingleLanguage)
+                                   ->afterStateUpdated(function ($record, $state) {
+                                       return Notification::make()
+                                           ->title('Durum Güncellendi')
+                                           ->success()
+                                           ->send();
+                                   }),
+
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()->disabled($isSingleLanguage),
+                                   Tables\Actions\EditAction::make(),
+                                   Tables\Actions\DeleteAction::make()->disabled($isSingleLanguage),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()->disabled($isSingleLanguage),
-                ]),
+                                   Tables\Actions\BulkActionGroup::make([
+                                   Tables\Actions\DeleteBulkAction::make()->disabled($isSingleLanguage),
+                                   ]),
             ]);
     }
 

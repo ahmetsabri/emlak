@@ -13,6 +13,7 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
 use Filament\Tables;
@@ -22,17 +23,15 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use SolutionForest\FilamentTranslateField\Forms\Component\Translate;
 
-use Filament\Notifications\Notification;
-
 class RealEstateResource extends Resource
 {
     protected static ?string $model = RealEstate::class;
 
-    protected static ?string $navigationLabel = 'Gayrimenkul';
+    protected static ?string $navigationLabel = 'İlanlar';
 
-    protected static ?string $modelLabel = 'Gayrimenkul';
+    protected static ?string $modelLabel = 'İlan';
 
-    protected static ?string $pluralModelLabel = 'Gayrimenkul';
+    protected static ?string $pluralModelLabel = 'İlanlar';
 
     protected static ?string $navigationIcon = 'heroicon-s-home-modern';
 
@@ -154,22 +153,22 @@ class RealEstateResource extends Resource
                     Tables\Actions\EditAction::make()->color('primary'),
                     Tables\Actions\DeleteAction::make(),
                     Tables\Actions\ReplicateAction::make('copy')
-                    ->label('Kopyala')
-                    ->color(Color::Indigo)
-                    ->modal(false)
-                       ->successNotification(
-                           Notification::make()
+                        ->label('Kopyala')
+                        ->color(Color::Indigo)
+                        ->modal(false)
+                        ->successNotification(
+                            Notification::make()
                                 ->success()
                                 ->title('Kopyalandı')
-                       )
+                        ),
 
                 ]),
             ])
             ->bulkActions([
-                                   Tables\Actions\BulkActionGroup::make([
-                                       Tables\Actions\DeleteBulkAction::make(),
-                                   ]),
-                               ]);
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
     }
 
     public static function getRelations(): array

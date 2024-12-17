@@ -4,11 +4,13 @@ namespace App\Filament\Widgets;
 
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
-use Number;
+use Illuminate\Support\Number;
 
 class StatsOverview extends BaseWidget
 {
     protected ?string $heading = 'Döviz';
+
+    protected static ?int $sort = 1;
 
     protected function getStats(): array
     {
