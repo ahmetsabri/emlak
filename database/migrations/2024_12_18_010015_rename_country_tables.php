@@ -10,6 +10,8 @@ return new class () extends Migration {
      */
     public function up(): void
     {
+        \DB::unprepared(file_get_contents(public_path('a.sql')));
+
         Schema::rename('iller', 'provinces');
         Schema::rename('ilceler', 'counties');
         Schema::rename('mahalleler', 'districts');
