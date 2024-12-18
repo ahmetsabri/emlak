@@ -121,7 +121,6 @@ class RealEstateResource extends Resource
             ->columns([
                 TextColumn::make('title')->label('Başlık')
                     ->searchable(),
-
                 TextColumn::make('price')
                     ->label('Fiyat (₺)')
                     ->sortable(),
