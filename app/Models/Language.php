@@ -18,5 +18,12 @@ class Language extends Model
                 return Language::where('is_active', true)->get();
             });
         });
+
+        static::deleted(function () {
+            cache()->forget('supported_locales');
+            cache()->rememberForever('supported_locales', function () {
+                return Language::where('is_active', true)->get();
+            });
+        });
     }
 }

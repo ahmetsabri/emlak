@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\HasCategoryTree;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
 class Feature extends Model
 {
+    use HasCategoryTree;
+
     /** @use HasFactory<\Database\Factories\FeatureFactory> */
     use HasFactory;
 
@@ -23,5 +26,12 @@ class Feature extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
+    }
+
+    public function getFormattedNameAttribute()
+    {
+        $group = $this->load('group')->group->name;
+
+        return $this->name." ($group) ";
     }
 }

@@ -11,6 +11,8 @@ class EditRealEstate extends EditRecord
 {
     protected static string $resource = RealEstateResource::class;
 
+    public $location = '';
+
     protected function getHeaderActions(): array
     {
         return [

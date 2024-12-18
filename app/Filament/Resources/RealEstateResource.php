@@ -3,34 +3,37 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\RealEstateResource\Pages;
+use App\Forms\Components\LocationPicker;
+use App\Models\Category;
+use App\Models\Feature;
 use App\Models\RealEstate;
 use CodeWithDennis\FilamentSelectTree\SelectTree;
-use Dotswan\MapPicker\Fields\Map;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Navigation\NavigationItem;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Pelmered\FilamentMoneyField\Forms\Components\MoneyInput;
-use Pelmered\FilamentMoneyField\Tables\Columns\MoneyColumn;
 use SolutionForest\FilamentTranslateField\Forms\Component\Translate;
-use Filament\Forms\Set;
 
 class RealEstateResource extends Resource
 {
     protected static ?string $model = RealEstate::class;
 
-    protected static ?string $navigationLabel = 'Gayrimenkul';
+    protected static ?string $navigationLabel = 'İlanlar';
 
-    protected static ?string $modelLabel = 'Gayrimenkul';
+    protected static ?string $modelLabel = 'İlan';
 
-    protected static ?string $pluralModelLabel = 'Gayrimenkul';
+    protected static ?string $pluralModelLabel = 'İlanlar';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-home-modern';
 
     public static function form(Form $form): Form
     {
@@ -39,17 +42,19 @@ class RealEstateResource extends Resource
                 [
                     Translate::make()
                         ->schema([
-                            TextInput::make('title')->label('Başlık')->required(),
-                            RichEditor::make('description')->label('Açıklama')->required(),
+                            TextInput::make('title')->label('Başlık')->required()->columnSpanFull(),
+                            RichEditor::make('description')->label('Açıklama')->required()->columnSpanFull(),
                         ])->columnSpanFull()->contained(false),
 
                     SpatieMediaLibraryFileUpload::make('images')
                         ->reorderable()
                         ->collection('realestates')
-                        ->columnSpanFull()
+                        ->imageEditor()
                         ->multiple()
-                        ->responsiveImages()
+                        ->responsiveImages(false)
                         ->live()
+                        ->columnSpanFull()
+                        ->minFiles(1)
                         ->maxFiles(20)
                         ->panelLayout('grid'),
 
@@ -59,12 +64,16 @@ class RealEstateResource extends Resource
                         ->withCount()
                         ->searchable()
                         ->required()
+                        ->reactive()
+                        ->afterStateUpdated(function (callable $set, $state) {
+                            $set('features', []);
+                        })
+
                         ->columnSpanFull(),
 
                     TextInput::make('price')
                         ->label('Fiyat')
-                        ->required()
-                        ->columnSpanFull(),
+                        ->required(),
 
                     TextInput::make('net_area')
                         ->label('Net m2')
@@ -74,36 +83,31 @@ class RealEstateResource extends Resource
                         ->label('Brüt m2')
                         ->integer(),
 
-                         Map::make('location')
-                        ->label('Location')
-                        ->columnSpanFull()
-                        ->defaultLocation(latitude: 41.0082, longitude: 28.9784)
-                        ->afterStateUpdated(function (Set $set, ?array $state): void {
-                            $set('latitude', $state['lat']);
-                            $set('longitude', $state['lng']);
-                            $set('geojson', json_encode($state['geojson']));
-                        })
-                        ->afterStateHydrated(function ($state, $record, Set $set): void {
-                            $set(
-                                'location',
-                                [
-                                    'lat'     => $record?->latitude ?? '41.0082',
-                                    'lng'     => $record?->longitude ?? '28.9784',
-                                    'geojson' => json_decode(strip_tags($record?->description ?? ''))
-                                ]
-                            );
-                        })
-                        ->extraStyles([
-                            'min-height: 150vh',
-                            'border-radius: 50px'
-                        ])
-                        ->showMarker(true)
-                        ->markerColor("#22c55eff")
-                        ->showFullscreenControl()
-                        ->showZoomControl()
-                        ->draggable()
-                        ->tilesUrl("https://tile.openstreetmap.de/{z}/{x}/{y}.png")
+                    CheckboxList::make('features')
+                        ->label('Özelliklerler')
+                        ->relationship('features')
+                        ->required()
+                        ->options(function (callable $get) {
+                            $categoryId = $get('category_id');
+                            if (! $categoryId) {
+                                return [];
+                            }
 
+                            return Feature::with('group')->where('category_id', $categoryId)
+                                ->get()
+                                ->pluck('formattedName', 'id')
+                                ->toArray();
+                        })
+                        ->columns(3)
+                        ->visible(function (callable $get) {
+                            return ! is_null($get('category_id'));
+                        }),
+
+                    LocationPicker::make('location')
+                        ->afterStateUpdated(function (string $state) {
+                        })
+                        ->label('Konum')
+                        ->columnSpanFull(),
 
                 ]
             );
@@ -111,26 +115,53 @@ class RealEstateResource extends Resource
 
     public static function table(Table $table): Table
     {
+        $categories = Category::isRoot()->get()->pluck('name', 'id');
+
         return $table
             ->columns([
                 TextColumn::make('title')->label('Başlık')
-                ->searchable(),
-
-                MoneyColumn::make('price')->label('Fiyat')
-                ->locale('tr')
-                ->separator('.')
-                ->decimals(0)
-                ->sortable(),
-
-                TextColumn::make('CategoryTree')->label('kategori')
+                    ->searchable(),
+                TextColumn::make('price')
+                    ->label('Fiyat (₺)')
+                    ->sortable(),
+                TextColumn::make('price_in_usd')
+                    ->label('Fiyat ($)'),
+                TextColumn::make('price_in_eur')
+                    ->label('Fiyat (€)'),
+                TextColumn::make('CategoryTree')->label('kategori'),
 
             ])
             ->filters([
-                //
+                SelectFilter::make('Kategori')
+                    ->query(function ($query, array $data) {
+                        if (is_null($data['value'])) {
+                            return $query;
+                        }
+                        $values = Category::find($data['value'])?->descendants->pluck('id');
+
+                        if (! $values) {
+                            return $query->whereIn('category_id', [$values]);
+                        }
+                        $query->whereIn('category_id', $values->toArray());
+                    })
+                    ->options($categories->toArray())
+                    ->attribute('category_id'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                ActionGroup::make([
+                    Tables\Actions\EditAction::make()->color('primary'),
+                    Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\ReplicateAction::make('copy')
+                        ->label('Kopyala')
+                        ->color(Color::Indigo)
+                        ->modal(false)
+                        ->successNotification(
+                            Notification::make()
+                                ->success()
+                                ->title('Kopyalandı')
+                        ),
+
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

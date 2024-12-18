@@ -8,4 +8,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateRealEstate extends CreateRecord
 {
     protected static string $resource = RealEstateResource::class;
+
+    protected function beforeCreate(): void {}
 }

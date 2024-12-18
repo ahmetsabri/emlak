@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasCategoryTree;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Number;
@@ -11,6 +12,7 @@ use Spatie\Translatable\HasTranslations;
 
 class RealEstate extends Model implements HasMedia
 {
+    use HasCategoryTree;
     use HasTranslations;
     use InteractsWithMedia;
 
@@ -21,13 +23,51 @@ class RealEstate extends Model implements HasMedia
         return $this->belongsTo(Category::class);
     }
 
-    public function getCategoryTreeAttribute(): string
+    public function features()
     {
-        return $this->load('category')->category->bloodline->pluck('name')->join(' > ');
+        return $this->belongsToMany(Feature::class)->using(FeatureRealEstate::class);
     }
 
     public function getFormattedPriceAttribute(): bool|string
     {
-        return Number::format($this->price, locale:'tr');
+        return Number::format($this->price, locale: 'tr');
+    }
+
+    public function getLatAttribute()
+    {
+        return explode(',', $this->location)[0];
+    }
+
+    public function getLngAttribute()
+    {
+        return explode(',', $this->location)[1];
+    }
+
+    public function getPriceInTryAttribute()
+    {
+        $exchangeRate = cache('exchange:rate');
+
+        return Number::format($this->price, 2);
+    }
+
+    public function getPriceInUsdAttribute()
+    {
+        $exchangeRate = cache('exchange:rate');
+
+        return Number::format($this->price / $exchangeRate['usd'], 2);
+    }
+
+    public function getPriceInEurAttribute()
+    {
+        $exchangeRate = cache('exchange:rate');
+
+        return Number::format($this->price / $exchangeRate['eur'], 2);
+    }
+
+    public function getPriceInGbpAttribute()
+    {
+        $exchangeRate = cache('exchange:rate');
+
+        return Number::format($this->price / $exchangeRate['gbp'], 2);
     }
 }

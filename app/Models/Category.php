@@ -21,4 +21,9 @@ class Category extends Model
     {
         return '.children.';
     }
+
+    public function realEstates()
+    {
+        return $this->hasMany(RealEstate::class);
+    }
 }
