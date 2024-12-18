@@ -30,9 +30,11 @@ class AppServiceProvider extends ServiceProvider
 
         \Livewire\Livewire::forceAssetInjection();
 
-        $supportedLocales = cache('supported_locales') ?: cache()->rememberForever('supported_locales', fn () => Language::where('is_active', true)->get());
-        $supportedLocales = cache('supported_locales')?->pluck('code')->map(fn ($val) => strtolower($val))->toArray();
-        FilamentTranslateField::defaultLocales($supportedLocales);
+        if (!app()->runningInConsole()) {
+            $supportedLocales = cache('supported_locales') ?: cache()->rememberForever('supported_locales', fn () => Language::where('is_active', true)->get());
+            $supportedLocales = cache('supported_locales')?->pluck('code')->map(fn ($val) => strtolower($val))->toArray();
+            FilamentTranslateField::defaultLocales($supportedLocales);
+        }
 
         if (app()->isProduction()) {
             URL::forceScheme('https');
