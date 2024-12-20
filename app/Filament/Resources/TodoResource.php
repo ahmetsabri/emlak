@@ -22,12 +22,12 @@ class TodoResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
 
-
     protected static ?string $navigationLabel = 'Görevler';
 
     protected static ?string $modelLabel = 'Görev';
 
     protected static ?string $pluralModelLabel = 'Görevler';
+
     public static function form(Form $form): Form
     {
         return $form

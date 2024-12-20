@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -20,8 +21,11 @@ return new class () extends Migration {
             $table->renameColumn('il_adi', 'name');
         });
 
+        \DB::statement('UPDATE districts JOIN semtler ON semtler.id = districts.semt_id SET semt_id=ilce_id');
+
         Schema::table('districts', function (Blueprint $table) {
             $table->renameColumn('mahalle_adi', 'name');
+            $table->renameColumn('semt_id', 'county_id');
         });
 
         Schema::table('counties', function (Blueprint $table) {
