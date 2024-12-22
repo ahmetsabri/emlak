@@ -43,12 +43,14 @@ class TeamResource extends Resource
                     ->label('şifre')
                     ->requiredIfAccepted('team_member')
                     ->password()
+                    ->minLength(6)
                     ->confirmed()
                     ->visible(fn (callable $get) => ($get('team_member')) == true),
                 TextInput::make('password_confirmation')
                     ->label('şifre tekrarla')
                     ->requiredIfAccepted('team_member')
                     ->password()
+                    ->minLength(6)
                 ->dehydrated(0)
                     ->visible(fn (callable $get) => ($get('team_member')) == true),
             ]);
