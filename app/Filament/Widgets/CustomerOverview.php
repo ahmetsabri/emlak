@@ -16,7 +16,7 @@ class CustomerOverview extends BaseWidget
     {
         $totalCustomer = Customer::count();
         $totalTodo = Todo::where('status', TodoStatus::DOING)->count();
-        $totalDoneTodo = Todo::where('status', TodoStatus::Done)->count();
+        $totalDoneTodo = Todo::where('status', TodoStatus::DONE)->count();
 
         return [
             Stat::make('Müşteri Sayısı', $totalCustomer)

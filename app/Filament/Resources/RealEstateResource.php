@@ -129,6 +129,7 @@ class RealEstateResource extends Resource
                             if ($countyId) {
                                 return District::where('county_id', $countyId)->pluck('name', 'id');
                             }
+
                             return [];
                         })->getSearchResultsUsing(function (string $search, callable $get) {
                             $countyId = $get('county_id');
@@ -144,7 +145,7 @@ class RealEstateResource extends Resource
                         ->nullable()
                         ->url(),
 
-                                            CheckboxList::make('features')
+                    CheckboxList::make('features')
                         ->label('Özelliklerler')
                         ->relationship('features')
                         ->required()
@@ -165,8 +166,7 @@ class RealEstateResource extends Resource
                         }),
 
                     LocationPicker::make('location')
-                        ->afterStateUpdated(function (string $state) {
-                        })
+                        ->afterStateUpdated(function (string $state) {})
                         ->label('Konum')
                         ->columnSpanFull(),
                 ]
