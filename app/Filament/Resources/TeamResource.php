@@ -38,7 +38,7 @@ class TeamResource extends Resource
                         ->columnSpanFull()
                         ->columns(8),
                 Checkbox::make('team_member')->label('Panele erişimi ver')->reactive()->nullable()->columnSpanFull()->default(false),
-
+                // TODO: complete other fields from loca
                 TextInput::make('password')
                     ->label('şifre')
                     ->requiredIfAccepted('team_member')
@@ -51,8 +51,12 @@ class TeamResource extends Resource
                     ->requiredIfAccepted('team_member')
                     ->password()
                     ->minLength(6)
-                ->dehydrated(0)
+                    ->dehydrated(0)
                     ->visible(fn (callable $get) => ($get('team_member')) == true),
+
+                //todo://add permissions checkboxes
+
+
             ]);
     }
 
