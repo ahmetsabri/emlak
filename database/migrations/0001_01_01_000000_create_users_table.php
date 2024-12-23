@@ -19,6 +19,7 @@ return new class () extends Migration {
             $table->string('password');
             $table->rememberToken();
             $table->boolean('team_member')->default(false);
+            $table->string('ttyb_no')->nullable();
             $table->timestamps();
         });
 

@@ -59,4 +59,11 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     {
         return $this->team_member;
     }
+
+    public static function booted()
+    {
+        static::creating(function (self $model) {
+            $model->password = $model->password ?: bcrypt(str()->random(32));
+        });
+    }
 }

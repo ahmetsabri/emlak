@@ -31,23 +31,25 @@ class TeamResource extends Resource
                 TextInput::make('name')->label('Ad Soyad')->required(),
                 TextInput::make('email')->label('E-posta')->required()->email()->unique('users', 'email', ignoreRecord:true),
                 TextInput::make('phone')->label('Telefon')->required(),
+                TextInput::make('ttyb_no')->label('TTYP NO')->nullable(),
 
                     SpatieMediaLibraryFileUpload::make('images')
+                        ->label('Resim')
                         ->collection('users')
                         ->imageEditor()
                         ->columnSpanFull()
                         ->columns(8),
                 Checkbox::make('team_member')->label('Panele erişimi ver')->reactive()->nullable()->columnSpanFull()->default(false),
-                // TODO: complete other fields from loca
+
                 TextInput::make('password')
-                    ->label('şifre')
+                    ->label('Şifre')
                     ->requiredIfAccepted('team_member')
                     ->password()
                     ->minLength(6)
                     ->confirmed()
                     ->visible(fn (callable $get) => ($get('team_member')) == true),
                 TextInput::make('password_confirmation')
-                    ->label('şifre tekrarla')
+                    ->label('Şifre Tekrarla')
                     ->requiredIfAccepted('team_member')
                     ->password()
                     ->minLength(6)
