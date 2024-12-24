@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class UserSeeder extends Seeder
 {
@@ -12,7 +13,10 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::firstOrCreate([
+        Artisan::call('permissions:sync');
+        Artisan::call('app:translate-permissions');
+
+        $user = User::firstOrCreate([
             'email' => 'admin@mail.com',
         ], [
             'name' => 'admin',
@@ -20,5 +24,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('admin'),
             'team_member' => 1,
         ]);
+
+        $user->roles()->sync([1]);
     }
 }
