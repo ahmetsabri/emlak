@@ -11,6 +11,7 @@
     "require": {
         "php": "^8.2",
         "ahmetsabri/gaza-validation-generator": "^1.0",
+        "althinect/filament-spatie-roles-permissions": "^2.2",
         "astrotomic/laravel-translatable": "^11.15",
         "codewithdennis/filament-select-tree": "^3.1",
         "dotswan/filament-map-picker": "^1.5",

@@ -41,6 +41,7 @@ class CustomerResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+
             ->columns([
                 TextColumn::make('name')->label('Ad Soyad')->searchable()->sortable(),
                 TextColumn::make('phone')->label('Telefon')->searchable(),

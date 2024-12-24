@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\DocumentsResource\Pages;
 use App\Models\Customer;
-use App\Models\Documents;
+use App\Models\Document;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Storage;
 
 class DocumentsResource extends Resource
 {
-    protected static ?string $model = Documents::class;
+    protected static ?string $model = Document::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
 

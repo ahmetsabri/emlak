@@ -4,13 +4,19 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TeamResource\Pages;
 use App\Models\User;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class TeamResource extends Resource
 {
@@ -20,7 +26,7 @@ class TeamResource extends Resource
 
     protected static ?string $navigationLabel = 'Ekip';
 
-    protected static ?string $modelLabel = 'Ekip';
+    protected static ?string $modelLabel = 'Ekip üyesi';
 
     protected static ?string $pluralModelLabel = 'Ekip';
 
@@ -29,17 +35,32 @@ class TeamResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->label('Ad Soyad')->required(),
-                TextInput::make('email')->label('E-posta')->required()->email()->unique('users', 'email', ignoreRecord:true),
+                TextInput::make('email')->label('E-posta')->required()->email()->unique('users', 'email', ignoreRecord: true),
                 TextInput::make('phone')->label('Telefon')->required(),
                 TextInput::make('ttyb_no')->label('TTYP NO')->nullable(),
 
-                    SpatieMediaLibraryFileUpload::make('images')
-                        ->label('Resim')
-                        ->collection('users')
-                        ->imageEditor()
-                        ->columnSpanFull()
-                        ->columns(8),
+                SpatieMediaLibraryFileUpload::make('images')
+                    ->label('Resim')
+                    ->collection('users')
+                    ->imageEditor()
+                    ->columnSpanFull()
+                    ->columns(8),
+
+                //todo: check plan
                 Checkbox::make('team_member')->label('Panele erişimi ver')->reactive()->nullable()->columnSpanFull()->default(false),
+
+                Select::make('permissions')
+                    ->label('Yetkiller')
+                    ->relationship(name: 'permissions', titleAttribute: 'translated_name')
+                    ->saveRelationshipsUsing(function (User $record, $state) {
+                        $record->permissions()->sync($state);
+                    })
+                    ->multiple()
+                    ->preload()
+                    ->searchable()
+                    ->columnSpanFull()
+                    ->requiredIfAccepted('team_member')
+                    ->visible(fn (callable $get) => ($get('team_member')) == true),
 
                 TextInput::make('password')
                     ->label('Şifre')
@@ -48,6 +69,7 @@ class TeamResource extends Resource
                     ->minLength(6)
                     ->confirmed()
                     ->visible(fn (callable $get) => ($get('team_member')) == true),
+
                 TextInput::make('password_confirmation')
                     ->label('Şifre Tekrarla')
                     ->requiredIfAccepted('team_member')
@@ -56,8 +78,18 @@ class TeamResource extends Resource
                     ->dehydrated(0)
                     ->visible(fn (callable $get) => ($get('team_member')) == true),
 
-                //todo://add permissions checkboxes
-
+                // CheckboxList::make('permissions')
+                //     ->label('Yetkiller')
+                //     ->relationship('permissions', 'translated_name', function ($query) {
+                //         return $query->orderBy('id', 'asc');
+                //     })
+                //     ->debounce(null)
+                //     ->columns(4)
+                //     ->columnSpanFull()
+                //     ->selectAllAction(
+                //         fn (Action $action) => $action->label('aaaa all technologies'),
+                //     )
+                //     ->searchable(),
 
             ]);
     }
@@ -65,8 +97,14 @@ class TeamResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function (Builder $query) {
+                return $query->where('id', '<>', auth()->id());
+            })
             ->columns([
-                //
+                SpatieMediaLibraryImageColumn::make('')->collection('users'),
+                TextColumn::make('name')->label('Ad Soyad')->searchable(),
+                TextColumn::make('email')->label('E-post')->searchable(),
+                TextColumn::make('phone')->label('Telefon')->searchable(),
             ])
             ->filters([
                 //

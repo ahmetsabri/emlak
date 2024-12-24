@@ -20,6 +20,7 @@ return new class extends Migration
             $table->id();
             $table->json('title');
             $table->json('description');
+            $table->unsignedBigInteger('sort')->default(1);
             $table->foreignIdFor(Category::class)->constrained();
             $table->foreignIdFor(Province::class)->index();
             $table->foreignIdFor(County::class)->index();

@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 use App\Filament\Widgets\CustomerOverview;
 use App\Filament\Widgets\RealEstateOverview;
 use Filament\Http\Middleware\Authenticate;
@@ -56,6 +57,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])->plugins([
                 FilamentTranslateFieldPlugin::make(),
+                FilamentSpatieRolesPermissionsPlugin::make(),
             ])->breadcrumbs(true);
     }
 }
