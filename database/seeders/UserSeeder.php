@@ -27,7 +27,6 @@ class UserSeeder extends Seeder
 
         $superAdmin->roles()->sync([1]);
 
-
         $admin = User::factory()->create([
             'email' => 'team@mail.com',
             'team_member' => true,

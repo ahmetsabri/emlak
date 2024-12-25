@@ -166,8 +166,7 @@ class RealEstateResource extends Resource
                         }),
 
                     LocationPicker::make('location')
-                        ->afterStateUpdated(function (string $state) {
-                        })
+                        ->afterStateUpdated(function (string $state) {})
                         ->label('Konum')
                         ->columnSpanFull(),
                 ]

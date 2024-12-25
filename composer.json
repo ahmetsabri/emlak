@@ -19,6 +19,7 @@
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
+        "outerweb/filament-settings": "^1.2",
         "outerweb/filament-translatable-fields": "^2.0",
         "pelmered/filament-money-field": "^1.4",
         "psr/simple-cache": "^2.0",
