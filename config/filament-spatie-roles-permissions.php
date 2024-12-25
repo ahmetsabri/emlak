@@ -145,7 +145,7 @@ return [
              * Permissions Aligned with Policies.
              * DO NOT change the keys unless the genericPolicy.stub is published and altered accordingly
              */
-            'viewAnyPermission' => 'view-any',
+            // 'viewAnyPermission' => 'view-any',
             'viewPermission' => 'view',
             'createPermission' => 'create',
             'updatePermission' => 'update',

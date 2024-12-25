@@ -34,8 +34,9 @@ class DocumentsResource extends Resource
             ->schema([
                 TextInput::make('name')->label('Belge adı')->placeholder('örnek: sozleşme, tapu ..')->required()->columnSpanFull(),
 
-                Select::make('customer_id')->relationship('customer')->searchable()->required()->columnSpanFull()
-                    ->getSearchResultsUsing(fn (string $search): array => Customer::where('name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id')->toArray()),
+                Select::make('customer_id')->relationship('customer', 'name')->searchable()->required()->columnSpanFull()->preload()
+                    ->getSearchResultsUsing(fn (string $search): array => Customer::where('name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id')->toArray())
+                    ,
 
                 FileUpload::make('path')->required()->acceptedFileTypes(['application/pdf', 'application/docx', 'image/*'])->columnSpanFull(),
             ]);

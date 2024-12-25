@@ -13,7 +13,8 @@ class GroupPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->checkPermissionTo('view-any Group');
+
+        return $user->checkPermissionTo('view Group');
     }
 
     /**

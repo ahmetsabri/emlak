@@ -13,7 +13,8 @@ class TodoPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->checkPermissionTo('view-any Todo');
+
+        return $user->checkPermissionTo('view Todo');
     }
 
     /**

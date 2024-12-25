@@ -13,7 +13,7 @@ class AboutUsPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->checkPermissionTo('view-any AboutUs');
+        return $user->checkPermissionTo('view AboutUs');
     }
 
     /**

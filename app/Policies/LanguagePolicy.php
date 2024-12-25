@@ -13,7 +13,8 @@ class LanguagePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->checkPermissionTo('view-any Language');
+
+        return $user->checkPermissionTo('view Language');
     }
 
     /**

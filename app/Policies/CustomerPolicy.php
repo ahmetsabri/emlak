@@ -13,7 +13,7 @@ class CustomerPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->checkPermissionTo('view-any Customer');
+        return $user->checkPermissionTo('view Customer');
     }
 
     /**

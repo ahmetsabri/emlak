@@ -16,15 +16,22 @@ class UserSeeder extends Seeder
         Artisan::call('permissions:sync');
         Artisan::call('app:translate-permissions');
 
-        $user = User::firstOrCreate([
+        $superAdmin = User::firstOrCreate([
             'email' => 'admin@mail.com',
         ], [
             'name' => 'admin',
             'email' => 'admin@mail.com',
             'password' => bcrypt('admin'),
-            'team_member' => 1,
+            'team_member' => true,
         ]);
 
-        $user->roles()->sync([1]);
+        $superAdmin->roles()->sync([1]);
+
+
+        $admin = User::factory()->create([
+            'email' => 'team@mail.com',
+            'team_member' => true,
+            'password' => bcrypt('admin'),
+        ]);
     }
 }

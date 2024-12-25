@@ -13,7 +13,8 @@ class FeaturePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->checkPermissionTo('view-any Feature');
+
+        return $user->checkPermissionTo('view Feature');
     }
 
     /**

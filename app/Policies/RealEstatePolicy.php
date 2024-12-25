@@ -13,7 +13,7 @@ class RealEstatePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->checkPermissionTo('view-any RealEstate');
+        return $user->checkPermissionTo('view RealEstate');
     }
 
     /**

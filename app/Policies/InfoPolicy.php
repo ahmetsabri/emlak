@@ -13,7 +13,8 @@ class InfoPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->checkPermissionTo('view-any Info');
+
+        return $user->checkPermissionTo('view Info');
     }
 
     /**

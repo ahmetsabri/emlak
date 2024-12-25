@@ -166,7 +166,8 @@ class RealEstateResource extends Resource
                         }),
 
                     LocationPicker::make('location')
-                        ->afterStateUpdated(function (string $state) {})
+                        ->afterStateUpdated(function (string $state) {
+                        })
                         ->label('Konum')
                         ->columnSpanFull(),
                 ]
@@ -181,6 +182,7 @@ class RealEstateResource extends Resource
         $statuses = array_combine(array_column(RealestateStatus::cases(), 'value'), $statuses);
 
         return $table
+            ->reorderable('sort')
             ->columns([
                 TextColumn::make('title')->label('Başlık')
                     ->searchable(),

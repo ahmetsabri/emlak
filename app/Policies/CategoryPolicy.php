@@ -13,7 +13,8 @@ class CategoryPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->checkPermissionTo('view-any Category');
+
+        return $user->checkPermissionTo('view Category');
     }
 
     /**
