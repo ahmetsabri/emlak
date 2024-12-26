@@ -29,7 +29,7 @@ class GroupResource extends Resource
         return $form
             ->schema(
                 [
-                    Translate::make()
+                    Translate::make()->prefixLocaleLabel()
                         ->schema([
                             TextInput::make('name')->label('Group Adı')->placeholder('örnek: Cephe, Muhit , Dış Özellikler
  vs...')->required(),

@@ -11,6 +11,6 @@ return [
         'navigation_label' => 'Ayarlar',
     ],
     'notifications' => [
-        'saved' => 'Kaydedildi!',
+        'saved' => 'Kaydedildi',
     ],
 ];

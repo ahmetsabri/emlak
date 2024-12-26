@@ -29,7 +29,7 @@ class ServiceResource extends Resource
     {
         return $form
             ->schema([
-                Translate::make()->schema([
+                Translate::make()->prefixLocaleLabel()->schema([
                     TextInput::make('title')->label('Başlık')->default('Hizmetlerimiz')->required()->columnSpanFull(),
                     RichEditor::make('content')->label('İçerik')->required()->columnSpanFull(),
                 ])->contained(false)->columnSpanFull(),

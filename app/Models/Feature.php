@@ -18,9 +18,9 @@ class Feature extends Model
 
     public $translatable = ['name'];
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class, 'category_feature');
     }
 
     public function group()

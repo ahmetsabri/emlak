@@ -48,7 +48,7 @@ class RealEstateResource extends Resource
         return $form
             ->schema(
                 [
-                    Translate::make()
+                    Translate::make()->prefixLocaleLabel()
                         ->schema([
                             TextInput::make('title')->label('Başlık')->required()->columnSpanFull(),
                             RichEditor::make('description')->label('Açıklama')->required()->columnSpanFull(),

@@ -12,7 +12,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 use SolutionForest\FilamentTranslateField\Forms\Component\Translate;
 
 class FeatureResource extends Resource
@@ -34,14 +33,14 @@ class FeatureResource extends Resource
         return $form
             ->schema(
                 [
-
-                    SelectTree::make('category_id')
-                        ->label('Kategori')
-                        ->relationship('category', 'name', 'parent_id')
-                        ->withCount()
-                        ->searchable()
-                        ->required()
-                        ->columnSpanFull(),
+                    Translate::make()->prefixLocaleLabel()
+                        ->schema([
+                            TextInput::make('name')
+                                ->label('Özellik Adı')
+                                ->required(),
+                        ])->columnSpanFull()
+                        ->contained(false)
+                        ->prefixLocaleLabel(true),
 
                     Select::make('group_id')
                         ->label('Grup')
@@ -49,12 +48,13 @@ class FeatureResource extends Resource
                         ->required()
                         ->columnSpanFull(),
 
-                    Translate::make()
-                        ->schema([
-                            TextInput::make('name')
-                                ->label('Özellik Adı')
-                                ->required(),
-                        ])->columnSpanFull(),
+                    SelectTree::make('categories')
+                        ->label('Kategoriler')
+                        ->relationship('categories', 'name', 'parent_id')
+                        ->searchable()
+                        ->required()
+                        ->dehydrated(false)
+                        ->columnSpanFull(),
                 ]
             );
     }
@@ -64,7 +64,6 @@ class FeatureResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->label('Ad')->searchable(),
-                TextColumn::make('CategoryTree')->label('Kategori'),
                 TextColumn::make('group.name')->label('Grup'),
 
             ])
@@ -87,10 +86,5 @@ class FeatureResource extends Resource
         return [
             'index' => Pages\ManageFeatures::route('/'),
         ];
-    }
-
-    public static function modifyGlobalSearchQuery(Builder $query, string $search): void
-    {
-        dump($search);
     }
 }

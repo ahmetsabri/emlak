@@ -30,7 +30,7 @@ class ChildrenRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Translate::make()
+                Translate::make()->prefixLocaleLabel()
                     ->schema([
                         TextInput::make('name')->label('Kategori Adı')->required(),
                     ])->columnSpanFull(),

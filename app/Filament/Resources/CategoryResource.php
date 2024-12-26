@@ -33,7 +33,7 @@ class CategoryResource extends Resource
                     Translate::make()
                         ->schema([
                             TextInput::make('name')->label('Kategori Adı')->required(),
-                        ])->columnSpanFull(),
+                        ])->columnSpanFull()->prefixLocaleLabel(),
                 ]
             );
     }

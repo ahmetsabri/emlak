@@ -83,10 +83,11 @@ class Settings extends BaseSettings
         return __('settings.notifications.saved');
     }
 
-        public function getTitle(): string
-        {
-            return __('settings.page.title');
-        }
+    public function getTitle(): string
+    {
+        return __('settings.page.title');
+    }
+
     public function getFormActions(): array
     {
         return [
