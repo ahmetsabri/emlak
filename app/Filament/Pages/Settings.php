@@ -7,6 +7,7 @@ use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Outerweb\FilamentSettings\Filament\Pages\Settings as BaseSettings;
 
@@ -31,7 +32,6 @@ class Settings extends BaseSettings
                                 ->label('Logo')
                                 ->image()
                                 ->imageEditor()
-
                                 ->required(),
                         ]),
                     Tabs\Tab::make('SEO')
@@ -41,6 +41,9 @@ class Settings extends BaseSettings
                                 ->nullable(),
                             TextInput::make('seo.description')
                                 ->label('Meta açıklama (description)')
+                                ->nullable(),
+                            Textarea::make('seo.keywords')
+                                ->label('Meta keywords')
                                 ->nullable(),
                         ]),
                     Tabs\Tab::make('İletişim')
@@ -53,21 +56,23 @@ class Settings extends BaseSettings
                                 ->label('Telefon')
                                 ->nullable(),
                             TextInput::make('social_media.facebook')
-                                ->label('facebook')
+                                ->label('Facebook')
                                 ->url()
                                 ->nullable(),
                             TextInput::make('social_media.intagaram')
-                                ->label('instagaram')
+                                ->label('Instagaram')
                                 ->url()
                                 ->nullable(),
                             TextInput::make('social_media.youtube')
-                                ->label('youtube')
+                                ->label('Youtube')
                                 ->url()
                                 ->nullable(),
                             TextInput::make('social_media.whatsapp')
                                 ->label('whatsapp')
+                                ->placeholder('5xxxxxxxxx')
+                                ->numeric()
+                                ->length(10)
                                 ->nullable(),
-
                         ]),
                 ]),
         ];

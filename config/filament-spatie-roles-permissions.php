@@ -199,8 +199,7 @@ return [
             \App\Models\FeatureRealEstate::class,
             \App\Models\County::class,
             \App\Models\Province::class,
-            \App\Models\District::class,
-
+            \App\Models\District::class
         ],
 
         'excluded_policy_models' => [
