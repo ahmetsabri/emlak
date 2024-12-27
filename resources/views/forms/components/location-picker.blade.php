@@ -6,11 +6,11 @@
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
             }).addTo(map);
-    
+
             const marker = L.marker(['{{ $getRecord()->lat ?? 41.0082 }}', '{{ $getRecord()->lng ?? 28.9784 }}'], {
                 draggable: true
             }).addTo(map);
-    
+
             map.on('click', function(e) {
                 const {
                     lat,
@@ -20,7 +20,7 @@
                 $wire.data.location = `${lat},${lng}`
             });
         }
-    
+
     }">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
             integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -35,7 +35,7 @@
             #map {
                 height: 280px;
                 width: 100%;
-                z-index: -1;
+                z-index: 0;
             }
         </style>
     </div>

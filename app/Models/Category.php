@@ -26,4 +26,9 @@ class Category extends Model
     {
         return $this->hasMany(RealEstate::class);
     }
+
+    public function features()
+    {
+        return $this->belongsToMany(Feature::class);
+    }
 }

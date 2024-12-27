@@ -17,9 +17,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             LanguageSeeder::class,
             CustomerSeeder::class,
-            ProvinceSeeder::class,
+            CategorySeeder::class,
             GroupSeeder::class,
-            DistrictSeeder::class,
         ]);
     }
 }

@@ -154,19 +154,20 @@ class RealEstateResource extends Resource
                             if (! $categoryId) {
                                 return [];
                             }
-
-                            return Feature::with('group')->where('category_id', $categoryId)
-                                ->get()
+                            $category = Category::findOrFail($categoryId)->load('features');
+                            return $category->features
                                 ->pluck('formattedName', 'id')
                                 ->toArray();
                         })
-                        ->columns(3)
+                       ->columns(3)
+                       ->columnSpanFull()
                         ->visible(function (callable $get) {
                             return ! is_null($get('category_id'));
                         }),
 
                     LocationPicker::make('location')
-                        ->afterStateUpdated(function (string $state) {})
+                        ->afterStateUpdated(function (string $state) {
+                        })
                         ->label('Konum')
                         ->columnSpanFull(),
                 ]
