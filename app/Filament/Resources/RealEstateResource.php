@@ -95,9 +95,11 @@ class RealEstateResource extends Resource
                         ->searchDebounce(100)->reactive() // This makes the field trigger updates on change
                         ->afterStateUpdated(function ($state, callable $set) {
                             $set('county_id', null);
-                        }),
+                        })
+                        ->preload(),
 
                     Select::make('county_id')
+                    ->preload()
                         ->label('İlçe')
                         ->relationship('county')
                         ->options(function (callable $get) {
@@ -122,6 +124,7 @@ class RealEstateResource extends Resource
                         }),
 
                     Select::make('district_id')
+                    ->preload()
                         ->label('Mahalle / Köy')
                         ->options(function (callable $get) {
                             $countyId = $get('county_id');
