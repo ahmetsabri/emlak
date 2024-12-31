@@ -13,7 +13,7 @@ return [
 
     'navigation_section_group' => 'filament-spatie-roles-permissions::filament-spatie.section.roles_and_permissions', // Default uses language constant
 
-    'team_model' => \App\Models\Team::class,
+    'team_model' => \App\Models\Company::class,
 
     'scope_to_tenant' => true,
 
@@ -199,7 +199,8 @@ return [
             \App\Models\FeatureRealEstate::class,
             \App\Models\County::class,
             \App\Models\Province::class,
-            \App\Models\District::class
+            \App\Models\District::class,
+            \App\Models\Company::class
         ],
 
         'excluded_policy_models' => [
