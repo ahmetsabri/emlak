@@ -17,7 +17,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 
-#[ScopedBy([CompanyScope::class])]
+// #[ScopedBy([CompanyScope::class])]
 class User extends Authenticatable implements FilamentUser, HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
