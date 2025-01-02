@@ -50,7 +50,7 @@ class InfoResource extends Resource
                         ->searchable()
                         ->required()
                         ->independent(false)
-                        ->expandSelected(true)
+                        ->expandSelected()
                         ->dehydrated(false)
                         ->columnSpanFull(),
 

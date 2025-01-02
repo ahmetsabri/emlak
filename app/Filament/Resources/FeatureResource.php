@@ -54,7 +54,9 @@ class FeatureResource extends Resource
                         ->searchable()
                         ->required()
                         ->dehydrated(false)
-                        ->columnSpanFull(),
+                        ->columnSpanFull()
+                        ->independent(false)
+                        ->expandSelected(),
                 ]
             );
     }

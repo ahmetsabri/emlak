@@ -48,12 +48,25 @@ class RealEstateResource extends Resource
         return $form
             ->schema(
                 [
+
                     Translate::make()->prefixLocaleLabel()
                         ->schema([
                             TextInput::make('title')->label('Başlık')->required()->columnSpanFull(),
                             RichEditor::make('description')->label('Açıklama')->required()->columnSpanFull(),
                         ])->columnSpanFull()->contained(false),
 
+                             SelectTree::make('category_id')
+                        ->label('Kategori')
+                        ->relationship('category', 'name', 'parent_id')
+                        ->searchable()
+                        ->required()
+                        ->defaultOpenLevel(3)
+                        ->expandSelected()
+                        ->reactive()
+                        ->afterStateUpdated(function (callable $set, $state) {
+                            $set('features', []);
+                        })
+                        ->columnSpanFull(),
                     SpatieMediaLibraryFileUpload::make('images')
                         ->reorderable()
                         ->collection('realestates')
@@ -66,18 +79,7 @@ class RealEstateResource extends Resource
                         ->maxFiles(20)
                         ->panelLayout('grid'),
 
-                    SelectTree::make('category_id')
-                        ->label('Kategori')
-                        ->relationship('category', 'name', 'parent_id')
-                        ->withCount()
-                        ->searchable()
-                        ->required()
-                        ->reactive()
-                        ->afterStateUpdated(function (callable $set, $state) {
-                            $set('features', []);
-                        })
 
-                        ->columnSpanFull(),
 
                     TextInput::make('price')
                         ->label('Fiyat')
