@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Info;
+use App\Models\RealEstate;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,11 +12,11 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('infos', function (Blueprint $table) {
+        Schema::create('info_real_estate', function (Blueprint $table) {
             $table->id();
-            $table->json('name');
-            $table->json('values')->nullable();
-            $table->boolean('filterable')->default(false);
+            $table->foreignIdFor(Info::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(RealEstate::class)->constrained()->cascadeOnDelete();
+            $table->string('value')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('infos');
+        Schema::dropIfExists('info_real_estate');
     }
 };

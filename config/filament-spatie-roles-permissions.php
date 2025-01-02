@@ -200,7 +200,8 @@ return [
             \App\Models\County::class,
             \App\Models\Province::class,
             \App\Models\District::class,
-            \App\Models\Company::class
+            \App\Models\Company::class,
+            \App\Models\InfoRealEstate::class
         ],
 
         'excluded_policy_models' => [

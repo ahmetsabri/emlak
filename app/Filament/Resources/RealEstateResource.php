@@ -167,6 +167,25 @@ class RealEstateResource extends Resource
                         ->visible(function (callable $get) {
                             return ! is_null($get('category_id'));
                         }),
+                    CheckboxList::make('infos')
+                        ->label('Bilgiler')
+                        ->relationship('infos')
+                        ->required()
+                        ->options(function (callable $get) {
+                            $categoryId = $get('category_id');
+                            if (! $categoryId) {
+                                return [];
+                            }
+                            $category = Category::findOrFail($categoryId)->load('features');
+                            return $category->features
+                                ->pluck('name', 'id')
+                                ->toArray();
+                        })
+                       ->columns(3)
+                       ->columnSpanFull()
+                        ->visible(function (callable $get) {
+                            return ! is_null($get('category_id'));
+                        }),
 
                     LocationPicker::make('location')
                         ->afterStateUpdated(function (string $state) {

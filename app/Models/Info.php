@@ -15,7 +15,16 @@ class Info extends Model
 
     public $translatable = ['name'];
 
-    public function category()
+    public static function booted()
+    {
+        static::saving(function (self $model) {
+                if($model->isDirty('values')){
+                    $values = array_filter(explode(',', $model->values)) ?? null;
+                    $model->values = $values;
+                }
+        });
+    }
+    public function categories()
     {
         return $this->belongsToMany(Category::class);
     }
@@ -23,5 +32,13 @@ class Info extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
+    }
+
+    public function casts(): array
+    {
+        return [
+            'values' => 'json',
+            'filterable' => 'bool'
+        ];
     }
 }

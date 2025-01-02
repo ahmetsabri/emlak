@@ -16,9 +16,11 @@ class LanguageSeeder extends Seeder
             'name' => 'Türkçe',
             'code' => 'TR',
         ]);
+
         Language::firstOrCreate(['code' => 'EN'], [
             'name' => 'İnglizce',
             'code' => 'EN',
+            'is_active' => 0
         ]);
     }
 }
