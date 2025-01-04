@@ -4,14 +4,16 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\RealEstateResource\Pages;
 use App\Forms\Components\LocationPicker;
+use App\Forms\Components\RealestateInfosInput;
 use App\Models\Category;
 use App\Models\County;
 use App\Models\District;
-use App\Models\Feature;
+use App\Models\Info;
 use App\Models\RealEstate;
 use App\RealestateStatus;
 use CodeWithDennis\FilamentSelectTree\SelectTree;
 use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -40,6 +42,8 @@ class RealEstateResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-home-modern';
 
+    protected static array $infos = [];
+
     public static function form(Form $form): Form
     {
         $statuses = array_column(RealestateStatus::cases(), 'value');
@@ -55,7 +59,7 @@ class RealEstateResource extends Resource
                             RichEditor::make('description')->label('Açıklama')->required()->columnSpanFull(),
                         ])->columnSpanFull()->contained(false),
 
-                             SelectTree::make('category_id')
+                    SelectTree::make('category_id')
                         ->label('Kategori')
                         ->relationship('category', 'name', 'parent_id')
                         ->searchable()
@@ -63,10 +67,29 @@ class RealEstateResource extends Resource
                         ->defaultOpenLevel(3)
                         ->expandSelected()
                         ->reactive()
-                        ->afterStateUpdated(function (callable $set, $state) {
-                            $set('features', []);
-                        })
+                        ->afterStateUpdated(function (callable $set, $state) {})
                         ->columnSpanFull(),
+
+                    // Share data based on selected category
+                    // list inputs
+                    // resync after save
+                    RealestateInfosInput::make('infos'),
+
+                    Repeater::make('infos')
+                        ->relationship('infos')
+                        ->label('Bilgiler')
+                        ->reorderable(false)
+                        ->deletable(true)
+                        ->columnSpanFull()
+                        ->addable(false)
+                        ->reactive()
+                        ->schema(function (callable $get) {
+                            if (! $get('category_id')) {
+                                return [];
+                            }
+
+                            return self::prepareInfo($get('category_id'));
+                        }),
                     SpatieMediaLibraryFileUpload::make('images')
                         ->reorderable()
                         ->collection('realestates')
@@ -78,8 +101,6 @@ class RealEstateResource extends Resource
                         ->minFiles(1)
                         ->maxFiles(20)
                         ->panelLayout('grid'),
-
-
 
                     TextInput::make('price')
                         ->label('Fiyat')
@@ -101,7 +122,7 @@ class RealEstateResource extends Resource
                         ->preload(),
 
                     Select::make('county_id')
-                    ->preload()
+                        ->preload()
                         ->label('İlçe')
                         ->relationship('county')
                         ->options(function (callable $get) {
@@ -126,7 +147,7 @@ class RealEstateResource extends Resource
                         }),
 
                     Select::make('district_id')
-                    ->preload()
+                        ->preload()
                         ->label('Mahalle / Köy')
                         ->options(function (callable $get) {
                             $countyId = $get('county_id');
@@ -160,38 +181,19 @@ class RealEstateResource extends Resource
                                 return [];
                             }
                             $category = Category::findOrFail($categoryId)->load('features');
+
                             return $category->features
                                 ->pluck('formattedName', 'id')
                                 ->toArray();
                         })
-                       ->columns(3)
-                       ->columnSpanFull()
-                        ->visible(function (callable $get) {
-                            return ! is_null($get('category_id'));
-                        }),
-                    CheckboxList::make('infos')
-                        ->label('Bilgiler')
-                        ->relationship('infos')
-                        ->required()
-                        ->options(function (callable $get) {
-                            $categoryId = $get('category_id');
-                            if (! $categoryId) {
-                                return [];
-                            }
-                            $category = Category::findOrFail($categoryId)->load('features');
-                            return $category->features
-                                ->pluck('name', 'id')
-                                ->toArray();
-                        })
-                       ->columns(3)
-                       ->columnSpanFull()
+                        ->columns(3)
+                        ->columnSpanFull()
                         ->visible(function (callable $get) {
                             return ! is_null($get('category_id'));
                         }),
 
                     LocationPicker::make('location')
-                        ->afterStateUpdated(function (string $state) {
-                        })
+                        ->afterStateUpdated(function (string $state) {})
                         ->label('Konum')
                         ->columnSpanFull(),
                 ]
@@ -283,5 +285,28 @@ class RealEstateResource extends Resource
             'create' => Pages\CreateRealEstate::route('/create'),
             'edit' => Pages\EditRealEstate::route('/{record}/edit'),
         ];
+    }
+
+    public static function prepareInfo(?int $categoryId): array
+    {
+        $infos = Info::whereRelation('categories', 'category_id', '=', $categoryId)
+            ->get();
+        if (! $infos) {
+            return [];
+        }
+        $schema = [];
+        foreach ($infos as $info) {
+            if ($info->values) {
+                $schema[] = Select::make($info->id)
+                    ->options($info->values)
+                    ->label($info->name)
+                    ->selectablePlaceholder(false);
+
+                continue;
+            }
+            $schema[] = TextInput::make($info->id)->label($info->name);
+        }
+
+        return $schema;
     }
 }

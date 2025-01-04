@@ -31,6 +31,7 @@ class Category extends Model
     {
         return $this->belongsToMany(Feature::class);
     }
+
     public function infos()
     {
         return $this->belongsToMany(Info::class);

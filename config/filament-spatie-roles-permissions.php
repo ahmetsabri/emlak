@@ -181,7 +181,7 @@ return [
          */
         'model_directories' => [
             app_path('Models'),
-            //app_path('Domains/Forum')
+            // app_path('Domains/Forum')
         ],
 
         /*
@@ -201,7 +201,7 @@ return [
             \App\Models\Province::class,
             \App\Models\District::class,
             \App\Models\Company::class,
-            \App\Models\InfoRealEstate::class
+            \App\Models\InfoRealEstate::class,
         ],
 
         'excluded_policy_models' => [
@@ -212,7 +212,7 @@ return [
          * Define any other permission that should be synced with the DB
          */
         'custom_permissions' => [
-            //'view-log'
+            // 'view-log'
         ],
 
         'user_model' => \App\Models\User::class,

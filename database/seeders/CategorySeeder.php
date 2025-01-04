@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -23,11 +22,11 @@ class CategorySeeder extends Seeder
             'Turistik Tesis' => ['Kiralık', 'Satılık'],
         ];
 
-        foreach ($categories as $category=>$sub) {
-            $category = Category::create(['name'=>$category]);
+        foreach ($categories as $category => $sub) {
+            $category = Category::create(['name' => $category]);
 
             foreach ($sub as $subCategory) {
-                $category->children()->create(['name'=>$subCategory]);
+                $category->children()->create(['name' => $subCategory]);
             }
         }
     }

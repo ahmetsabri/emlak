@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         $company = Company::factory()->create();
         $superAdmin = User::firstOrCreate([
             'email' => 'admin@mail.com',
-            'company_id' => $company->id
+            'company_id' => $company->id,
         ], [
             'name' => 'admin',
             'email' => 'admin@mail.com',

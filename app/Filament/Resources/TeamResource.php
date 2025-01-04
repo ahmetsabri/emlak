@@ -46,7 +46,7 @@ class TeamResource extends Resource
                     ->columnSpanFull()
                     ->columns(8),
 
-                //todo: check plan
+                // todo: check plan
                 Checkbox::make('team_member')->label('Panele erişimi ver')->reactive()->nullable()->columnSpanFull()->default(false),
 
                 Select::make('permissions')

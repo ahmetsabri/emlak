@@ -37,9 +37,10 @@ class RealEstate extends Model implements HasMedia
     {
         return $this->belongsToMany(Feature::class)->using(FeatureRealEstate::class);
     }
+
     public function infos()
     {
-        return $this->belongsToMany(Info::class)->using(FeatureRealEstate::class);
+        return $this->belongsToMany(Info::class)->using(InfoRealEstate::class);
     }
 
     public function getFormattedPriceAttribute(): bool|string

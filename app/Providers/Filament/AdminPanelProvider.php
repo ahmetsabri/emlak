@@ -5,7 +5,6 @@ namespace App\Providers\Filament;
 use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 use App\Filament\Widgets\CustomerOverview;
 use App\Filament\Widgets\RealEstateOverview;
-use App\Models\Company;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -27,7 +26,7 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-        ->default()
+            ->default()
             ->id('admin')
             ->path('admin')
             ->login()

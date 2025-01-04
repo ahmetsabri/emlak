@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Group;
 use Illuminate\Database\Seeder;
 
@@ -66,8 +65,8 @@ class GroupSeeder extends Seeder
         foreach ($groups as $group => $features) {
             $group = Group::firstOrCreate(['name' => $group]);
             foreach ($features as $feature) {
-                $feature = $group->features()->create(['name'=>$feature]);
-                $feature->categories()->sync([2,3]);
+                $feature = $group->features()->create(['name' => $feature]);
+                $feature->categories()->sync([2, 3]);
             }
         }
     }

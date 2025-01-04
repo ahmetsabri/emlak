@@ -19,7 +19,7 @@ class CompanyFactory extends Factory
     {
         return [
             'name' => fake()->company(),
-            'status' => CompanyStatus::ACTIVCE
+            'status' => CompanyStatus::ACTIVCE,
         ];
     }
 }

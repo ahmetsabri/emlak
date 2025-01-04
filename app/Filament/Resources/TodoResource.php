@@ -17,7 +17,7 @@ use Filament\Tables\Table;
 
 class TodoResource extends Resource
 {
-    //Görevleri
+    // Görevleri
     protected static ?string $model = Todo::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
