@@ -2,33 +2,41 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\RealEstateResource\Pages;
-use App\Forms\Components\LocationPicker;
-use App\Forms\Components\RealestateInfosInput;
-use App\Models\Category;
-use App\Models\County;
-use App\Models\District;
 use App\Models\Info;
-use App\Models\RealEstate;
-use App\RealestateStatus;
-use CodeWithDennis\FilamentSelectTree\SelectTree;
-use Filament\Forms\Components\CheckboxList;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Components\TextInput;
+use Filament\Tables;
+use App\Models\County;
+use App\Models\Category;
+use App\Models\District;
 use Filament\Forms\Form;
-use Filament\Notifications\Notification;
+use App\RealestateStatus;
+use App\Models\RealEstate;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
-use Filament\Tables;
-use Filament\Tables\Actions\ActionGroup;
-use Filament\Tables\Columns\SelectColumn;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Repeater;
 use Filament\Tables\Columns\TextColumn;
+use App\Forms\Components\LocationPicker;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Forms\Components\RichEditor;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Table;
+use Filament\Forms\Components\CheckboxList;
+use App\Forms\Components\RealestateInfosInput;
+use CodeWithDennis\FilamentSelectTree\SelectTree;
+use App\Filament\Resources\RealEstateResource\Pages;
+use App\Livewire\InfoInput;
+use Filament\Forms\Components\Component;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Livewire;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use SolutionForest\FilamentTranslateField\Forms\Component\Translate;
+
+use Filament\Forms\Components\ViewField;
+use Filament\Forms\Get;
 
 class RealEstateResource extends Resource
 {
@@ -42,7 +50,8 @@ class RealEstateResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-home-modern';
 
-    protected static array $infos = [];
+    public static array $infos = [];
+
 
     public static function form(Form $form): Form
     {
@@ -50,6 +59,7 @@ class RealEstateResource extends Resource
         $statuses = array_combine(array_column(RealestateStatus::cases(), 'value'), $statuses);
 
         return $form
+
             ->schema(
                 [
 
@@ -67,29 +77,20 @@ class RealEstateResource extends Resource
                         ->defaultOpenLevel(3)
                         ->expandSelected()
                         ->reactive()
-                        ->afterStateUpdated(function (callable $set, $state) {})
-                        ->columnSpanFull(),
-
-                    // Share data based on selected category
-                    // list inputs
-                    // resync after save
-                    RealestateInfosInput::make('infos'),
-
-                    Repeater::make('infos')
-                        ->relationship('infos')
-                        ->label('Bilgiler')
-                        ->reorderable(false)
-                        ->deletable(true)
+                        ->live()
                         ->columnSpanFull()
-                        ->addable(false)
-                        ->reactive()
-                        ->schema(function (callable $get) {
-                            if (! $get('category_id')) {
-                                return [];
-                            }
+                          ->afterStateUpdated(fn (SelectTree $component) => $component
+                        ->getContainer()
+                        ->getComponent('infoFields')
+                        ->getChildComponentContainer()
+                        ->fill()),
 
-                            return self::prepareInfo($get('category_id'));
-                        }),
+                    Section::make('infos')
+                ->schema(fn (Get $get): array => self::prepareInfo($get('category_id')))
+                ->key('infoFields')
+                ->dehydrated(),
+
+
                     SpatieMediaLibraryFileUpload::make('images')
                         ->reorderable()
                         ->collection('realestates')
@@ -193,7 +194,8 @@ class RealEstateResource extends Resource
                         }),
 
                     LocationPicker::make('location')
-                        ->afterStateUpdated(function (string $state) {})
+                        ->afterStateUpdated(function (string $state) {
+                        })
                         ->label('Konum')
                         ->columnSpanFull(),
                 ]
@@ -291,22 +293,25 @@ class RealEstateResource extends Resource
     {
         $infos = Info::whereRelation('categories', 'category_id', '=', $categoryId)
             ->get();
+
         if (! $infos) {
             return [];
         }
         $schema = [];
         foreach ($infos as $info) {
             if ($info->values) {
-                $schema[] = Select::make($info->id)
+                $schema[] = Select::make('info_'.$info->id)
                     ->options($info->values)
                     ->label($info->name)
+                    ->default('weq')
                     ->selectablePlaceholder(false);
-
                 continue;
             }
-            $schema[] = TextInput::make($info->id)->label($info->name);
-        }
 
+
+            $schema[] = TextInput::make('info_' . $info->id)
+                ->label($info->name);
+        }
         return $schema;
     }
 }

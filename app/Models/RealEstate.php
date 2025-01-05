@@ -16,6 +16,7 @@ class RealEstate extends Model implements HasMedia
     use HasTranslations;
     use InteractsWithMedia;
 
+    protected $appends = ['formatted_infos'];
     protected $translatable = ['title', 'description'];
 
     public function category(): BelongsTo
@@ -40,7 +41,7 @@ class RealEstate extends Model implements HasMedia
 
     public function infos()
     {
-        return $this->belongsToMany(Info::class)->using(InfoRealEstate::class);
+        return $this->belongsToMany(Info::class)->using(InfoRealEstate::class)->withPivot('value');
     }
 
     public function getFormattedPriceAttribute(): bool|string
@@ -85,4 +86,26 @@ class RealEstate extends Model implements HasMedia
 
         return Number::format($this->price / $exchangeRate['gbp'], 2);
     }
+
+    public function getFormattedInfosAttribute()
+    {
+        $formattedInfos = [];
+
+        foreach ($this->infos as $info) {
+            $key = 'info_' . $info['id'];
+            $formattedInfos[$key] = $info->pivot->value;
+        }
+
+        return $formattedInfos;
+    }
+       public static function booted()
+       {
+           static::saving(function (self $model) {
+               foreach ($model->attributes as $key => $value) {
+                   if (str_contains($key, 'info_')) {
+                       unset($model->attributes[$key]);
+                   }
+               }
+           });
+       }
 }

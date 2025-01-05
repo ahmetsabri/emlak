@@ -11,15 +11,18 @@ class CreateRealEstate extends CreateRecord
 
     protected array $infos = [];
 
-    protected function beforeCreate(): void
+    protected function afterValidate(): void
     {
-        $this->infos = current($this->data['infos']);
-        unset($this->data['infos']);
+        foreach ($this->data as $key => $value) {
+            if (str_contains($key, 'info_')) {
+                $this->infos[str($key)->afterLast('_')->value()] = $value;
+                unset($this->data[$key]);
+            }
+        }
     }
 
     protected function afterCreate(): void
     {
-        $record = $this->getRecord();
         $infos = [];
         foreach ($this->infos as $infoId => $value) {
             $infos[$infoId] = ['value' => $value];
