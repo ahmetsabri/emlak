@@ -1,0 +1,338 @@
+@include('themes.main.header')
+
+<main id="page-team" class="header-space">
+    <section class="breadcrumb">
+        <div class="background"><img src="assets/images/breadcrumb/image-4.jpg" alt=""></div>
+        <div class="content">
+            <div class="container">
+                <h1>Ekibimiz</h1>
+            </div>
+        </div>
+    </section>
+
+    <article class="inner">
+        <div class="container-with-sidebar">
+            <div class="container">
+                <div class="content">
+                    <div class="person-info">
+                        <div class="image"><img src="assets/images/person/image-1.jpg" alt=""></div>
+                        <div class="content">
+                            <div class="info">
+                                <div class="naming">
+                                    <div class="name">Çağrı Akbaş</div>
+                                    <div class="position">Broker</div>
+                                </div>
+                                <div class="number"><strong>TTYB NO:</strong> 3300022</div>
+                            </div>
+                            <div class="contacts">
+                                <a href="" class="item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.19 21.19">
+                                        <path
+                                            d="M15.39,11.91c-.99,0-1.9,.54-2.36,1.41-.28,.4-.17,.95,.23,1.23,.4,.28,.95,.17,1.23-.23h0c.39-.57,.57-.66,.8-.65,1.57,.68,2.96,1.7,4.08,2.99,.08,.21,.07,.44,0,.65-.22,.82-.76,1.51-1.51,1.91-.74,.29-1.56,.26-2.27-.08-3.06-1.22-5.85-3.04-8.2-5.34-2.3-2.35-4.1-5.13-5.32-8.19-.34-.71-.37-1.54-.08-2.27,.4-.75,1.09-1.29,1.91-1.51,.21-.08,.44-.09,.64,0,1.29,1.12,2.31,2.5,2.99,4.07,.01,.25-.08,.42-.64,.81-.4,.28-.51,.83-.23,1.23,.28,.4,.83,.51,1.23,.23h0c.87-.47,1.41-1.37,1.41-2.36C8.56,3.52,7.11,1.54,5.14,.17c-.59-.22-1.23-.22-1.83-.01C2.03,.52,.96,1.41,.37,2.61c-.5,1.18-.49,2.51,.05,3.68,1.31,3.27,3.25,6.25,5.72,8.77l.02,.02c2.52,2.46,5.49,4.4,8.76,5.71,.62,.26,1.29,.4,1.97,.41,.59,0,1.17-.12,1.7-.37,1.2-.6,2.09-1.67,2.45-2.95,.21-.59,.21-1.23-.01-1.82-1.37-1.96-3.35-3.42-5.64-4.14h0Z" />
+                                    </svg>
+                                    <span>+90 (324) 325-3030</span>
+                                </a>
+
+                                <a href="" class="item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.58 23.58">
+                                        <path
+                                            d="M11.79,0C5.28,0,0,5.28,0,11.79s5.28,11.79,11.79,11.79c.49-.02,.87-.42,.85-.91-.02-.46-.39-.84-.85-.85-5.54,0-10.03-4.49-10.03-10.03,0-5.54,4.49-10.03,10.03-10.03,5.54,0,10.03,4.49,10.03,10.03v2.73c0,1.02-.83,1.85-1.85,1.85s-1.85-.83-1.85-1.85h0v-2.73c0-3.5-2.83-6.35-6.33-6.36s-6.35,2.83-6.36,6.33,2.83,6.35,6.33,6.36c1.87,0,3.65-.82,4.86-2.25,.75,1.85,2.85,2.74,4.7,1.99,1.36-.55,2.25-1.87,2.25-3.34v-2.73C23.57,5.28,18.3,0,11.79,0Zm0,16.36c-2.53,0-4.57-2.05-4.57-4.57s2.05-4.57,4.57-4.57,4.57,2.05,4.57,4.57-2.05,4.57-4.57,4.57h0Z" />
+                                    </svg>
+                                    <span>info@remax-loca-mrs.com</span>
+                                </a>
+
+                                <a href="" class="item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.94 21.94">
+                                        <path
+                                            d="M11.63,21.94c-.71,0-1.37-.27-1.88-.77-.51-.5-.8-1.17-.81-1.89v-6.29H2.67c-1.06-.01-2.01-.64-2.43-1.59-.29-.65-.31-1.38-.05-2.06,.26-.67,.76-1.2,1.42-1.49L18.26,.17c.61-.22,1.28-.22,1.89,0,.69,.25,1.24,.76,1.55,1.42,.31,.66,.34,1.41,.09,2.1l-7.69,16.67c-.42,.95-1.37,1.57-2.42,1.58h-.03Zm-1.93-10.44h.75v7.78c0,.31,.13,.61,.36,.83,.23,.22,.56,.35,.84,.34,.46,0,.88-.28,1.07-.7L20.39,3.12c.09-.26,.08-.59-.06-.9-.14-.3-.39-.53-.7-.65-.27-.1-.56-.1-.83,0L2.21,9.22c-.3,.13-.52,.37-.63,.66-.11,.3-.11,.62,.02,.91,.19,.42,.61,.7,1.07,.7h7.02Z" />
+                                    </svg>
+                                    <span>Dumlupınar Mah. 1524 sok. Oğuz İş Merkezi No:2/1 Yenişehir /
+                                        Mersin(İçel)</span>
+                                </a>
+                            </div>
+                            <div class="buttons">
+                                <a href="" class="whatsapp">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.72 19.71">
+                                        <path
+                                            d="M16.77,2.86c-3.82-3.81-10.01-3.81-13.83,.01C-.18,6-.81,10.82,1.39,14.65l-1.39,5.06,5.18-1.36c1.43,.78,3.04,1.19,4.67,1.19h0c5.41,0,9.81-4.36,9.87-9.77-.03-2.6-1.09-5.09-2.95-6.91h0Zm-6.91,15.04c-1.46,0-2.89-.39-4.14-1.13l-.3-.18-3.07,.81,.82-3-.19-.31C.65,10.24,1.88,5.24,5.72,2.91c3.84-2.33,8.85-1.1,11.18,2.75,.75,1.24,1.16,2.66,1.18,4.11-.05,4.5-3.71,8.13-8.22,8.13h0Zm4.45-6.08c-.24-.12-1.44-.71-1.67-.79s-.39-.12-.55,.12-.63,.79-.77,.96-.29,.19-.53,.06c-1.41-.56-2.58-1.59-3.32-2.91-.25-.43,.25-.4,.72-1.33,.06-.14,.06-.3-.02-.43-.06-.12-.55-1.32-.75-1.81s-.4-.41-.55-.42-.3,0-.47,0c-.25,0-.49,.11-.65,.3-.56,.53-.87,1.27-.85,2.04,.08,.92,.43,1.8,.99,2.53,1.05,1.57,2.49,2.84,4.17,3.69,.89,.51,1.91,.73,2.93,.61,.69-.14,1.29-.56,1.65-1.16,.16-.37,.21-.77,.14-1.16-.06-.11-.22-.17-.46-.29Z" />
+                                    </svg>
+                                    <span>Whatsapp</span>
+                                </a>
+                                <a href="" class="phone">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.74 20.78">
+                                        <path
+                                            d="M18.05,20.78c-.08,0-.16,0-.24-.01-3.09-.34-6.09-1.4-8.69-3.09-2.41-1.53-4.49-3.62-6.02-6.03C1.41,9.05,.34,6.04,.01,2.94-.06,2.22,.16,1.52,.62,.97,1.08,.42,1.72,.08,2.44,.01c.08,0,.16-.01,.24-.01h2.9c1.3,.02,2.49,.98,2.68,2.31,.12,.88,.33,1.74,.64,2.56,.37,.98,.13,2.09-.6,2.83l-.82,.82c1.19,1.92,2.82,3.55,4.74,4.74l.82-.82c.75-.74,1.85-.97,2.84-.61,.82,.31,1.68,.52,2.55,.64,1.33,.19,2.31,1.32,2.32,2.64,0,.02,0,.05,0,.07v2.9c0,.71-.27,1.39-.78,1.9-.5,.51-1.18,.79-1.89,.8h-.02ZM5.6,1.5H2.57c-.32,.03-.6,.18-.8,.43-.2,.24-.3,.55-.27,.87,.3,2.85,1.29,5.64,2.85,8.05,1.42,2.23,3.34,4.16,5.57,5.57,2.41,1.56,5.18,2.55,8.03,2.86,.02,0,.05,0,.1,0,.32,0,.62-.13,.84-.35,.22-.22,.34-.52,.34-.84v-2.83s0-.06,0-.1c.02-.6-.42-1.12-1.02-1.2-.97-.13-1.94-.37-2.88-.72-.43-.16-.92-.06-1.25,.27l-1.23,1.23c-.24,.24-.61,.29-.9,.12-2.54-1.44-4.64-3.55-6.08-6.08-.17-.29-.12-.66,.12-.9l1.23-1.23c.32-.32,.42-.82,.26-1.25-.35-.93-.59-1.9-.72-2.88-.08-.58-.59-1.01-1.17-1.01Z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="person-detail mt--45">
+                        <div class="section-heading mb--15">
+                            <div class="title small">Çağrı Akbaş Hakkında</div>
+                        </div>
+                        <div class="type">
+                            <p>Metalurji ve Malzeme Mühendisi, Uluslararası Lisanslı Ticari Gayrimenkul Uzmanı</p>
+                            <p>2002 yılında Lise öğrenimimi İçel Anadolu Lisesi'nde tamamladıktan sonra 2007 yılında
+                                Sakarya Üniversitesi Metalurji ve Malzeme Mühendisliği'nden mezun oldum.</p>
+                            <p>2008 yılında hem kendimi geliştirmek hem de yüksek lisans öğrenimimi tamamlamak için
+                                Amerika Birleşik Devletleri'ne gittim. San Diego / California'da 2 sene yaşadım ve burda
+                                Southern States University'de MBA öğrenimimi tamamladım. Bu süre içerisinde çeşitli
+                                şirketlerde çalıştım.</p>
+                            <p>2010 yılının sonunda merkezi Kocaeli'nde bulunan Eran Mühendislik şirketinde çalışmaya
+                                başladım. Burada 3 sene boyunca Demir-Çelik Fabrikaları, Termik Santraller, Köprüler,
+                                Uçak Hangarları, Depolar gibi büyük çelik projelerde Satınalma ve İhale Müdürü olarak
+                                çalıştım.</p>
+                            <p>2013 yılında gayrimenkul alım-satımında Dünya'nın 1 numaralı markası olan RE/MAX ile
+                                çalışmaya başladım.</p>
+                            <p>8 yıllık Ticari Gayrimenkul tecrübem, almış olduğum eğitimler ve sahip olduğum
+                                lisanslarım ile müşterilerime profesyonel hizmet vermeye devam etmekteyim.</p>
+
+                            <p> Çağrı AKBAŞ</p>
+                            <p>Uluslararası Lisanslı Ticari Gayrimenkul Uzmanı</p>
+
+                            <p>Almış olduğum eğitim ve sertifikalar;</p>
+
+                            <ul>
+                                <li>2013 - RE/MAX Kariyeriniz</li>
+                                <li>2016 - Angelo Fradera 'Müzakere ve Satış Kapama Stratejileri'</li>
+                                <li>2017 - ACP 'Accredited Commercial Professional'</li>
+                                <li>2020 - MOMENTUM 2.0</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="person-portfolio mt--45">
+                        <div class="section-heading flex mb--15">
+                            <div class="title small">Portföylerim</div>
+                            <a href=""
+                                class="button button color--endeavour-bg size--fit size--wide size--small icon--right icon--small">
+                                <span>Tümünü Gör</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5.08 8.65">
+                                    <path
+                                        d="M.75,8.65c-.19,0-.38-.07-.53-.22-.29-.29-.29-.77,0-1.06l3.05-3.05L.22,1.28C-.07,.99-.07,.51,.22,.22S.99-.07,1.28,.22l3.58,3.58c.29,.29,.29,.77,0,1.06l-3.58,3.58c-.15,.15-.34,.22-.53,.22Z" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="portfolio-grid col-2">
+                            <a href="" class="portfolio-item">
+                                <div class="thumbnail">
+                                    <div class="images">
+                                        <img class="active" src="assets/images/portfolio/image-1.jpg" alt="">
+                                        <img src="assets/images/portfolio/image-2.jpg" alt="">
+                                        <img src="assets/images/portfolio/image-3.jpg" alt="">
+                                    </div>
+                                    <div class="fields">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                    <div class="dots">
+                                        <span class="active"></span><span></span><span></span>
+                                    </div>
+                                    <div class="more">Detaylı İncele</div>
+                                </div>
+                                <div class="heading">
+                                    <div class="name">REMAX LOCA GMK VE DENİZE YAKIN</div>
+                                    <div class="sale">
+                                        <div class="type">Satılık - Konut</div>
+                                        <div class="price">700.000₺</div>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <div class="info">
+                                        <div class="item">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
+                                                <path
+                                                    d="M24.75,7.48s0,0,0-.01V.59c0-.32-.26-.59-.59-.59H.59C.26,0,0,.26,0,.59V24.16c0,.32,.26,.59,.59,.59H24.16c.32,0,.59-.26,.59-.59V7.49s0,0,0-.01ZM12.35,23.58s.03-.09,.02-.14v-6.4c.01-.34-.25-.62-.59-.63-.34,.01-.6,.3-.59,.63v6.4c0,.05,.01,.1,.02,.14H1.17V12.15H11.2v.88c0,.32,.26,.59,.59,.59,.32,0,.59-.26,.59-.59v-1.47c0-.32-.26-.59-.59-.59H1.17V1.17H12.86v.84s0,.06,0,.08c.02,.32,.3,.57,.63,.54,.32-.02,.57-.3,.54-.63v-.84h9.54V6.89H14.03v-.88h0c0-.32-.26-.59-.59-.59s-.59,.26-.59,.59v1.47c0,.32,.26,.59,.59,.59h10.12v15.51H12.35Z" />
+                                            </svg>
+                                            <span>3+1</span>
+                                        </div>
+                                        <div class="item">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
+                                                <path
+                                                    d="M20.18,6.61c-.32,0-.59-.26-.59-.59v-.88h-.88c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59v1.46c0,.32-.26,.59-.58,.59h0Zm-4-1.47h-2.54c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-5.08,0h-2.53c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-6.54,1.47c-.32,0-.59-.26-.59-.59h0v-1.47c0-.32,.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h-.88v.88c0,.32-.26,.59-.58,.59h0Zm0,10.15c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.58-.59,.58Zm1.46,9.08h-1.46c-.32,0-.59-.26-.59-.59v-1.47c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v.88h.88c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm10.16,0h-2.54c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58Zm-5.08,0h-2.53c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm9.08,0h-1.47c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h.88v-.88c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v1.47c0,.32-.26,.58-.58,.59Zm0-4c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.58-.59,.58Zm3.98,13.06H.59c-.32,0-.59-.26-.59-.59H0V.59C0,.26,.26,0,.59,0H24.16c.32,0,.59,.26,.59,.59V24.16c0,.32-.26,.59-.59,.59ZM1.17,23.57H23.57V1.17H1.17V23.57Z" />
+                                            </svg>
+                                            <span>120 m²</span>
+                                        </div>
+                                    </div>
+                                    <div class="location">Mezitli / Seymenler</div>
+                                </div>
+                            </a>
+
+                            <a href="" class="portfolio-item">
+                                <div class="thumbnail">
+                                    <div class="images">
+                                        <img class="active" src="assets/images/portfolio/image-2.jpg" alt="">
+                                        <img src="assets/images/portfolio/image-1.jpg" alt="">
+                                        <img src="assets/images/portfolio/image-3.jpg" alt="">
+                                    </div>
+                                    <div class="fields">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                    <div class="dots">
+                                        <span class="active"></span><span></span><span></span>
+                                    </div>
+                                    <div class="more">Detaylı İncele</div>
+                                </div>
+                                <div class="heading">
+                                    <div class="name">REMAX LOCA GMK VE DENİZE YAKIN</div>
+                                    <div class="sale">
+                                        <div class="type">Satılık - Konut</div>
+                                        <div class="price">650.000₺</div>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <div class="info">
+                                        <div class="item">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
+                                                <path
+                                                    d="M24.75,7.48s0,0,0-.01V.59c0-.32-.26-.59-.59-.59H.59C.26,0,0,.26,0,.59V24.16c0,.32,.26,.59,.59,.59H24.16c.32,0,.59-.26,.59-.59V7.49s0,0,0-.01ZM12.35,23.58s.03-.09,.02-.14v-6.4c.01-.34-.25-.62-.59-.63-.34,.01-.6,.3-.59,.63v6.4c0,.05,.01,.1,.02,.14H1.17V12.15H11.2v.88c0,.32,.26,.59,.59,.59,.32,0,.59-.26,.59-.59v-1.47c0-.32-.26-.59-.59-.59H1.17V1.17H12.86v.84s0,.06,0,.08c.02,.32,.3,.57,.63,.54,.32-.02,.57-.3,.54-.63v-.84h9.54V6.89H14.03v-.88h0c0-.32-.26-.59-.59-.59s-.59,.26-.59,.59v1.47c0,.32,.26,.59,.59,.59h10.12v15.51H12.35Z" />
+                                            </svg>
+                                            <span>3+1</span>
+                                        </div>
+                                        <div class="item">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
+                                                <path
+                                                    d="M20.18,6.61c-.32,0-.59-.26-.59-.59v-.88h-.88c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59v1.46c0,.32-.26,.59-.58,.59h0Zm-4-1.47h-2.54c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-5.08,0h-2.53c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-6.54,1.47c-.32,0-.59-.26-.59-.59h0v-1.47c0-.32,.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h-.88v.88c0,.32-.26,.59-.58,.59h0Zm0,10.15c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.58-.59,.58Zm1.46,9.08h-1.46c-.32,0-.59-.26-.59-.59v-1.47c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v.88h.88c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm10.16,0h-2.54c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58Zm-5.08,0h-2.53c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm9.08,0h-1.47c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h.88v-.88c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v1.47c0,.32-.26,.58-.58,.59Zm0-4c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.58-.59,.58Zm3.98,13.06H.59c-.32,0-.59-.26-.59-.59H0V.59C0,.26,.26,0,.59,0H24.16c.32,0,.59,.26,.59,.59V24.16c0,.32-.26,.59-.59,.59ZM1.17,23.57H23.57V1.17H1.17V23.57Z" />
+                                            </svg>
+                                            <span>120 m²</span>
+                                        </div>
+                                    </div>
+                                    <div class="location">Mezitli / Seymenler</div>
+                                </div>
+                            </a>
+
+                            <a href="" class="portfolio-item">
+                                <div class="thumbnail">
+                                    <div class="images">
+                                        <img class="active" src="assets/images/portfolio/image-3.jpg" alt="">
+                                        <img src="assets/images/portfolio/image-2.jpg" alt="">
+                                        <img src="assets/images/portfolio/image-1.jpg" alt="">
+                                    </div>
+                                    <div class="fields">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                    <div class="dots">
+                                        <span class="active"></span><span></span><span></span>
+                                    </div>
+                                    <div class="more">Detaylı İncele</div>
+                                </div>
+                                <div class="heading">
+                                    <div class="name">REMAX LOCA GMK VE DENİZE YAKIN</div>
+                                    <div class="sale">
+                                        <div class="type">Satılık - Konut</div>
+                                        <div class="price">500.000₺</div>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <div class="info">
+                                        <div class="item">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
+                                                <path
+                                                    d="M24.75,7.48s0,0,0-.01V.59c0-.32-.26-.59-.59-.59H.59C.26,0,0,.26,0,.59V24.16c0,.32,.26,.59,.59,.59H24.16c.32,0,.59-.26,.59-.59V7.49s0,0,0-.01ZM12.35,23.58s.03-.09,.02-.14v-6.4c.01-.34-.25-.62-.59-.63-.34,.01-.6,.3-.59,.63v6.4c0,.05,.01,.1,.02,.14H1.17V12.15H11.2v.88c0,.32,.26,.59,.59,.59,.32,0,.59-.26,.59-.59v-1.47c0-.32-.26-.59-.59-.59H1.17V1.17H12.86v.84s0,.06,0,.08c.02,.32,.3,.57,.63,.54,.32-.02,.57-.3,.54-.63v-.84h9.54V6.89H14.03v-.88h0c0-.32-.26-.59-.59-.59s-.59,.26-.59,.59v1.47c0,.32,.26,.59,.59,.59h10.12v15.51H12.35Z" />
+                                            </svg>
+                                            <span>3+1</span>
+                                        </div>
+                                        <div class="item">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
+                                                <path
+                                                    d="M20.18,6.61c-.32,0-.59-.26-.59-.59v-.88h-.88c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59v1.46c0,.32-.26,.59-.58,.59h0Zm-4-1.47h-2.54c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-5.08,0h-2.53c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-6.54,1.47c-.32,0-.59-.26-.59-.59h0v-1.47c0-.32,.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h-.88v.88c0,.32-.26,.59-.58,.59h0Zm0,10.15c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.58-.59,.58Zm1.46,9.08h-1.46c-.32,0-.59-.26-.59-.59v-1.47c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v.88h.88c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm10.16,0h-2.54c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58Zm-5.08,0h-2.53c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm9.08,0h-1.47c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h.88v-.88c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v1.47c0,.32-.26,.58-.58,.59Zm0-4c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.58-.59,.58Zm3.98,13.06H.59c-.32,0-.59-.26-.59-.59H0V.59C0,.26,.26,0,.59,0H24.16c.32,0,.59,.26,.59,.59V24.16c0,.32-.26,.59-.59,.59ZM1.17,23.57H23.57V1.17H1.17V23.57Z" />
+                                            </svg>
+                                            <span>120 m²</span>
+                                        </div>
+                                    </div>
+                                    <div class="location">Mezitli / Seymenler</div>
+                                </div>
+                            </a>
+
+                            <a href="" class="portfolio-item">
+                                <div class="thumbnail">
+                                    <div class="images">
+                                        <img class="active" src="assets/images/portfolio/image-1.jpg" alt="">
+                                        <img src="assets/images/portfolio/image-2.jpg" alt="">
+                                        <img src="assets/images/portfolio/image-3.jpg" alt="">
+                                    </div>
+                                    <div class="fields">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                    <div class="dots">
+                                        <span class="active"></span><span></span><span></span>
+                                    </div>
+                                    <div class="more">Detaylı İncele</div>
+                                </div>
+                                <div class="heading">
+                                    <div class="name">REMAX LOCA GMK VE DENİZE YAKIN</div>
+                                    <div class="sale">
+                                        <div class="type">Satılık - Konut</div>
+                                        <div class="price">700.000₺</div>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <div class="info">
+                                        <div class="item">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
+                                                <path
+                                                    d="M24.75,7.48s0,0,0-.01V.59c0-.32-.26-.59-.59-.59H.59C.26,0,0,.26,0,.59V24.16c0,.32,.26,.59,.59,.59H24.16c.32,0,.59-.26,.59-.59V7.49s0,0,0-.01ZM12.35,23.58s.03-.09,.02-.14v-6.4c.01-.34-.25-.62-.59-.63-.34,.01-.6,.3-.59,.63v6.4c0,.05,.01,.1,.02,.14H1.17V12.15H11.2v.88c0,.32,.26,.59,.59,.59,.32,0,.59-.26,.59-.59v-1.47c0-.32-.26-.59-.59-.59H1.17V1.17H12.86v.84s0,.06,0,.08c.02,.32,.3,.57,.63,.54,.32-.02,.57-.3,.54-.63v-.84h9.54V6.89H14.03v-.88h0c0-.32-.26-.59-.59-.59s-.59,.26-.59,.59v1.47c0,.32,.26,.59,.59,.59h10.12v15.51H12.35Z" />
+                                            </svg>
+                                            <span>3+1</span>
+                                        </div>
+                                        <div class="item">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
+                                                <path
+                                                    d="M20.18,6.61c-.32,0-.59-.26-.59-.59v-.88h-.88c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59v1.46c0,.32-.26,.59-.58,.59h0Zm-4-1.47h-2.54c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-5.08,0h-2.53c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-6.54,1.47c-.32,0-.59-.26-.59-.59h0v-1.47c0-.32,.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h-.88v.88c0,.32-.26,.59-.58,.59h0Zm0,10.15c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.58-.59,.58Zm1.46,9.08h-1.46c-.32,0-.59-.26-.59-.59v-1.47c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v.88h.88c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm10.16,0h-2.54c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58Zm-5.08,0h-2.53c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm9.08,0h-1.47c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h.88v-.88c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v1.47c0,.32-.26,.58-.58,.59Zm0-4c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.58-.59,.58Zm3.98,13.06H.59c-.32,0-.59-.26-.59-.59H0V.59C0,.26,.26,0,.59,0H24.16c.32,0,.59,.26,.59,.59V24.16c0,.32-.26,.59-.59,.59ZM1.17,23.57H23.57V1.17H1.17V23.57Z" />
+                                            </svg>
+                                            <span>120 m²</span>
+                                        </div>
+                                    </div>
+                                    <div class="location">Mezitli / Seymenler</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="more-button mt--60">
+                            <button
+                                class="button button color--endeavour-bg size--fit size--wide size--small icon--right icon--small">
+                                <span>Devamını Gör</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.66 5.08">
+                                    <path
+                                        d="M4.33,5.08c-.19,0-.38-.07-.53-.22L.22,1.28C-.07,.99-.07,.51,.22,.22S.99-.07,1.28,.22l3.05,3.05L7.38,.22c.29-.29,.77-.29,1.06,0s.29,.77,0,1.06l-3.58,3.58c-.15,.15-.34,.22-.53,.22Z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar">
+                    <div class="sticky">
+                        <div class="sidebar-form">
+                            <div class="wrapper">
+                                <div class="title">Ekibimize Katıl</div>
+                                <div class="expo">Sektöre Sağlam Adımlarla İlerlemek İçin Sende Ekibimize Katıl</div>
+                                <form action="">
+                                    <div class="form white">
+                                        <div class="item width--full">
+                                            <label>İsim Soyisim</label>
+                                            <input type="text" placeholder="Ahmet Balcı">
+                                        </div>
+                                        <div class="item width--full">
+                                            <label>Telefon</label>
+                                            <input type="tel" placeholder="+90 (552) 334 20 50">
+                                        </div>
+                                        <div class="item width--full">
+                                            <button class="button button color--white-bg size--stretch size--medium">
+                                                <span>Gönder</span>
+                                            </button>
+                                        </div>
+                                        <div class="item width--full custom-checkbox">
+                                            <div class="text">Formu gönderdiğiniz de <a href=""
+                                                    target="_blank">KVKK</a> ve <a href=""
+                                                    target="_blank">Gizlilik Şartlarını</a> kabul etmiş olursunuz</div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</main>
+
+@include('themes.main.footer')
