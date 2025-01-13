@@ -5,30 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remax LOCA</title>
+    <title>{{ config('app.name') }}</title>
     <link rel="shortcut icon" href="{{ asset('assets/images/brand/favicon.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/plugin/swiper/swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugin/fancybox/fancybox.css') }}">
-    <!-- cache almasın diye ekledim ? sonrasını silersin -->
-    <link rel="stylesheet" href="./assets/css/main.css?id=<?= rand() ?>">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 </head>
 
 <body>
-    <header<?php if (basename($_SERVER['PHP_SELF']) == 'front-page.php') {
-        echo ' class="index"';
-    } ?>>
+    <header>
         <div class="wrapper container">
             <a href="index.php" class="logo">
-                <img src="./assets/images/brand/logo.png" alt="">
+                <img src="{{ $logo }}" alt="">
             </a>
             <div class="navigation">
                 <ul class="menu">
-                    <li><a href="index.php">Anasayfa</a></li>
-                    <li><a href="page-about.php">Kurumsal</a></li>
-                    <li><a href="page-team.php">Ekibimiz</a></li>
-                    <li><a href="page-portfolio.php">Portföylerimiz</a></li>
-                    <li><a href="page-blog.php">Blog</a></li>
-                    <li><a href="page-contact.php">İletişim</a></li>
+                    <li><a href="{{ route('pages.home') }}">Anasayfa</a></li>
+                    {{-- <li><a href="{{ route('pages.home') }}">Kurumsal</a></li> --}}
+                    <li><a href="{{ route('pages.team') }}">Ekibimiz</a></li>
+                    <li><a href="{{ route('pages.portfolio') }}">Portföylerimiz</a></li>
+                    <li><a href="{{ route('pages.blog') }}">Blog</a></li>
+                    <li><a href="{{ route('pages.contact') }}">İletişim</a></li>
                 </ul>
                 <div class="mobile-trigger">
                     <div class="wrapper">
@@ -36,14 +33,17 @@
                     </div>
                 </div>
                 <div class="language">
-                    <div class="trigger">
-                        <img src="./assets/images/flag/tr.png" alt="">
-                        <div class="current">TR</div>
-                    </div>
-                    <div class="list">
-                        <a href="">EN</a>
-                        <a href="">RU</a>
-                    </div>
+                    @foreach ($languages as $item)
+                        <div class="trigger">
+                            <div class="current">{{ strtoupper($locale) }}</div>
+                        </div>
+                        <div class="list">
+                            @foreach ($languages as $language)
+                                <a href="{{ route('locale.change', $language) }}">{{ strtoupper($language) }}</a>
+                            @endforeach
+                        </div>
+                    @endforeach
+
                 </div>
                 <a href="" class="tv">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 95.5 28.33">
@@ -55,4 +55,4 @@
                 </a>
             </div>
         </div>
-        </header>
+    </header>

@@ -173,7 +173,6 @@
                     tarama ve kullanım tercihlerinize ilişkin veriler toplanmaktadır. Bu veriler, eriştiğiniz sayfalar,
                     incelediğiniz hizmet ve ürünler, tercih ettiğiniz dil seçeneği ve diğer tercihlerinize dair
                     bilgileri kapsamaktadır.</p>
-
                 <h4>2. ÇEREZ NEDİR ve KULLANIM AMAÇLARI NELERDİR?</h4>
                 <p>Çerezler, ziyaret ettiğiniz internet siteleri tarafından tarayıcılar aracılığıyla cihazınıza veya ağ
                     sunucusuna depolanan küçük metin dosyalarıdır. Sitede tercih ettiğiniz dil ve diğer ayarları içeren
