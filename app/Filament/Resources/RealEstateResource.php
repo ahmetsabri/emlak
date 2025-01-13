@@ -2,42 +2,33 @@
 
 namespace App\Filament\Resources;
 
-use App\Models\Info;
-use Filament\Tables;
-use App\Models\County;
+use App\Filament\Resources\RealEstateResource\Pages;
+use App\Forms\Components\LocationPicker;
 use App\Models\Category;
+use App\Models\County;
 use App\Models\District;
-use Filament\Forms\Form;
-use App\RealestateStatus;
+use App\Models\Info;
 use App\Models\RealEstate;
-use Filament\Tables\Table;
+use App\RealestateStatus;
+use CodeWithDennis\FilamentSelectTree\SelectTree;
+use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Repeater;
-use Filament\Tables\Columns\TextColumn;
-use App\Forms\Components\LocationPicker;
-use Filament\Forms\Components\TextInput;
-use Filament\Notifications\Notification;
+use Filament\Tables;
 use Filament\Tables\Actions\ActionGroup;
-use Filament\Forms\Components\RichEditor;
 use Filament\Tables\Columns\SelectColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Forms\Components\CheckboxList;
-use App\Forms\Components\RealestateInfosInput;
-use CodeWithDennis\FilamentSelectTree\SelectTree;
-use App\Filament\Resources\RealEstateResource\Pages;
-use App\Livewire\InfoInput;
-use Filament\Forms\Components\Component;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Livewire;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Table;
 use SolutionForest\FilamentTranslateField\Forms\Component\Translate;
-
-use Filament\Forms\Components\ViewField;
-use Filament\Forms\Get;
-use Illuminate\Database\Eloquent\Model;
 
 class RealEstateResource extends Resource
 {
@@ -52,7 +43,6 @@ class RealEstateResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-s-home-modern';
 
     public static array $infos = [];
-
 
     public static function form(Form $form): Form
     {
@@ -80,21 +70,21 @@ class RealEstateResource extends Resource
                         ->reactive()
                         ->live()
                         ->columnSpanFull()
-                          ->afterStateUpdated(fn (SelectTree $component) => $component
-                        ->getContainer()
-                        ->getComponent('infoFields')
-                        ->getChildComponentContainer()
-                        ->fill()),
-                            Select::make('user_id')
-                            ->relationship('user', 'name')
-                            ->searchable()
-                            ->preload()
-                            ->columnSpanFull(),
+                        ->afterStateUpdated(fn (SelectTree $component) => $component
+                            ->getContainer()
+                            ->getComponent('infoFields')
+                            ->getChildComponentContainer()
+                            ->fill()),
+                    Select::make('user_id')
+                        ->relationship('user', 'name')
+                        ->searchable()
+                        ->preload()
+                        ->columnSpanFull(),
                     Section::make('infos')
-                ->schema(fn (Get $get): array => self::prepareInfo($get('category_id')))
-                ->key('infoFields')
-                ->dehydrated(),
-
+                    ->label('Bilgiler')
+                        ->schema(fn (Get $get): array => self::prepareInfo($get('category_id')))
+                        ->key('infoFields')
+                        ->dehydrated(),
 
                     SpatieMediaLibraryFileUpload::make('images')
                         ->reorderable()
@@ -121,7 +111,7 @@ class RealEstateResource extends Resource
                         ->integer(),
 
                     Select::make('province_id')->label('il')
-                    ->relationship('province', 'name')->searchable()
+                        ->relationship('province', 'name')->searchable()
                         ->searchDebounce(100)->reactive() // This makes the field trigger updates on change
                         ->afterStateUpdated(function ($state, callable $set) {
                             $set('county_id', null);
@@ -313,18 +303,19 @@ class RealEstateResource extends Resource
                     ->label($info->name)
                     ->default('weq')
                     ->selectablePlaceholder(false);
+
                 continue;
             }
 
-
-            $schema[] = TextInput::make('info_' . $info->id)
+            $schema[] = TextInput::make('info_'.$info->id)
                 ->label($info->name);
         }
+
         return $schema;
     }
 
-      public static function getRecord()
-      {
-          return self::$record;
-      }
+    public static function getRecord()
+    {
+        return self::$record;
+    }
 }
