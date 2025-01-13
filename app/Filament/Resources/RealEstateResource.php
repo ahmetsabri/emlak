@@ -80,7 +80,7 @@ class RealEstateResource extends Resource
                         ->searchable()
                         ->preload()
                         ->columnSpanFull(),
-                    Section::make('infos')
+                    Section::make('Bilgiler')
                     ->label('Bilgiler')
                         ->schema(fn (Get $get): array => self::prepareInfo($get('category_id')))
                         ->key('infoFields')
