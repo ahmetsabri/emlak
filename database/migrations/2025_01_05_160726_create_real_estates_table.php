@@ -4,13 +4,13 @@ use App\Models\Category;
 use App\Models\County;
 use App\Models\District;
 use App\Models\Province;
+use App\Models\User;
 use App\RealestateStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      */
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->json('description');
             $table->unsignedBigInteger('sort')->default(1);
             $table->foreignIdFor(Category::class)->constrained();
+            $table->foreignIdFor(User::class)->nullable()->constrained()->nullOnDelete();
             $table->foreignIdFor(Province::class)->index();
             $table->foreignIdFor(County::class)->index();
             $table->foreignIdFor(District::class)->index();
@@ -31,7 +32,6 @@ return new class extends Migration
             $table->string('location')->default('41.0082, 28.9784');
             $table->string('status')->default(RealestateStatus::AVAILABLE->value);
             $table->string('3d_link')->nullable();
-
             $table->timestamps();
         });
     }

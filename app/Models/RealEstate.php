@@ -43,6 +43,10 @@ class RealEstate extends Model implements HasMedia
     {
         return $this->belongsToMany(Info::class)->using(InfoRealEstate::class)->withPivot('value');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function getFormattedPriceAttribute(): bool|string
     {

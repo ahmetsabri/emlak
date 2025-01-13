@@ -37,6 +37,7 @@ use SolutionForest\FilamentTranslateField\Forms\Component\Translate;
 
 use Filament\Forms\Components\ViewField;
 use Filament\Forms\Get;
+use Illuminate\Database\Eloquent\Model;
 
 class RealEstateResource extends Resource
 {
@@ -84,7 +85,11 @@ class RealEstateResource extends Resource
                         ->getComponent('infoFields')
                         ->getChildComponentContainer()
                         ->fill()),
-
+                            Select::make('user_id')
+                            ->relationship('user', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->columnSpanFull(),
                     Section::make('infos')
                 ->schema(fn (Get $get): array => self::prepareInfo($get('category_id')))
                 ->key('infoFields')
@@ -115,7 +120,8 @@ class RealEstateResource extends Resource
                         ->label('Brüt m2')
                         ->integer(),
 
-                    Select::make('province_id')->label('il')->relationship('province', 'name')->searchable()
+                    Select::make('province_id')->label('il')
+                    ->relationship('province', 'name')->searchable()
                         ->searchDebounce(100)->reactive() // This makes the field trigger updates on change
                         ->afterStateUpdated(function ($state, callable $set) {
                             $set('county_id', null);
@@ -175,6 +181,7 @@ class RealEstateResource extends Resource
                     CheckboxList::make('features')
                         ->label('Özelliklerler')
                         ->relationship('features')
+                        ->searchable()
                         ->required()
                         ->options(function (callable $get) {
                             $categoryId = $get('category_id');
@@ -255,6 +262,7 @@ class RealEstateResource extends Resource
                     Tables\Actions\EditAction::make()->color('primary'),
                     Tables\Actions\DeleteAction::make(),
                     Tables\Actions\ReplicateAction::make('copy')
+
                         ->label('Kopyala')
                         ->color(Color::Indigo)
                         ->modal(false)
@@ -314,4 +322,9 @@ class RealEstateResource extends Resource
         }
         return $schema;
     }
+
+      public static function getRecord()
+      {
+          return self::$record;
+      }
 }
