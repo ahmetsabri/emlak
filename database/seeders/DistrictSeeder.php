@@ -19,7 +19,7 @@ class DistrictSeeder extends Seeder
             ]);
 
             foreach ($il['counties'] as $county) {
-                $county = County::createOrFirst([
+                $town = County::createOrFirst([
                     'province_id' => $prov->id,
                     'name' => $county['name'],
                 ]);
@@ -27,7 +27,7 @@ class DistrictSeeder extends Seeder
                 foreach ($county['districts'] as $mahalle) {
                     foreach ($mahalle['neighborhoods'] as $m) {
                         District::createOrFirst([
-                            'county_id' => $county->id,
+                            'county_id' => $town->id,
                             'name' => $m['name'],
                         ]);
                     }
