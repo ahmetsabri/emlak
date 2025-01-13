@@ -15,7 +15,9 @@ class PagesController extends Controller
 
     public function team()
     {
-        $team = User::with('media')->paginate();
+        $team = User::with('media')->whereDoesntHave('roles', function ($query) {
+            $query->where('name', '=', 'Super Admin');
+        })->paginate();
         return view('themes.main.pages.team', compact('team'));
     }
 

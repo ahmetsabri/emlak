@@ -15,7 +15,7 @@
 <body>
     <header>
         <div class="wrapper container">
-            <a href="index.php" class="logo">
+            <a href="{{ route('pages.home') }}" class="logo">
                 <img src="{{ $logo }}" alt="">
             </a>
             <div class="navigation">

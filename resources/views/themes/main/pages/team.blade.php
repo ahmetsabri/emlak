@@ -15,11 +15,12 @@
             <div class="container">
                 <div class="content">
                     <div class="search-bar">
-                        <form action="">
+                        {{-- Todo --}}
+                        {{-- <form action="">
                             <div class="wrapper">
                                 <input type="search" placeholder="Danışman Arama">
                             </div>
-                        </form>
+                        </form> --}}
                     </div>
                     <div class="team-list">
                         @foreach ($team as $user)
