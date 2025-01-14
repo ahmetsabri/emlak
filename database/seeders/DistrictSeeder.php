@@ -13,20 +13,19 @@ class DistrictSeeder extends Seeder
     {
         $data = json_decode(file_get_contents(public_path('assets/data.json')), 1);
 
+        
         foreach ($data as $il) {
-            $prov = Province::createOrFirst([
+            $prov = Province::firstOrCreate([
                 'name' => $il['name'],
             ]);
-
             foreach ($il['counties'] as $county) {
-                $town = County::createOrFirst([
+                $town = County::firstOrCreate([
                     'province_id' => $prov->id,
                     'name' => $county['name'],
                 ]);
-
                 foreach ($county['districts'] as $mahalle) {
                     foreach ($mahalle['neighborhoods'] as $m) {
-                        District::createOrFirst([
+                        District::firstOrCreate([
                             'county_id' => $town->id,
                             'name' => $m['name'],
                         ]);

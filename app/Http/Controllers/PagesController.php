@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\RealEstate;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class PagesController extends Controller
         $team = User::with('media')->whereDoesntHave('roles', function ($query) {
             $query->where('name', '=', 'Super Admin');
         })->paginate();
+
         return view('themes.main.pages.team', compact('team'));
     }
 
