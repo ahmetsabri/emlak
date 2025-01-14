@@ -89,6 +89,6 @@ class SearchComponent extends Component
    {
        // \Arr::whereNotNull()
        $a =   array_filter($this->only('selectedRootCategory', 'selectedTypeCategory', 'selectedPortfolioType', 'keyword', 'minPrice', 'maxPrice', 'currency', 'provinceId', 'countyId', 'districtId'));
-       dd($a);
+       dd('TODO');
    }
 }
