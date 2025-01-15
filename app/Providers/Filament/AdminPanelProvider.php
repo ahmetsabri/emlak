@@ -19,6 +19,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Outerweb\FilamentSettings\Filament\Plugins\FilamentSettingsPlugin;
+use Rupadana\ApiService\ApiServicePlugin;
 use SolutionForest\FilamentTranslateField\FilamentTranslateFieldPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -60,6 +61,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentTranslateFieldPlugin::make(),
                 FilamentSpatieRolesPermissionsPlugin::make(),
                 FilamentSettingsPlugin::make(),
+                ApiServicePlugin::make()->middleware([])
             ])->breadcrumbs(true);
     }
 }
