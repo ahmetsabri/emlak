@@ -34,6 +34,10 @@ class RealEstate extends Model implements HasMedia
     {
         return $this->belongsTo(County::class);
     }
+    public function district(): BelongsTo
+    {
+        return $this->belongsTo(District::class);
+    }
 
     public function features()
     {
