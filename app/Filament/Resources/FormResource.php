@@ -37,11 +37,11 @@ class FormResource extends Resource
         return $table
             ->paginationPageOptions([10, 20, 30])
             ->columns([
-                TextColumn::make('name')->searchable(),
-                TextColumn::make('email')->searchable(),
-                TextColumn::make('phone')->searchable(),
-                TextColumn::make('province.name')->searchable(),
-                TextColumn::make('county.name')->searchable(),
+                TextColumn::make('name')->label('Ad')->searchable(),
+                TextColumn::make('email')->label('E-Posta')->searchable(),
+                TextColumn::make('phone')->label('Telefon')->searchable(),
+                TextColumn::make('province.name')->label('İl')->searchable(),
+                TextColumn::make('county.name')->label('İlçe')->searchable(),
             ])
             ->filters([
                 //

@@ -39,6 +39,7 @@ class TranslatePermissions extends Command
             'Service' => 'Servis',
             'Todo' => 'Görev',
             'User' => 'Ekip üyesi',
+            'Setting' => 'Ayarlar',
         ];
 
         $actionTranslations = [
