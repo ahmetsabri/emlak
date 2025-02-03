@@ -19,6 +19,7 @@ class CompanyFactory extends Factory
     {
         return [
             'name' => fake()->company(),
+            'domain' => fake()->word(),
             'status' => CompanyStatus::ACTIVCE,
         ];
     }

@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Scope;
 
 class CompanyScope implements Scope
 {
-    /**
-     * Apply the scope to a given Eloquent query builder.
-     */
+    private $companyId;
+    public function __construct()
+    {
+        $this->companyId = auth()->user()->company_id;
+    }
     public function apply(Builder $builder, Model $model): void
     {
-        if (auth()->check()) {
-            $builder->where('compny_id', auth()->user()->company_id);
-        }
+        $builder->where('company_id', $this->companyId);
     }
 }

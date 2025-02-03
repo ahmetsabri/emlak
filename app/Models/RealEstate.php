@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\CompanyScope;
 use App\Traits\HasCategoryTree;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Number;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
+
+// #[ScopedBy([CompanyScope::class])]
 
 class RealEstate extends Model implements HasMedia
 {
@@ -112,6 +116,8 @@ class RealEstate extends Model implements HasMedia
     public static function booted()
     {
         static::saving(function (self $model) {
+            $model->company_id = auth()->user()->company_id;
+            $model->slug = str()->slug($model->title);
             foreach ($model->attributes as $key => $value) {
                 if (str_contains($key, 'info_')) {
                     unset($model->attributes[$key]);
