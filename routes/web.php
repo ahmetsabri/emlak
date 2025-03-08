@@ -3,16 +3,32 @@
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
-Route::name('pages.')->group(function () {
+Route::group([''], function () {
     Route::get('/', [PagesController::class, 'home'])->name('home');
-    Route::get('team', [PagesController::class, 'team'])->name('team');
+    Route::get('team', [PagesController::class, 'team'])->name('frontend.team.index');
     Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('team.show');
+    Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('frontend.portfolio.show');
     Route::get('contact', [PagesController::class, 'contact'])->name('contact');
-    Route::get('portfolio', [PagesController::class, 'portfolios'])->name('portfolio');
+    Route::get('portfolio', [PagesController::class, 'portfolios'])->name('portfolios');
     Route::get('blog', [PagesController::class, 'blog'])->name('blog');
+    Route::get('blog', [PagesController::class, 'blog'])->name('videos');
+    Route::get('blogx', [PagesController::class, 'blog'])->name('frontend.about');
+    Route::get('blogxx', [PagesController::class, 'blog'])->name('frontend.services');
+    Route::get('blogxx', [PagesController::class, 'blog'])->name('frontend.services');
+    Route::get('blogxwx', [PagesController::class, 'blog'])->name('frontend.blog');
+    Route::get('blogxwwx', [PagesController::class, 'blog'])->name('buy_sell');
+    Route::get('blogxwawx', [PagesController::class, 'blog'])->name('career');
+    Route::get('blogxwawx', [PagesController::class, 'blog'])->name('career');
+    Route::get('blogxsx', [PagesController::class, 'blog'])->name('projects');
+    Route::get('ss', [PagesController::class, 'blog'])->name('frontend.faq');
 });
 
 Route::get('locale/{locale}', function ($locale) {
     app()->setLocale($locale);
     return back();
-})->name('locale.change');
+})->name('locale');
+
+Route::get('localex/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    return back();
+})->name('currency');
