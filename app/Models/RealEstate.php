@@ -125,4 +125,12 @@ class RealEstate extends Model implements HasMedia
             }
         });
     }
+
+    public function getMainCategoryAttribute()
+    {
+        $category = $this->load('category.rootAncestor')->category;
+
+        return $category->rootAncestor?->name ?? $category->name;
+    }
+
 }

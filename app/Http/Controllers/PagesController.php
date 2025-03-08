@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Province;
 use App\Models\RealEstate;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,7 +12,15 @@ class PagesController extends Controller
 {
     public function home()
     {
-        return view('themes.main.pages.home');
+
+        $portfolios = RealEstate::with('infos', 'media', 'category.rootAncestor', 'district.county.province')->latest()->limit(6)->get();
+        $rootCategories = Category::isRoot()->with('children.children')->get();
+        $provinces = Province::all();
+        $videos = [];
+        $videoCategories = [];
+        $searchableCategories = $rootCategories->take(5);
+
+        return view('themes.main.pages.home', compact('portfolios', 'rootCategories', 'provinces', 'videos', 'videoCategories', 'searchableCategories'));
     }
 
     public function team()

@@ -13,7 +13,7 @@ class DistrictSeeder extends Seeder
     {
         $data = json_decode(file_get_contents(public_path('assets/data.json')), 1);
 
-        
+
         foreach ($data as $il) {
             $prov = Province::firstOrCreate([
                 'name' => $il['name'],
@@ -26,7 +26,7 @@ class DistrictSeeder extends Seeder
                 foreach ($county['districts'] as $mahalle) {
                     foreach ($mahalle['neighborhoods'] as $m) {
                         District::firstOrCreate([
-                            'county_id' => $town->id,
+                            'county_id' => $county->id,
                             'name' => $m['name'],
                         ]);
                     }
