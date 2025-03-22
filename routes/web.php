@@ -1,16 +1,21 @@
 <?php
 
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([''], function () {
+
+    Route::post('/portfolio-form', [FormController::class, 'storePortfolioForm'])->name('form.portfolio');
+
     Route::get('/', [PagesController::class, 'home'])->name('home');
     Route::get('team', [PagesController::class, 'team'])->name('frontend.team.index');
     Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('team.show');
+    Route::get('portfolios', [PagesController::class, 'portfolios'])->name('portfolios');
+    Route::get('portfolios/{portfolio}', [PagesController::class, 'showPortfolio'])->name('frontend.portfolio.show');
     Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('frontend.portfolio.show');
     Route::get('contact', [PagesController::class, 'contact'])->name('contact');
-    Route::get('portfolios', [PagesController::class, 'portfolios'])->name('portfolios');
     Route::get('blog', [PagesController::class, 'blog'])->name('blog');
     Route::get('blog', [PagesController::class, 'blog'])->name('videos');
     Route::get('blogx', [PagesController::class, 'blog'])->name('frontend.about');
@@ -22,6 +27,7 @@ Route::group([''], function () {
     Route::get('blogxwawx', [PagesController::class, 'blog'])->name('career');
     Route::get('blogxsx', [PagesController::class, 'blog'])->name('projects');
     Route::get('ss', [PagesController::class, 'blog'])->name('frontend.faq');
+
 });
 
 Route::get('locale/{locale}', function ($locale) {

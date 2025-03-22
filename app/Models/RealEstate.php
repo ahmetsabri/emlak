@@ -43,7 +43,7 @@ class RealEstate extends Model implements HasMedia
 
     public function features()
     {
-        return $this->belongsToMany(Feature::class)->using(FeatureRealEstate::class);
+        return $this->belongsToMany(Feature::class)->using(FeatureRealEstate::class)->with('group');
     }
 
     public function infos()
@@ -121,6 +121,10 @@ class RealEstate extends Model implements HasMedia
                     unset($model->attributes[$key]);
                 }
             }
+        });
+
+        static::creating(function ($model) {
+            $model->ad_number = random_int(10000000, 1000000000);
         });
     }
 
@@ -205,5 +209,30 @@ class RealEstate extends Model implements HasMedia
         return $roomsCount;
     }
 
+    public function getOgImage()
+    {
+        return $this->media->first()?->original_url;
+    }
+    public function getLastImage()
+    {
+        return $this->media?->last()?->original_url;
+    }
 
+    public function getFullAddressAttribute(): string
+    {
+        $portfolio = $this->load('province', 'county', 'district');
+
+        return $portfolio->province->name.' / '.$portfolio->county->name.' / '.$portfolio->district->name;
+    }
+
+    public function getShareLinksAttribute()
+    {
+        return [
+            'sms' => sprintf(config('keys.sms_share_link'), $this->title.' '.route('frontend.portfolio.show', $this)),
+            'email' => sprintf(config('keys.email_share_link'), $this->title.' '.route('frontend.portfolio.show', $this)),
+            'wp' => sprintf(config('keys.wp_share_link'), $this->title.' '.route('frontend.portfolio.show', $this)),
+            'x' => sprintf(config('keys.x_share_link'), route('frontend.portfolio.show', $this)),
+            'fb' => sprintf(config('keys.fb_share_link'), route('frontend.portfolio.show', $this)),
+        ];
+    }
 }

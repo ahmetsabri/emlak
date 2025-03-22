@@ -78,4 +78,10 @@ class User extends Authenticatable implements FilamentUser, HasMedia
             $model->password = $model->password ?: bcrypt(str()->random(32));
         });
     }
+
+    public function getWpUrlAttribute()
+    {
+        return 'https://api.whatsapp.com/send/?phone='.$this->whatsapp;
+    }
+
 }

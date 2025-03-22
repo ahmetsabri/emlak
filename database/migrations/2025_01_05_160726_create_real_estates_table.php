@@ -35,6 +35,7 @@ return new class () extends Migration {
             $table->string('location')->default('41.0082, 28.9784');
             $table->string('status')->default(RealestateStatus::AVAILABLE->value);
             $table->string('3d_link')->nullable();
+            $table->string('ad_number')->nullable();
             $table->timestamps();
         });
     }

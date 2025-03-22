@@ -83,6 +83,14 @@ class PagesController extends Controller
         );
     }
 
+    public function showPortfolio(RealEstate $portfolio)
+    {
+
+        $randomPortfolios = RealEstate::inRandomOrder()->with('media', 'category.rootAncestor', 'district.county.province')->limit(3)->where('id', '<>', $portfolio->id)->get();
+
+        return view('themes.main.pages.show_portfolio', compact('portfolio', 'randomPortfolios'));
+
+    }
     public function team()
     {
         $team = User::with('media')->whereDoesntHave('roles', function ($query) {
