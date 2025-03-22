@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,7 +10,7 @@ Route::group([''], function () {
     Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('team.show');
     Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('frontend.portfolio.show');
     Route::get('contact', [PagesController::class, 'contact'])->name('contact');
-    Route::get('portfolio', [PagesController::class, 'portfolios'])->name('portfolios');
+    Route::get('portfolios', [PagesController::class, 'portfolios'])->name('portfolios');
     Route::get('blog', [PagesController::class, 'blog'])->name('blog');
     Route::get('blog', [PagesController::class, 'blog'])->name('videos');
     Route::get('blogx', [PagesController::class, 'blog'])->name('frontend.about');
@@ -32,3 +33,8 @@ Route::get('localex/{locale}', function ($locale) {
     app()->setLocale($locale);
     return back();
 })->name('currency');
+
+
+
+Route::get('towns/{province?}', [CountryController::class, 'towns'])->name('province.towns');
+Route::get('districts/{town?}', [CountryController::class, 'districts'])->name('towns.districts');

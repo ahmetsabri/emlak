@@ -666,7 +666,7 @@
                             <a href="{{ route('frontend.portfolio.show', $portfolio) }}"
                                 class="title text-4.5 leading-tight text-tertiary-950 hover:text-main-700 duration-300 font-semibold mb-4 xl:mb-5 md:mb-4 block capitalize">{{ $portfolio->title }}</a>
                             <div class="price text-[#2675FA] font-semibold text-5 lg:text-4.5 md:text-4">
-                                {{ $portfolio->price }}
+                                {{ $portfolio->price_in_try }} ₺
                             </div>
                             <div class="info flex items-center justify-between gap-7.5 mt-5 md:mt-4">
 
