@@ -15,7 +15,7 @@ class StatsOverview extends BaseWidget
     protected function getStats(): array
     {
         $exchangeRate = cache('exchange:rate');
-        $this->description = 'Son güncelleme : '.$exchangeRate->updated_at->toDateTimeString('minute');
+        $this->description = 'Son güncelleme : '.$exchangeRate->updated_at->timezone('Europe/Istanbul')->toDateTimeString('minute');
 
         return [
             Stat::make('USD', Number::format($exchangeRate->usd, 2).'₺')
