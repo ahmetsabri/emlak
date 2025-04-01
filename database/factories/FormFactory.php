@@ -24,7 +24,7 @@ class FormFactory extends Factory
             'phone' => fake()->phoneNumber(),
             'province_id' => Province::inRandomOrder()->first(),
             'county_id' => County::inRandomOrder()->first(),
-            'note' => fake()->sentence(rand(10, 70))
+            'note' => fake()->sentence(rand(10, 70)),
         ];
     }
 }

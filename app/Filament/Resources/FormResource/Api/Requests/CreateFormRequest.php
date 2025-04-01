@@ -22,12 +22,12 @@ class CreateFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'name' => 'required|string',
-			'phone' => 'required|string',
-			'note' => 'required|string',
-			'province_id' => 'required|integer',
-			'county_id' => 'required|integer',
-			'email' => 'required|string'
-		];
+            'name' => 'required|string',
+            'phone' => 'required|string',
+            'note' => 'required|string',
+            'province_id' => 'required|integer',
+            'county_id' => 'required|integer',
+            'email' => 'required|string',
+        ];
     }
 }

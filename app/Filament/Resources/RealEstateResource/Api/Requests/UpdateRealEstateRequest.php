@@ -22,20 +22,20 @@ class UpdateRealEstateRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'title' => 'required',
-			'description' => 'required',
-			'sort' => 'required|integer',
-			'category_id' => 'required|integer',
-			'user_id' => 'required|integer',
-			'province_id' => 'required|integer',
-			'county_id' => 'required|integer',
-			'district_id' => 'required|integer',
-			'price' => 'required|integer',
-			'net_area' => 'required|integer',
-			'gross_area' => 'required|integer',
-			'location' => 'required|string',
-			'status' => 'required|string',
-			'3d_link' => 'required|string'
-		];
+            'title' => 'required',
+            'description' => 'required',
+            'sort' => 'required|integer',
+            'category_id' => 'required|integer',
+            'user_id' => 'required|integer',
+            'province_id' => 'required|integer',
+            'county_id' => 'required|integer',
+            'district_id' => 'required|integer',
+            'price' => 'required|integer',
+            'net_area' => 'required|integer',
+            'gross_area' => 'required|integer',
+            'location' => 'required|string',
+            'status' => 'required|string',
+            '3d_link' => 'required|string',
+        ];
     }
 }

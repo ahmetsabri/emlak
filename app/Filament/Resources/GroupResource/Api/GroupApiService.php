@@ -1,23 +1,22 @@
 <?php
+
 namespace App\Filament\Resources\GroupResource\Api;
 
-use Rupadana\ApiService\ApiService;
 use App\Filament\Resources\GroupResource;
-use Illuminate\Routing\Router;
-
+use Rupadana\ApiService\ApiService;
 
 class GroupApiService extends ApiService
 {
-    protected static string | null $resource = GroupResource::class;
+    protected static ?string $resource = GroupResource::class;
 
-    public static function handlers() : array
+    public static function handlers(): array
     {
         return [
             Handlers\CreateHandler::class,
             Handlers\UpdateHandler::class,
             Handlers\DeleteHandler::class,
             Handlers\PaginationHandler::class,
-            Handlers\DetailHandler::class
+            Handlers\DetailHandler::class,
         ];
 
     }

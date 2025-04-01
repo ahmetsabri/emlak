@@ -2,29 +2,27 @@
 
 namespace App\Filament\Resources\FeatureResource\Api\Handlers;
 
-use App\Filament\Resources\SettingResource;
 use App\Filament\Resources\FeatureResource;
+use App\Filament\Resources\FeatureResource\Api\Transformers\FeatureTransformer;
+use Illuminate\Http\Request;
 use Rupadana\ApiService\Http\Handlers;
 use Spatie\QueryBuilder\QueryBuilder;
-use Illuminate\Http\Request;
-use App\Filament\Resources\FeatureResource\Api\Transformers\FeatureTransformer;
 
 class DetailHandler extends Handlers
 {
-    public static string | null $uri = '/{id}';
-    public static string | null $resource = FeatureResource::class;
+    public static ?string $uri = '/{id}';
 
+    public static ?string $resource = FeatureResource::class;
 
     /**
      * Show Feature
      *
-     * @param Request $request
      * @return FeatureTransformer
      */
     public function handler(Request $request)
     {
         $id = $request->route('id');
-        
+
         $query = static::getEloquentQuery();
 
         $query = QueryBuilder::for(
@@ -32,7 +30,9 @@ class DetailHandler extends Handlers
         )
             ->first();
 
-        if (!$query) return static::sendNotFoundResponse();
+        if (! $query) {
+            return static::sendNotFoundResponse();
+        }
 
         return new FeatureTransformer($query);
     }

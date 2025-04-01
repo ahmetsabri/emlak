@@ -2,23 +2,24 @@
 
 namespace App\Filament\Resources\RealEstateResource\Api\Handlers;
 
+use App\Filament\Resources\RealEstateResource;
+use App\Filament\Resources\RealEstateResource\Api\Transformers\RealEstateTransformer;
 use Illuminate\Http\Request;
 use Rupadana\ApiService\Http\Handlers;
 use Spatie\QueryBuilder\QueryBuilder;
-use App\Filament\Resources\RealEstateResource;
-use App\Filament\Resources\RealEstateResource\Api\Transformers\RealEstateTransformer;
 
 class PaginationHandler extends Handlers
 {
-    public static string | null $uri = '/';
-    public static string | null $resource = RealEstateResource::class;
+    public static ?string $uri = '/';
+
+    public static ?string $resource = RealEstateResource::class;
 
     public static bool $public = true;
 
     /**
      * List of RealEstate
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function handler()

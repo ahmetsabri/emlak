@@ -19,7 +19,6 @@ class UserSeeder extends Seeder
         $company = Company::factory()->create();
         $superAdmin = User::firstOrCreate([
             'email' => 'admin@mail.com',
-            'company_id' => $company->id,
         ], [
             'name' => 'admin',
             'email' => 'admin@mail.com',
@@ -31,7 +30,6 @@ class UserSeeder extends Seeder
 
         $admin = User::factory()->create([
             'email' => 'team@mail.com',
-            'company_id' => $company->id,
             'team_member' => true,
             'password' => bcrypt('admin'),
         ]);

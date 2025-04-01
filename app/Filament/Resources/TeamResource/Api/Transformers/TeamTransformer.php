@@ -1,15 +1,14 @@
 <?php
+
 namespace App\Filament\Resources\TeamResource\Api\Transformers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\User;
 
 /**
  * @property Team $resource
  */
 class TeamTransformer extends JsonResource
 {
-
     /**
      * Transform the resource into an array.
      *

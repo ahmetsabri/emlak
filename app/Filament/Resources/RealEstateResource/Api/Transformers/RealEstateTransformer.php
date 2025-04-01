@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\RealEstateResource\Api\Transformers;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\RealEstate;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @property RealEstate $resource

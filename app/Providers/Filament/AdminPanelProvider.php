@@ -61,7 +61,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentTranslateFieldPlugin::make(),
                 FilamentSpatieRolesPermissionsPlugin::make(),
                 FilamentSettingsPlugin::make(),
-                ApiServicePlugin::make()->middleware([])
+                ApiServicePlugin::make()->middleware([]),
             ])->breadcrumbs(true);
     }
 }

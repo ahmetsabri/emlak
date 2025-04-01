@@ -1,15 +1,15 @@
 <?php
+
 namespace App\Filament\Resources\GroupResource\Api\Transformers;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Group;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @property Group $resource
  */
 class GroupTransformer extends JsonResource
 {
-
     /**
      * Transform the resource into an array.
      *

@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Form extends Model
 {
     use HasFactory;
+
     public function province(): BelongsTo
     {
         return $this->belongsTo(Province::class);
     }
+
     public function county(): BelongsTo
     {
         return $this->belongsTo(County::class);

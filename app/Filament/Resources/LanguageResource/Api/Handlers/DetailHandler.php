@@ -2,22 +2,21 @@
 
 namespace App\Filament\Resources\LanguageResource\Api\Handlers;
 
-use App\Filament\Resources\SettingResource;
 use App\Filament\Resources\LanguageResource;
+use Illuminate\Http\Request;
 use Rupadana\ApiService\Http\Handlers;
 use Spatie\QueryBuilder\QueryBuilder;
-use Illuminate\Http\Request;
 
 class DetailHandler extends Handlers
 {
-    public static string | null $uri = '/{id}';
-    public static string | null $resource = LanguageResource::class;
+    public static ?string $uri = '/{id}';
 
+    public static ?string $resource = LanguageResource::class;
 
     public function handler(Request $request)
     {
         $id = $request->route('id');
-        
+
         $query = static::getEloquentQuery();
 
         $query = QueryBuilder::for(
@@ -25,7 +24,9 @@ class DetailHandler extends Handlers
         )
             ->first();
 
-        if (!$query) return static::sendNotFoundResponse();
+        if (! $query) {
+            return static::sendNotFoundResponse();
+        }
 
         $transformer = static::getApiTransformer();
 

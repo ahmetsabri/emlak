@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources\DocumentsResource\Api\Handlers;
 
-use Illuminate\Http\Request;
-use Rupadana\ApiService\Http\Handlers;
 use App\Filament\Resources\DocumentsResource;
 use App\Filament\Resources\DocumentsResource\Api\Requests\CreateDocumentsRequest;
+use Rupadana\ApiService\Http\Handlers;
 
 class CreateHandler extends Handlers
 {
-    public static string | null $uri = '/';
-    public static string | null $resource = DocumentsResource::class;
+    public static ?string $uri = '/';
+
+    public static ?string $resource = DocumentsResource::class;
 
     public static function getMethod()
     {
@@ -25,7 +25,6 @@ class CreateHandler extends Handlers
     /**
      * Create Documents
      *
-     * @param CreateDocumentsRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function handler(CreateDocumentsRequest $request)
@@ -36,6 +35,6 @@ class CreateHandler extends Handlers
 
         $model->save();
 
-        return static::sendSuccessResponse($model, "Successfully Create Resource");
+        return static::sendSuccessResponse($model, 'Successfully Create Resource');
     }
 }

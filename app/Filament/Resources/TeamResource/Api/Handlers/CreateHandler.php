@@ -1,28 +1,30 @@
 <?php
+
 namespace App\Filament\Resources\TeamResource\Api\Handlers;
 
-use Illuminate\Http\Request;
-use Rupadana\ApiService\Http\Handlers;
 use App\Filament\Resources\TeamResource;
 use App\Filament\Resources\TeamResource\Api\Requests\CreateTeamRequest;
+use Rupadana\ApiService\Http\Handlers;
 
-class CreateHandler extends Handlers {
-    public static string | null $uri = '/';
-    public static string | null $resource = TeamResource::class;
+class CreateHandler extends Handlers
+{
+    public static ?string $uri = '/';
+
+    public static ?string $resource = TeamResource::class;
 
     public static function getMethod()
     {
         return Handlers::POST;
     }
 
-    public static function getModel() {
+    public static function getModel()
+    {
         return static::$resource::getModel();
     }
 
     /**
      * Create Team
      *
-     * @param CreateTeamRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function handler(CreateTeamRequest $request)
@@ -33,6 +35,6 @@ class CreateHandler extends Handlers {
 
         $model->save();
 
-        return static::sendSuccessResponse($model, "Successfully Create Resource");
+        return static::sendSuccessResponse($model, 'Successfully Create Resource');
     }
 }

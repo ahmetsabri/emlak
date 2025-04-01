@@ -60,11 +60,11 @@ return [
     'show_more' => 'Tümünü Göster',
     'we_categorize' => 'Buradaki tüm gayrimenkulleri sizler için kategorize ettik. İhtiyacınıza en uygun gayrimenkul.',
     'we_categorize_residentialproperty' => 'Daireler, villalar ve evler. İhtiyacınıza uygun konforlu yaşam alanları.',
-	'we_categorize_workplace' => 'Ofisler, dükkanlar, depolar ve diğer ticari alanlar. İşinizi geliştirecek mekanlar.',
-	'we_categorize_land' => 'Çeşitli büyüklükte arsalar, bahçeler ve araziler. Yatırım ve projeleriniz için ideal seçenekler.',
-	'we_categorize_building' => 'Ticari ve konut binaları. Yatırım hedeflerinize uygun yapılar.',
-	'we_categorize_timeshare' => 'Yılın belirli dönemlerinde kullanım hakkı sunan tatil mülkleri.',
-	'we_categorize_touristicfacility' => 'Konforlu oteller ve tatil köyleri. Büyük yatırımlarınız için mükemmel fırsatlar.',
+    'we_categorize_workplace' => 'Ofisler, dükkanlar, depolar ve diğer ticari alanlar. İşinizi geliştirecek mekanlar.',
+    'we_categorize_land' => 'Çeşitli büyüklükte arsalar, bahçeler ve araziler. Yatırım ve projeleriniz için ideal seçenekler.',
+    'we_categorize_building' => 'Ticari ve konut binaları. Yatırım hedeflerinize uygun yapılar.',
+    'we_categorize_timeshare' => 'Yılın belirli dönemlerinde kullanım hakkı sunan tatil mülkleri.',
+    'we_categorize_touristicfacility' => 'Konforlu oteller ve tatil köyleri. Büyük yatırımlarınız için mükemmel fırsatlar.',
     'consultants' => 'Remax Loca Danışmanlarımız',
     'team_description' => 'Ofisimizde sürekli eğitimlerle desteklenen, kendi bölgelerinde uzmanlaşarak etik kurallara saygılı ve müşteri memnuniyeti odaklı çalışma prensiplerini ilke edinmiş danışman ve ofis kadromuz ile sizlere en kaliteli ve hızlı hizmeti sunuyoruz.',
     'career' => 'kariyer',
@@ -151,5 +151,5 @@ return [
     'sevices_before_sell' => 'SATIŞ VE KİRALAMA ÖNCESİ',
     'service_detail' => 'Satış ve kiralama hizmetlerinizi titizlikle ve detaylı',
     'service_detail2' => 'şekilde takip ediyoruz.',
-    'experience_area' =>'Uzmanlık Bölgesi'
+    'experience_area' => 'Uzmanlık Bölgesi',
 ];

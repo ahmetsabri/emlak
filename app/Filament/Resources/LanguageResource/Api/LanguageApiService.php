@@ -2,15 +2,14 @@
 
 namespace App\Filament\Resources\LanguageResource\Api;
 
-use Rupadana\ApiService\ApiService;
 use App\Filament\Resources\LanguageResource;
-use Illuminate\Routing\Router;
+use Rupadana\ApiService\ApiService;
 
 class LanguageApiService extends ApiService
 {
-    protected static string | null $resource = LanguageResource::class;
+    protected static ?string $resource = LanguageResource::class;
 
-    protected static string | array $routeMiddleware = []; // <-- your specific resource middlewares
+    protected static string|array $routeMiddleware = []; // <-- your specific resource middlewares
 
     public static function handlers(): array
     {
@@ -19,7 +18,7 @@ class LanguageApiService extends ApiService
             Handlers\UpdateHandler::class,
             Handlers\DeleteHandler::class,
             Handlers\PaginationHandler::class,
-            Handlers\DetailHandler::class
+            Handlers\DetailHandler::class,
         ];
     }
 }

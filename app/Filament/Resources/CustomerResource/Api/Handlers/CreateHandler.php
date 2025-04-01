@@ -1,28 +1,30 @@
 <?php
+
 namespace App\Filament\Resources\CustomerResource\Api\Handlers;
 
-use Illuminate\Http\Request;
-use Rupadana\ApiService\Http\Handlers;
 use App\Filament\Resources\CustomerResource;
 use App\Filament\Resources\CustomerResource\Api\Requests\CreateCustomerRequest;
+use Rupadana\ApiService\Http\Handlers;
 
-class CreateHandler extends Handlers {
-    public static string | null $uri = '/';
-    public static string | null $resource = CustomerResource::class;
+class CreateHandler extends Handlers
+{
+    public static ?string $uri = '/';
+
+    public static ?string $resource = CustomerResource::class;
 
     public static function getMethod()
     {
         return Handlers::POST;
     }
 
-    public static function getModel() {
+    public static function getModel()
+    {
         return static::$resource::getModel();
     }
 
     /**
      * Create Customer
      *
-     * @param CreateCustomerRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function handler(CreateCustomerRequest $request)
@@ -33,6 +35,6 @@ class CreateHandler extends Handlers {
 
         $model->save();
 
-        return static::sendSuccessResponse($model, "Successfully Create Resource");
+        return static::sendSuccessResponse($model, 'Successfully Create Resource');
     }
 }

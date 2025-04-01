@@ -8,7 +8,8 @@ class Province extends Model
 {
     public $timestamps = false;
 
-    public function counties(){
+    public function counties()
+    {
         return $this->hasMany(County::class);
     }
 }

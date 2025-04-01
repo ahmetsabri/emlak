@@ -1,15 +1,15 @@
 <?php
+
 namespace App\Filament\Resources\FeatureResource\Api\Transformers;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Feature;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @property Feature $resource
  */
 class FeatureTransformer extends JsonResource
 {
-
     /**
      * Transform the resource into an array.
      *

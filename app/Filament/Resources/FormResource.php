@@ -26,8 +26,8 @@ class FormResource extends Resource
                 TextInput::make('name')->label('Ad Soyad')->readOnly()->columnSpanFull(),
                 TextInput::make('email')->label('E-posta')->readOnly()->columnSpanFull(),
                 TextInput::make('phone')->label('Telefon')->readOnly()->columnSpanFull(),
-                Select::make('province_id')->label('İl')->relationship('province', 'name')->selectablePlaceholder(false)->disabled(),
-                Select::make('county_id')->label('İlçe')->relationship('county', 'name')->selectablePlaceholder(false)->disabled(),
+                TextInput::make('province')->label('İl')->readOnly()->columnSpanFull(),
+                TextInput::make('county')->label('İlçe')->readOnly()->columnSpanFull(),
                 Textarea::make('note')->label('Açıklama')->readOnly()->columnSpanFull(),
             ]);
     }
@@ -40,15 +40,15 @@ class FormResource extends Resource
                 TextColumn::make('name')->label('Ad')->searchable(),
                 TextColumn::make('email')->label('E-Posta')->searchable(),
                 TextColumn::make('phone')->label('Telefon')->searchable(),
-                TextColumn::make('province.name')->label('İl')->searchable(),
-                TextColumn::make('county.name')->label('İlçe')->searchable(),
+                TextColumn::make('province')->label('İl')->searchable(),
+                TextColumn::make('county')->label('İlçe')->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->modal()->label('Detay')
-                ->modalHeading('Detaylar'),
+                    ->modalHeading('Detaylar'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

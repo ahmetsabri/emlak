@@ -1,15 +1,14 @@
 <?php
+
 namespace App\Filament\Resources\DocumentsResource\Api\Transformers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\Document;
 
 /**
  * @property Documents $resource
  */
 class DocumentsTransformer extends JsonResource
 {
-
     /**
      * Transform the resource into an array.
      *

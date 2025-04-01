@@ -1,316 +1,462 @@
-@include('themes.main.header')
+@extends('layouts.frontend')
 
-<main id="page-team" class="header-space">
-    <section class="breadcrumb">
-        <div class="background"><img src="{{ asset('assets/images/breadcrumb/image-4.jpg') }}" alt=""></div>
-        <div class="content">
-            <div class="container">
-                <h1>Ekibimiz</h1>
-            </div>
-        </div>
-    </section>
+@section('title', $user->name . ' | RE/MAX Loca')
+@section('content')
 
-    <article class="inner">
-        <div class="container-with-sidebar">
-            <div class="container">
-                <div class="content">
-                    <div class="person-info">
-                        <div class="image"><img src="{{ $user->media->first()?->original_url }}" alt="">
-                        </div>
-                        <div class="content">
-                            <div class="info">
-                                <div class="naming">
-                                    <div class="name">{{ $user->name }}</div>
-                                    {{-- <div class="position">Broker</div> --}}
-                                </div>
-                                <div class="number"><strong>TTYB NO:</strong> {{ $user->ttyb_no }}</div>
-                            </div>
-                            <div class="contacts">
-                                <a href="" class="item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.19 21.19">
-                                        <path
-                                            d="M15.39,11.91c-.99,0-1.9,.54-2.36,1.41-.28,.4-.17,.95,.23,1.23,.4,.28,.95,.17,1.23-.23h0c.39-.57,.57-.66,.8-.65,1.57,.68,2.96,1.7,4.08,2.99,.08,.21,.07,.44,0,.65-.22,.82-.76,1.51-1.51,1.91-.74,.29-1.56,.26-2.27-.08-3.06-1.22-5.85-3.04-8.2-5.34-2.3-2.35-4.1-5.13-5.32-8.19-.34-.71-.37-1.54-.08-2.27,.4-.75,1.09-1.29,1.91-1.51,.21-.08,.44-.09,.64,0,1.29,1.12,2.31,2.5,2.99,4.07,.01,.25-.08,.42-.64,.81-.4,.28-.51,.83-.23,1.23,.28,.4,.83,.51,1.23,.23h0c.87-.47,1.41-1.37,1.41-2.36C8.56,3.52,7.11,1.54,5.14,.17c-.59-.22-1.23-.22-1.83-.01C2.03,.52,.96,1.41,.37,2.61c-.5,1.18-.49,2.51,.05,3.68,1.31,3.27,3.25,6.25,5.72,8.77l.02,.02c2.52,2.46,5.49,4.4,8.76,5.71,.62,.26,1.29,.4,1.97,.41,.59,0,1.17-.12,1.7-.37,1.2-.6,2.09-1.67,2.45-2.95,.21-.59,.21-1.23-.01-1.82-1.37-1.96-3.35-3.42-5.64-4.14h0Z" />
-                                    </svg>
-                                    <span>+{{ $user->phone }}</span>
-                                </a>
+    <soho-technologies class="block">
 
-                                <a href="" class="item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.58 23.58">
-                                        <path
-                                            d="M11.79,0C5.28,0,0,5.28,0,11.79s5.28,11.79,11.79,11.79c.49-.02,.87-.42,.85-.91-.02-.46-.39-.84-.85-.85-5.54,0-10.03-4.49-10.03-10.03,0-5.54,4.49-10.03,10.03-10.03,5.54,0,10.03,4.49,10.03,10.03v2.73c0,1.02-.83,1.85-1.85,1.85s-1.85-.83-1.85-1.85h0v-2.73c0-3.5-2.83-6.35-6.33-6.36s-6.35,2.83-6.36,6.33,2.83,6.35,6.33,6.36c1.87,0,3.65-.82,4.86-2.25,.75,1.85,2.85,2.74,4.7,1.99,1.36-.55,2.25-1.87,2.25-3.34v-2.73C23.57,5.28,18.3,0,11.79,0Zm0,16.36c-2.53,0-4.57-2.05-4.57-4.57s2.05-4.57,4.57-4.57,4.57,2.05,4.57,4.57-2.05,4.57-4.57,4.57h0Z" />
-                                    </svg>
-                                    <span>{{ $user->email }}</span>
-                                </a>
+        <main class="main-field relative pt-[134px] sm:pt-[124px]" x-data="{
+            comments: [],
+            nextPageUrl: null,
+            quickFilter(url) {
+                window.location.href = url
+            },
+            fetchComments(url = `{{ route('user.comments', $user) }}`, isMore = false) {
+                const self = this;
+                axios.get(url).then(res => {
+                        self.nextPageUrl = res.data.next_page_url
+                        console.log(self.nextPageUrl)
+                        if (!isMore) {
+                            self.comments = res.data.data
+                            console.log(res.data.data);
+                            return;
+                        }
+                        self.comments = self.comments.concat(res.data.data)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            }
+        }">
 
-                                <a href="" class="item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.94 21.94">
-                                        <path
-                                            d="M11.63,21.94c-.71,0-1.37-.27-1.88-.77-.51-.5-.8-1.17-.81-1.89v-6.29H2.67c-1.06-.01-2.01-.64-2.43-1.59-.29-.65-.31-1.38-.05-2.06,.26-.67,.76-1.2,1.42-1.49L18.26,.17c.61-.22,1.28-.22,1.89,0,.69,.25,1.24,.76,1.55,1.42,.31,.66,.34,1.41,.09,2.1l-7.69,16.67c-.42,.95-1.37,1.57-2.42,1.58h-.03Zm-1.93-10.44h.75v7.78c0,.31,.13,.61,.36,.83,.23,.22,.56,.35,.84,.34,.46,0,.88-.28,1.07-.7L20.39,3.12c.09-.26,.08-.59-.06-.9-.14-.3-.39-.53-.7-.65-.27-.1-.56-.1-.83,0L2.21,9.22c-.3,.13-.52,.37-.63,.66-.11,.3-.11,.62,.02,.91,.19,.42,.61,.7,1.07,.7h7.02Z" />
-                                    </svg>
-                                    {{-- TODO --}}
-                                    {{-- <span>{{ $user->address }}</span> --}}
-                                </a>
-                            </div>
-                            <div class="buttons">
-                                <a href="" class="whatsapp">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.72 19.71">
-                                        <path
-                                            d="M16.77,2.86c-3.82-3.81-10.01-3.81-13.83,.01C-.18,6-.81,10.82,1.39,14.65l-1.39,5.06,5.18-1.36c1.43,.78,3.04,1.19,4.67,1.19h0c5.41,0,9.81-4.36,9.87-9.77-.03-2.6-1.09-5.09-2.95-6.91h0Zm-6.91,15.04c-1.46,0-2.89-.39-4.14-1.13l-.3-.18-3.07,.81,.82-3-.19-.31C.65,10.24,1.88,5.24,5.72,2.91c3.84-2.33,8.85-1.1,11.18,2.75,.75,1.24,1.16,2.66,1.18,4.11-.05,4.5-3.71,8.13-8.22,8.13h0Zm4.45-6.08c-.24-.12-1.44-.71-1.67-.79s-.39-.12-.55,.12-.63,.79-.77,.96-.29,.19-.53,.06c-1.41-.56-2.58-1.59-3.32-2.91-.25-.43,.25-.4,.72-1.33,.06-.14,.06-.3-.02-.43-.06-.12-.55-1.32-.75-1.81s-.4-.41-.55-.42-.3,0-.47,0c-.25,0-.49,.11-.65,.3-.56,.53-.87,1.27-.85,2.04,.08,.92,.43,1.8,.99,2.53,1.05,1.57,2.49,2.84,4.17,3.69,.89,.51,1.91,.73,2.93,.61,.69-.14,1.29-.56,1.65-1.16,.16-.37,.21-.77,.14-1.16-.06-.11-.22-.17-.46-.29Z" />
-                                    </svg>
-                                    {{-- TODO --}}
-                                    <span>Whatsapp</span>
-                                </a>
-                                <a href="" class="phone">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.74 20.78">
-                                        <path
-                                            d="M18.05,20.78c-.08,0-.16,0-.24-.01-3.09-.34-6.09-1.4-8.69-3.09-2.41-1.53-4.49-3.62-6.02-6.03C1.41,9.05,.34,6.04,.01,2.94-.06,2.22,.16,1.52,.62,.97,1.08,.42,1.72,.08,2.44,.01c.08,0,.16-.01,.24-.01h2.9c1.3,.02,2.49,.98,2.68,2.31,.12,.88,.33,1.74,.64,2.56,.37,.98,.13,2.09-.6,2.83l-.82,.82c1.19,1.92,2.82,3.55,4.74,4.74l.82-.82c.75-.74,1.85-.97,2.84-.61,.82,.31,1.68,.52,2.55,.64,1.33,.19,2.31,1.32,2.32,2.64,0,.02,0,.05,0,.07v2.9c0,.71-.27,1.39-.78,1.9-.5,.51-1.18,.79-1.89,.8h-.02ZM5.6,1.5H2.57c-.32,.03-.6,.18-.8,.43-.2,.24-.3,.55-.27,.87,.3,2.85,1.29,5.64,2.85,8.05,1.42,2.23,3.34,4.16,5.57,5.57,2.41,1.56,5.18,2.55,8.03,2.86,.02,0,.05,0,.1,0,.32,0,.62-.13,.84-.35,.22-.22,.34-.52,.34-.84v-2.83s0-.06,0-.1c.02-.6-.42-1.12-1.02-1.2-.97-.13-1.94-.37-2.88-.72-.43-.16-.92-.06-1.25,.27l-1.23,1.23c-.24,.24-.61,.29-.9,.12-2.54-1.44-4.64-3.55-6.08-6.08-.17-.29-.12-.66,.12-.9l1.23-1.23c.32-.32,.42-.82,.26-1.25-.35-.93-.59-1.9-.72-2.88-.08-.58-.59-1.01-1.17-1.01Z" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
+            <section class="breadcrumb-field px-7.5 md:px-5">
+                <div
+                    class="inner rounded-6 md:rounded-3 relative overflow-hidden isolate translate-z-0 py-28 2xl:py-24 xl:py-20 lg:py-16 md:py-12">
+                    <div class="background-wrapper absolute left-0 top-0 w-full h-full bg-tertiary-950">
+                        <img class="full-cover opacity-15" src="{{ asset('image/photo/3.webp') }}" alt=""
+                            loading="lazy">
                     </div>
-                    <div class="person-detail mt--45">
-                        <div class="section-heading mb--15">
-                            {{-- TODO --}}
+                    <div
+                        class="wrapper max-w-1440 mx-auto w-full px-7.5 relative z-2 grid gap-6 xl:gap-5 lg:gap-4 sm:gap-3">
+                        <h1
+                            class="title text-center font-semibold text-white text-11 2xl:text-10 xl:text-8 lg:text-7 md:text-6 sm:text-5.5 tracking-[0.15em] lg:tracking-widest sm:tracking-wider leading-tight">
 
-                            {{-- <div class="title small">Çağrı Akbaş Hakkında</div> --}}
-                        </div>
-                        <div class="type">
-                            {{-- TODO --}}
-                            {{-- {!! $user->about !!} --}}
-                        </div>
-                    </div>
-                    {{-- <div class="person-portfolio mt--45">
-                        <div class="section-heading flex mb--15">
-                            <div class="title small">Portföylerim</div>
-                            <a href=""
-                                class="button button color--endeavour-bg size--fit size--wide size--small icon--right icon--small">
-                                <span>Tümünü Gör</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5.08 8.65">
-                                    <path
-                                        d="M.75,8.65c-.19,0-.38-.07-.53-.22-.29-.29-.29-.77,0-1.06l3.05-3.05L.22,1.28C-.07,.99-.07,.51,.22,.22S.99-.07,1.28,.22l3.58,3.58c.29,.29,.29,.77,0,1.06l-3.58,3.58c-.15,.15-.34,.22-.53,.22Z" />
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="portfolio-grid col-2">
-                            <a href="" class="portfolio-item">
-                                <div class="thumbnail">
-                                    <div class="images">
-                                        <img class="active" src="assets/images/portfolio/image-1.jpg" alt="">
-                                        <img src="assets/images/portfolio/image-2.jpg" alt="">
-                                        <img src="assets/images/portfolio/image-3.jpg" alt="">
-                                    </div>
-                                    <div class="fields">
-                                        <span></span><span></span><span></span>
-                                    </div>
-                                    <div class="dots">
-                                        <span class="active"></span><span></span><span></span>
-                                    </div>
-                                    <div class="more">Detaylı İncele</div>
-                                </div>
-                                <div class="heading">
-                                    <div class="name">REMAX LOCA GMK VE DENİZE YAKIN</div>
-                                    <div class="sale">
-                                        <div class="type">Satılık - Konut</div>
-                                        <div class="price">700.000₺</div>
-                                    </div>
-                                </div>
-                                <div class="detail">
-                                    <div class="info">
-                                        <div class="item">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
-                                                <path
-                                                    d="M24.75,7.48s0,0,0-.01V.59c0-.32-.26-.59-.59-.59H.59C.26,0,0,.26,0,.59V24.16c0,.32,.26,.59,.59,.59H24.16c.32,0,.59-.26,.59-.59V7.49s0,0,0-.01ZM12.35,23.58s.03-.09,.02-.14v-6.4c.01-.34-.25-.62-.59-.63-.34,.01-.6,.3-.59,.63v6.4c0,.05,.01,.1,.02,.14H1.17V12.15H11.2v.88c0,.32,.26,.59,.59,.59,.32,0,.59-.26,.59-.59v-1.47c0-.32-.26-.59-.59-.59H1.17V1.17H12.86v.84s0,.06,0,.08c.02,.32,.3,.57,.63,.54,.32-.02,.57-.3,.54-.63v-.84h9.54V6.89H14.03v-.88h0c0-.32-.26-.59-.59-.59s-.59,.26-.59,.59v1.47c0,.32,.26,.59,.59,.59h10.12v15.51H12.35Z" />
-                                            </svg>
-                                            <span>3+1</span>
-                                        </div>
-                                        <div class="item">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
-                                                <path
-                                                    d="M20.18,6.61c-.32,0-.59-.26-.59-.59v-.88h-.88c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59v1.46c0,.32-.26,.59-.58,.59h0Zm-4-1.47h-2.54c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-5.08,0h-2.53c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-6.54,1.47c-.32,0-.59-.26-.59-.59h0v-1.47c0-.32,.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h-.88v.88c0,.32-.26,.59-.58,.59h0Zm0,10.15c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.58-.59,.58Zm1.46,9.08h-1.46c-.32,0-.59-.26-.59-.59v-1.47c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v.88h.88c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm10.16,0h-2.54c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58Zm-5.08,0h-2.53c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm9.08,0h-1.47c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h.88v-.88c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v1.47c0,.32-.26,.58-.58,.59Zm0-4c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.58-.59,.58Zm3.98,13.06H.59c-.32,0-.59-.26-.59-.59H0V.59C0,.26,.26,0,.59,0H24.16c.32,0,.59,.26,.59,.59V24.16c0,.32-.26,.59-.59,.59ZM1.17,23.57H23.57V1.17H1.17V23.57Z" />
-                                            </svg>
-                                            <span>120 m²</span>
-                                        </div>
-                                    </div>
-                                    <div class="location">Mezitli / Seymenler</div>
-                                </div>
-                            </a>
-
-                            <a href="" class="portfolio-item">
-                                <div class="thumbnail">
-                                    <div class="images">
-                                        <img class="active" src="assets/images/portfolio/image-2.jpg" alt="">
-                                        <img src="assets/images/portfolio/image-1.jpg" alt="">
-                                        <img src="assets/images/portfolio/image-3.jpg" alt="">
-                                    </div>
-                                    <div class="fields">
-                                        <span></span><span></span><span></span>
-                                    </div>
-                                    <div class="dots">
-                                        <span class="active"></span><span></span><span></span>
-                                    </div>
-                                    <div class="more">Detaylı İncele</div>
-                                </div>
-                                <div class="heading">
-                                    <div class="name">REMAX LOCA GMK VE DENİZE YAKIN</div>
-                                    <div class="sale">
-                                        <div class="type">Satılık - Konut</div>
-                                        <div class="price">650.000₺</div>
-                                    </div>
-                                </div>
-                                <div class="detail">
-                                    <div class="info">
-                                        <div class="item">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
-                                                <path
-                                                    d="M24.75,7.48s0,0,0-.01V.59c0-.32-.26-.59-.59-.59H.59C.26,0,0,.26,0,.59V24.16c0,.32,.26,.59,.59,.59H24.16c.32,0,.59-.26,.59-.59V7.49s0,0,0-.01ZM12.35,23.58s.03-.09,.02-.14v-6.4c.01-.34-.25-.62-.59-.63-.34,.01-.6,.3-.59,.63v6.4c0,.05,.01,.1,.02,.14H1.17V12.15H11.2v.88c0,.32,.26,.59,.59,.59,.32,0,.59-.26,.59-.59v-1.47c0-.32-.26-.59-.59-.59H1.17V1.17H12.86v.84s0,.06,0,.08c.02,.32,.3,.57,.63,.54,.32-.02,.57-.3,.54-.63v-.84h9.54V6.89H14.03v-.88h0c0-.32-.26-.59-.59-.59s-.59,.26-.59,.59v1.47c0,.32,.26,.59,.59,.59h10.12v15.51H12.35Z" />
-                                            </svg>
-                                            <span>3+1</span>
-                                        </div>
-                                        <div class="item">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
-                                                <path
-                                                    d="M20.18,6.61c-.32,0-.59-.26-.59-.59v-.88h-.88c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59v1.46c0,.32-.26,.59-.58,.59h0Zm-4-1.47h-2.54c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-5.08,0h-2.53c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-6.54,1.47c-.32,0-.59-.26-.59-.59h0v-1.47c0-.32,.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h-.88v.88c0,.32-.26,.59-.58,.59h0Zm0,10.15c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.58-.59,.58Zm1.46,9.08h-1.46c-.32,0-.59-.26-.59-.59v-1.47c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v.88h.88c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm10.16,0h-2.54c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58Zm-5.08,0h-2.53c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm9.08,0h-1.47c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h.88v-.88c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v1.47c0,.32-.26,.58-.58,.59Zm0-4c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.58-.59,.58Zm3.98,13.06H.59c-.32,0-.59-.26-.59-.59H0V.59C0,.26,.26,0,.59,0H24.16c.32,0,.59,.26,.59,.59V24.16c0,.32-.26,.59-.59,.59ZM1.17,23.57H23.57V1.17H1.17V23.57Z" />
-                                            </svg>
-                                            <span>120 m²</span>
-                                        </div>
-                                    </div>
-                                    <div class="location">Mezitli / Seymenler</div>
-                                </div>
-                            </a>
-
-                            <a href="" class="portfolio-item">
-                                <div class="thumbnail">
-                                    <div class="images">
-                                        <img class="active" src="assets/images/portfolio/image-3.jpg" alt="">
-                                        <img src="assets/images/portfolio/image-2.jpg" alt="">
-                                        <img src="assets/images/portfolio/image-1.jpg" alt="">
-                                    </div>
-                                    <div class="fields">
-                                        <span></span><span></span><span></span>
-                                    </div>
-                                    <div class="dots">
-                                        <span class="active"></span><span></span><span></span>
-                                    </div>
-                                    <div class="more">Detaylı İncele</div>
-                                </div>
-                                <div class="heading">
-                                    <div class="name">REMAX LOCA GMK VE DENİZE YAKIN</div>
-                                    <div class="sale">
-                                        <div class="type">Satılık - Konut</div>
-                                        <div class="price">500.000₺</div>
-                                    </div>
-                                </div>
-                                <div class="detail">
-                                    <div class="info">
-                                        <div class="item">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
-                                                <path
-                                                    d="M24.75,7.48s0,0,0-.01V.59c0-.32-.26-.59-.59-.59H.59C.26,0,0,.26,0,.59V24.16c0,.32,.26,.59,.59,.59H24.16c.32,0,.59-.26,.59-.59V7.49s0,0,0-.01ZM12.35,23.58s.03-.09,.02-.14v-6.4c.01-.34-.25-.62-.59-.63-.34,.01-.6,.3-.59,.63v6.4c0,.05,.01,.1,.02,.14H1.17V12.15H11.2v.88c0,.32,.26,.59,.59,.59,.32,0,.59-.26,.59-.59v-1.47c0-.32-.26-.59-.59-.59H1.17V1.17H12.86v.84s0,.06,0,.08c.02,.32,.3,.57,.63,.54,.32-.02,.57-.3,.54-.63v-.84h9.54V6.89H14.03v-.88h0c0-.32-.26-.59-.59-.59s-.59,.26-.59,.59v1.47c0,.32,.26,.59,.59,.59h10.12v15.51H12.35Z" />
-                                            </svg>
-                                            <span>3+1</span>
-                                        </div>
-                                        <div class="item">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
-                                                <path
-                                                    d="M20.18,6.61c-.32,0-.59-.26-.59-.59v-.88h-.88c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59v1.46c0,.32-.26,.59-.58,.59h0Zm-4-1.47h-2.54c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-5.08,0h-2.53c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-6.54,1.47c-.32,0-.59-.26-.59-.59h0v-1.47c0-.32,.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h-.88v.88c0,.32-.26,.59-.58,.59h0Zm0,10.15c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.58-.59,.58Zm1.46,9.08h-1.46c-.32,0-.59-.26-.59-.59v-1.47c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v.88h.88c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm10.16,0h-2.54c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58Zm-5.08,0h-2.53c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm9.08,0h-1.47c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h.88v-.88c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v1.47c0,.32-.26,.58-.58,.59Zm0-4c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.58-.59,.58Zm3.98,13.06H.59c-.32,0-.59-.26-.59-.59H0V.59C0,.26,.26,0,.59,0H24.16c.32,0,.59,.26,.59,.59V24.16c0,.32-.26,.59-.59,.59ZM1.17,23.57H23.57V1.17H1.17V23.57Z" />
-                                            </svg>
-                                            <span>120 m²</span>
-                                        </div>
-                                    </div>
-                                    <div class="location">Mezitli / Seymenler</div>
-                                </div>
-                            </a>
-
-                            <a href="" class="portfolio-item">
-                                <div class="thumbnail">
-                                    <div class="images">
-                                        <img class="active" src="assets/images/portfolio/image-1.jpg" alt="">
-                                        <img src="assets/images/portfolio/image-2.jpg" alt="">
-                                        <img src="assets/images/portfolio/image-3.jpg" alt="">
-                                    </div>
-                                    <div class="fields">
-                                        <span></span><span></span><span></span>
-                                    </div>
-                                    <div class="dots">
-                                        <span class="active"></span><span></span><span></span>
-                                    </div>
-                                    <div class="more">Detaylı İncele</div>
-                                </div>
-                                <div class="heading">
-                                    <div class="name">REMAX LOCA GMK VE DENİZE YAKIN</div>
-                                    <div class="sale">
-                                        <div class="type">Satılık - Konut</div>
-                                        <div class="price">700.000₺</div>
-                                    </div>
-                                </div>
-                                <div class="detail">
-                                    <div class="info">
-                                        <div class="item">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
-                                                <path
-                                                    d="M24.75,7.48s0,0,0-.01V.59c0-.32-.26-.59-.59-.59H.59C.26,0,0,.26,0,.59V24.16c0,.32,.26,.59,.59,.59H24.16c.32,0,.59-.26,.59-.59V7.49s0,0,0-.01ZM12.35,23.58s.03-.09,.02-.14v-6.4c.01-.34-.25-.62-.59-.63-.34,.01-.6,.3-.59,.63v6.4c0,.05,.01,.1,.02,.14H1.17V12.15H11.2v.88c0,.32,.26,.59,.59,.59,.32,0,.59-.26,.59-.59v-1.47c0-.32-.26-.59-.59-.59H1.17V1.17H12.86v.84s0,.06,0,.08c.02,.32,.3,.57,.63,.54,.32-.02,.57-.3,.54-.63v-.84h9.54V6.89H14.03v-.88h0c0-.32-.26-.59-.59-.59s-.59,.26-.59,.59v1.47c0,.32,.26,.59,.59,.59h10.12v15.51H12.35Z" />
-                                            </svg>
-                                            <span>3+1</span>
-                                        </div>
-                                        <div class="item">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.75 24.75">
-                                                <path
-                                                    d="M20.18,6.61c-.32,0-.59-.26-.59-.59v-.88h-.88c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59v1.46c0,.32-.26,.59-.58,.59h0Zm-4-1.47h-2.54c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-5.08,0h-2.53c-.32,0-.59-.26-.59-.59s.26-.59,.59-.59h2.54c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h0Zm-6.54,1.47c-.32,0-.59-.26-.59-.59h0v-1.47c0-.32,.26-.59,.59-.59h1.46c.32,0,.59,.26,.59,.59s-.26,.59-.59,.59h-.88v.88c0,.32-.26,.59-.58,.59h0Zm0,10.15c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v2.54c0,.32-.26,.58-.59,.58Zm1.46,9.08h-1.46c-.32,0-.59-.26-.59-.59v-1.47c0-.32,.26-.59,.59-.59s.59,.26,.59,.59v.88h.88c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm10.16,0h-2.54c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58Zm-5.08,0h-2.53c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h2.54c.32,0,.59,.26,.58,.59,0,.32-.26,.58-.58,.58h0Zm9.08,0h-1.47c-.32,0-.59-.26-.58-.59,0-.32,.26-.58,.58-.58h.88v-.88c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v1.47c0,.32-.26,.58-.58,.59Zm0-4c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.59-.59,.59Zm0-5.08c-.32,0-.59-.26-.59-.59v-2.54c0-.32,.26-.59,.59-.58,.32,0,.58,.26,.58,.58v2.54c0,.32-.26,.58-.59,.58Zm3.98,13.06H.59c-.32,0-.59-.26-.59-.59H0V.59C0,.26,.26,0,.59,0H24.16c.32,0,.59,.26,.59,.59V24.16c0,.32-.26,.59-.59,.59ZM1.17,23.57H23.57V1.17H1.17V23.57Z" />
-                                            </svg>
-                                            <span>120 m²</span>
-                                        </div>
-                                    </div>
-                                    <div class="location">Mezitli / Seymenler</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="more-button mt--60">
-                            <button
-                                class="button button color--endeavour-bg size--fit size--wide size--small icon--right icon--small">
-                                <span>Devamını Gör</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.66 5.08">
-                                    <path
-                                        d="M4.33,5.08c-.19,0-.38-.07-.53-.22L.22,1.28C-.07,.99-.07,.51,.22,.22S.99-.07,1.28,.22l3.05,3.05L7.38,.22c.29-.29,.77-.29,1.06,0s.29,.77,0,1.06l-3.58,3.58c-.15,.15-.34,.22-.53,.22Z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div> --}}
-                </div>
-                <div class="sidebar">
-                    <div class="sticky">
-                        <div class="sidebar-form">
-                            <div class="wrapper">
-                                <div class="title">Ekibimize Katıl</div>
-                                <div class="expo">Sektöre Sağlam Adımlarla İlerlemek İçin Sende Ekibimize Katıl</div>
-                                <form action="">
-                                    <div class="form white">
-                                        <div class="item width--full">
-                                            <label>İsim Soyisim</label>
-                                            <input type="text" placeholder="Ahmet Balcı">
-                                        </div>
-                                        <div class="item width--full">
-                                            <label>Telefon</label>
-                                            <input type="tel" placeholder="+90 (552) 334 20 50">
-                                        </div>
-                                        <div class="item width--full">
-                                            <button class="button button color--white-bg size--stretch size--medium">
-                                                <span>Gönder</span>
-                                            </button>
-                                        </div>
-                                        <div class="item width--full custom-checkbox">
-                                            <div class="text">Formu gönderdiğiniz de <a href=""
-                                                    target="_blank">KVKK</a> ve <a href=""
-                                                    target="_blank">Gizlilik Şartlarını</a> kabul etmiş olursunuz</div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                            {{ __('general.team') }}</h1>
+                        <div
+                            class="tags flex items-center justify-center flex-wrap gap-x-10 2xl:gap-x-9 xl:gap-x-8 lg:gap-x-6 md:gap-x-4 sm:gap-x-2 gap-y-2 md:gap-y-1.5 sm:gap-y-0.5">
+                            <div
+                                class="block w-fit text-4.5 xl:text-4 lg:text-3.5 md:text-3 font-medium duration-300 text-[#B0B0B0]">
+                                #LOCAdaYeriniAL</div>
+                            <div
+                                class="block w-fit text-4.5 xl:text-4 lg:text-3.5 md:text-3 font-medium duration-300 text-[#B0B0B0]">
+                                #LocaFarkYaratır</div>
+                            <div
+                                class="block w-fit text-4.5 xl:text-4 lg:text-3.5 md:text-3 font-medium duration-300 text-[#B0B0B0]">
+                                #eskiusulemlakçılığason</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </article>
-</main>
-@include('themes.main.footer')
+            </section>
+            <section class="team-detail-field py-20 2xl:py-16 xl:py-14 lg:py-12 md:py-11 sm:py-10">
+                <div
+                    class="wrapper max-w-1440 mx-auto w-full px-7.5 md:px-5 grid grid-cols-[minmax(0,35fr)_minmax(0,85fr)] md:grid-cols-1 gap-8">
+                    <div class="sidebar-wrapper">
+                        <div class="sticky-el sticky top-0 duration-300">
+                            <div class="inner-wrapper bg-white rounded-6 md:rounded-3 p-7">
+                                <div
+                                    class="image aspect-[73/97] overflow-hidden isolate rounded-8 xl:rounded-6 md:rounded-3">
+                                    <img class="full-cover" src="{{ $user->media->first()?->original_url }}" alt=""
+                                        loading="lazy">
+                                </div>
+                                <div class="content-wrapper p-7 xl:px-5 lg:px-3">
+                                    <div
+                                        class="name capitalize text-5.5 xl:text-5 lg:text-4.5 md:text-4 font-medium text-tertiary-950">
+                                        {{ $user->name }}
+
+                                    </div>
+                                    <div class="position font-medium text-4.5 xl:text-4 lg:text-3.5 text-[#6D6D6D]">
+
+                                        {{ $user->title }}
+                                    </div>
+                                    <div class="social-wrapper flex items-center gap-3.5 mt-5 xl:mt-4.5 lg:mt-4 md:mt-3.5">
+                                        <a href="{{ $user->facebook_url }}"
+                                            class="block relative text-[#224391] duration-350 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:pointer-events-none before:w-150/100 before:aspect-square before:rounded-1 before:-rotate-90 before:opacity-0 before:duration-350 before:bg-[#224391] hover:before:rotate-0 hover:before:opacity-100 hover:text-white">
+                                            <div class="icon icon-facebook-1 text-4 h-4 block leading-none relative z-2">
+                                            </div>
+                                        </a>
+                                        <a href="{{ $user->instagram_url }}"
+                                            class="block relative text-[#224391] duration-350 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:pointer-events-none before:w-150/100 before:aspect-square before:rounded-1 before:-rotate-90 before:opacity-0 before:duration-350 before:bg-[#224391] hover:before:rotate-0 hover:before:opacity-100 hover:text-white">
+                                            <div class="icon icon-instagram text-4 h-4 block leading-none relative z-2">
+                                            </div>
+                                        </a>
+                                        <a href="{{ $user->youtube }}"
+                                            class="block relative text-[#224391] duration-350 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:pointer-events-none before:w-150/100 before:aspect-square before:rounded-1 before:-rotate-90 before:opacity-0 before:duration-350 before:bg-[#224391] hover:before:rotate-0 hover:before:opacity-100 hover:text-white">
+                                            <div class="icon icon-youtube text-4 h-4 block leading-none relative z-2">
+                                            </div>
+                                        </a>
+                                        <a href="{{ $user->linkedin }}"
+                                            class="block relative text-[#224391] duration-350 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:pointer-events-none before:w-150/100 before:aspect-square before:rounded-1 before:-rotate-90 before:opacity-0 before:duration-350 before:bg-[#224391] hover:before:rotate-0 hover:before:opacity-100 hover:text-white">
+                                            <div class="icon icon-linkedin-1 text-4 h-4 block leading-none relative z-2">
+                                            </div>
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://api.whatsapp.com/send/?phone={{ $user->whatsapp }}"
+                                            class="block relative text-[#224391] duration-350 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:pointer-events-none before:w-150/100 before:aspect-square before:rounded-1 before:-rotate-90 before:opacity-0 before:duration-350 before:bg-[#8AA5D3] hover:before:rotate-0 hover:before:opacity-100 hover:text-tertiary-950">
+                                            <div class="icon icon-whatsapp-1 text-4 h-4 block leading-none relative z-2">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="info bg-[#E8F0FD] rounded-4 flex items-center justify-evenly flex-wrap gap-2 p-5 xl:p-4">
+                                    <a href="{{ $user->address }}"
+                                        class="flex items-center gap-2 text-[#224391] duration-300 hover:text-[#2675FA]">
+                                        <div class="icon icon-map-2 text-4 h-4 block leading-none"></div>
+                                        <div class="text text-3.5 font-medium">{{ __('general.office_location') }}</div>
+                                    </a>
+                                    <a href="{{ $user->office_location }}"
+                                        class="flex items-center gap-2 text-[#224391] duration-300 hover:text-[#2675FA]">
+                                        <div class="icon icon-location-1 text-4 h-4 block leading-none"></div>
+                                        <div class="text text-3.5 font-medium">{{ __('general.address_info') }}</div>
+                                    </a>
+                                </div>
+                                <div class="content-wrapper p-7 xl:px-5 lg:px-3 pb-0 grid gap-3.5">
+                                    <a href="tel:{{ $user->phone }}"
+                                        class="flex items-center gap-5 xl:gap-4 lg:gap-3 md:gap-2 text-[#224391] duration-300 hover:text-[#2675FA]">
+                                        <div
+                                            class="icon icon-cellphone-1 text-4.5 h-4.5 xl:text-4 xl:h-4 block leading-none">
+                                        </div>
+                                        <div class="text text-3.5 font-medium">{{ $user->phone }}</div>
+                                    </a>
+                                    <a href="mailto:{{ $user->email }}"
+                                        class="flex items-center gap-5 xl:gap-4 lg:gap-3 md:gap-2 text-[#224391] duration-300 hover:text-[#2675FA]">
+                                        <div class="icon icon-email-1 text-4.5 h-4.5 xl:text-4 xl:h-4 block leading-none">
+                                        </div>
+                                        <div class="text text-3.5 font-medium">{{ $user->email }}</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-wrapper bg-white rounded-6 md:rounded-3 p-4">
+                        <div class="tab-wrapper flex items-center justify-between md:flex-col relative -my-4 md:-mt-8">
+                            <div
+                                class="tab-triggers inner flex items-center w-fit max-w-full p-1 overflow-y-hidden overflow-x-auto isolate before:absolute before:left-1/2 before:top-1/2 before:w-full before:h-15 lg:before:h-12 before:bg-[#E8F0FD] before:-translate-y-1/2 before:-translate-x-1/2 before:rounded-4 scrollbar-none">
+                                <button data-id="tab1"
+                                    class="item group relative rounded-4 h-13 lg:h-10 px-6 lg:px-4 flex items-center justify-center duration-300 [&.active]:bg-white [&.active]:shadow-s2 my-4 md:mt-9 @if (!request('filter')) active @endif">
+                                    <div
+                                        class="text text-[#6D6D6D] text-4 lg:text-3.5 font-medium whitespace-nowrap duration-300 group-hover:text-tertiary-950 group-[&.active]:text-tertiary-950">
+                                        {{ __('general.bio') }}
+                                    </div>
+                                </button>
+                                <button data-id="tab2"
+                                    class="item group relative rounded-4 h-13 lg:h-10 px-6 lg:px-4 flex items-center justify-center duration-300 [&.active]:bg-white [&.active]:shadow-s2 my-4 md:mt-9 @if (request('filter')) active @endif">
+                                    <div
+                                        class="text text-[#6D6D6D] text-4 lg:text-3.5 font-medium whitespace-nowrap duration-300 group-hover:text-tertiary-950 group-[&.active]:text-tertiary-950">
+                                        {{ __('general.portfolios') }}
+                                    </div>
+                                </button>
+                                <button data-id="tab3" @click="fetchComments(`{{ route('user.comments', $user) }}`)"
+                                    class="item group relative rounded-4 h-13 lg:h-10 px-6 lg:px-4 flex items-center justify-center duration-300 [&.active]:bg-white [&.active]:shadow-s2 my-4 md:mt-9">
+                                    <div
+                                        class="text text-[#6D6D6D] text-4 lg:text-3.5 font-medium whitespace-nowrap duration-300 group-hover:text-tertiary-950 group-[&.active]:text-tertiary-950">
+                                        {{ __('general.comments') }}
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="link-wrapper relative z-2 flex items-center px-8 gap-10 xl:gap-8 lg:gap-6 md:gap-4">
+                                <a href="#popup-comment"
+                                    class="flex items-center gap-2 text-[#224391] duration-300 hover:text-[#2675FA]"
+                                    data-fancybox>
+                                    <div class="icon icon-comment text-4 h-4 block leading-none"></div>
+                                    <div class="text text-3.5 font-medium">{{ __('general.add_comments') }}</div>
+                                </a>
+                                <a href="#popup-share-team"
+                                    class="flex items-center gap-2 text-[#224391] duration-300 hover:text-[#2675FA]"
+                                    data-fancybox>
+                                    <div class="icon icon-share text-4 h-4 block leading-none"></div>
+                                    <div class="text text-3.5 font-medium">
+                                        {{ __('general.share') }}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <section id="popup-comment"
+                            class="hidden !bg-white !rounded-6 md:!rounded-3 !m-0 !p-0 !max-w-[620px] w-full">
+                            <div class="inner w-full p-11 2xl:p-10 xl:p-8 lg:p-6">
+                                <div class="heading flex items-center justify-between gap-7.5">
+                                    <div class="title text-4 font-medium text-[#2675FA]">Yorum Yapın/Değerlendirin</div>
+                                    <div
+                                        class="custom-fancybox-close-button group cursor-pointer relative before:absolute before:w-7.5 before:aspect-square before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2">
+                                        <div
+                                            class="icon icon-cross text-3 h-3 block leading-none duration-300 text-tertiary-950 group-hover:rotate-90 group-hover:text-[#2675FA]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-outer-wrapper mt-7.5">
+                                    <form action="{{ route('comment.store') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="user_id" value="{{ $user->id }}" />
+                                        <div class="form-inner-wrapper grid grid-cols-2 sm:grid-cols-1 gap-5">
+                                            <div class="form-el group/form w-full col-span-2 sm:col-span-1">
+                                                <input name="name" type="text"
+                                                    placeholder="{{ __('general.name') }}"
+                                                    class="w-full h-13 md:h-12 duration-300 rounded-3 px-5 bg-transparent placeholder:text-[#8AA5D3] text-tertiary-950 font-medium text-3.5 border border-solid border-[#E8F0FD] hover:border-[#8AA5D3]/30 focus:border-main-700 group-[&.error]/form:border-secondary-700">
+                                                <div
+                                                    class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                                    Lütfen
+                                                    ilgili alanı doldurunuz.</div>
+                                            </div>
+                                            <div class="form-el group/form w-full col-span-2 sm:col-span-1 px-2">
+                                                <!-- Buraya `error` classı gelince ilgili style değişiyor -->
+                                                <div class="custom-input relative flex items-center gap-2">
+                                                    <input name="show_name" type="checkbox" value="0"
+                                                        class="opacity-0 absolute left-0 top-0 w-full h-full peer z-2 cursor-pointer">
+                                                    <div
+                                                        class="box relative duration-300 w-4 aspect-square shrink-0 bg-bodyColor rounded-0.75 border border-solid border-[#8AA5D3]/30 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-65/100 before:aspect-square before:rounded-0.5 before:bg-main-700 before:duration-300 before:pointer-events-none before:opacity-0 peer-hover:border-main-700 peer-checked:border-main-700 peer-checked:before:opacity-100">
+                                                    </div>
+                                                    <div class="text text-[#6D6D6D] text-3.5 font-medium">
+                                                        {{ __('general.hide_name') }}</div>
+                                                </div>
+                                                <div
+                                                    class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                                    Lütfen
+                                                    ilgili alanı doldurunuz.</div>
+                                            </div>
+                                            <div class="form-el group/form w-full">
+                                                <!-- Buraya `error` classı gelince ilgili style değişiyor -->
+                                                <input name="phone" type="tel" placeholder="Telefon"
+                                                    class="w-full h-13 md:h-12 duration-300 rounded-3 px-5 bg-transparent placeholder:text-[#8AA5D3] text-tertiary-950 font-medium text-3.5 border border-solid border-[#E8F0FD] hover:border-[#8AA5D3]/30 focus:border-main-700 group-[&.error]/form:border-secondary-700">
+                                                <div
+                                                    class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                                    Lütfen
+                                                    ilgili alanı doldurunuz.</div>
+                                            </div>
+                                            <div class="form-el group/form w-full">
+                                                <!-- Buraya `error` classı gelince ilgili style değişiyor -->
+                                                <input name="email" type="email"
+                                                    placeholder="{{ __('general.email') }}"
+                                                    class="w-full h-13 md:h-12 duration-300 rounded-3 px-5 bg-transparent placeholder:text-[#8AA5D3] text-tertiary-950 font-medium text-3.5 border border-solid border-[#E8F0FD] hover:border-[#8AA5D3]/30 focus:border-main-700 group-[&.error]/form:border-secondary-700">
+                                                <div
+                                                    class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                                    Lütfen
+                                                    ilgili alanı doldurunuz.</div>
+                                            </div>
+                                            <div class="form-el group/form w-full col-span-2 sm:col-span-1">
+                                                <!-- Buraya `error` classı gelince ilgili style değişiyor -->
+                                                <textarea name="comment" placeholder="{{ __('general.comments') }}"
+                                                    class="w-full h-28 md:h-20 duration-300 rounded-3 p-5 bg-transparent placeholder:text-[#8AA5D3] text-tertiary-950 font-medium text-3.5 border border-solid border-[#E8F0FD] hover:border-[#8AA5D3]/30 focus:border-main-700 group-[&.error]/form:border-secondary-700"></textarea>
+                                                <div
+                                                    class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                                    Lütfen
+                                                    ilgili alanı doldurunuz.</div>
+                                            </div>
+
+                                            <div class="form-el group/form w-full col-span-2 sm:col-span-1">
+                                                <!-- Buraya `loading` classı gelince ilgili style değişiyor -->
+                                                <button
+                                                    class="button group/button relative flex items-center justify-center gap-4 md:gap-3 duration-300 rounded-5 md:rounded-3 after:absolute after:left-[calc(50%-13px)] xl:after:left-[calc(50%-12px)] md:after:left-[calc(50%-10px)] after:top-[calc(50%-13px)] xl:after:top-[calc(50%-12px)] md:after:top-[calc(50%-10px)] after:h-6.5 xl:after:h-6 md:after:h-5 after:aspect-square after:rounded-full after:border-0.5 after:border-solid after:border-white after:[clip-path:polygon(0%_0%,100%_0%,100%_50%,0%_50%)] after:opacity-0 after:duration-300 after:transition-opacity after:animate-spin group-[&.loading]/form:[&_.icon]:opacity-0 group-[&.loading]/form:[&_.text]:opacity-0 group-[&.loading]/form:after:opacity-100 group-[&.loading]/form:pointer-events-none h-13 md:h-12 w-fit mr-0 ml-auto px-8 sm:px-6 bg-secondary-700 hover:bg-secondary-600 text-white">
+
+                                                    <div
+                                                        class="text whitespace-nowrap font-medium text-4 md:text-3.5 transition-opacity duration-300">
+                                                        {{ __('general.submit') }}
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="item-wrapper tab-panels">
+                            <div data-id="tab1"
+                                class="item hidden [&.active]:block p-8 md:px-4 pt-12 @if (!request('filter')) active @endif">
+                                <div class="text-editor text-editor-main">
+                                    <!-- .text-editor içerisindeki style attribute değerleri frontendi tasarıma benzetmek adına eklenmiştir, backend aşamasında silinerek panel editöründen tanımlanmalıdır. -->
+                                    <h5>We Are <strong>LOCA</strong></h5>
+                                    <p style="color:#0D1523">
+                                        {!! $user->bio !!}
+                                    </p>
+
+
+                                </div>
+
+                                <div class="split h-px w-full my-8 xl:my-7 lg:my-6 md:my-4 bg-[#E8F0FD]"></div>
+
+                                @if ($user->experience)
+                                    <div class="info">
+                                        <div
+                                            class="title capitalize text-4 font-semibold text-[#224391] mb-7 xl:mb-6 lg:mb-5 md:mb-4">
+                                            {{ __('general.experience') }}
+                                        </div>
+                                        <div class="list flex items-center flex-wrap gap-4 lg:gap-3 md:gap-2">
+                                            @foreach ($user->experience as $experience)
+                                                <p href="javascript:void(0)"
+                                                    class="bg-[#F2F8FD] h-11 lg:h-10 md:h-9 rounded-4 md:rounded-3 font-medium text-tertiary-950 text-3.5 text-center flex items-center justify-center px-5 lg:px-4.5 md:px-4 duration-300 hover:bg-main-100">
+                                                    {{ $experience }} </p>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <br>
+                                @endif
+                                @if ($user->experience)
+                                    <div class="info">
+                                        <div
+                                            class="title capitalize text-4 font-semibold text-[#224391] mb-7 xl:mb-6 lg:mb-5 md:mb-4">
+                                            {{ __('general.experience_area') }}
+                                        </div>
+                                        <div class="list flex items-center flex-wrap gap-4 lg:gap-3 md:gap-2">
+                                            @foreach ($user->experience_area as $experienceArea)
+                                                <p href="javascript:void(0)"
+                                                    class="bg-[#F2F8FD] h-11 lg:h-10 md:h-9 rounded-4 md:rounded-3 font-medium text-tertiary-950 text-3.5 text-center flex items-center justify-center px-5 lg:px-4.5 md:px-4 duration-300 hover:bg-main-100">
+                                                    {{ $experienceArea }} </p>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                                <div class="split h-px w-full my-8 xl:my-7 lg:my-6 md:my-4 bg-[#E8F0FD]"></div>
+
+                                <div class="info">
+                                    <div class="title text-4 font-semibold text-[#224391] mb-3">
+                                        {{ __('general.languages') }}</div>
+                                    <div class="text-editor text-editor-main">
+                                        @if ($user->languages)
+                                            <p style="color:#0D1523" class="capitalize">
+                                                {{ implode(',', $user->languages) }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-id="tab2"
+                                class="item hidden [&.active]:block p-4 pt-12 pb-8 @if (request('filter')) active @endif ">
+                                <div
+                                    class="filter-wrapper grid grid-cols-[minmax(0,5fr)_minmax(0,4fr)_minmax(0,5fr)] sm:grid-cols-1 gap-5.5 sm:gap-3">
+                                    <div class="form-el group/form relative w-full">
+
+                                        <div
+                                            class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                            Lütfen ilgili alanı doldurunuz.</div>
+                                    </div>
+                                    <div class="form-el group/form relative w-full">
+
+                                        <div
+                                            class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                            Lütfen ilgili alanı doldurunuz.</div>
+                                    </div>
+                                    <div class="form-el group/form relative w-full">
+                                        <!-- Buraya `error` classı gelince ilgili style değişiyor -->
+
+
+                                        <div
+                                            class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                            Lütfen ilgili alanı doldurunuz.</div>
+                                    </div>
+                                </div>
+                                <div class="list-wrapper mt-10 2xl:mb-9 xl:mt-8 lg:mt-6 grid gap-7">
+                                    @foreach ($portfolios as $portfolio)
+                                        <a href="{{ route('frontend.portfolio.show', $portfolio) }}"
+                                            class="item grid grid-cols-[minmax(0,300px)_minmax(0,auto)] sm:grid-cols-1 gap-11 2xl:gap-9 xl:gap-7.5 lg:gap-6 sm:gap-2 items-center border border-solid border-[#E8F0FD] rounded-6 md:rounded-3 p-2 duration-300 hover:border-[#2675FA]">
+                                            <div
+                                                class="image-wrapper relative aspect-[10/7] rounded-6 md:rounded-3 overflow-hidden isolate translate-z-0 shadow-s3">
+                                                <img class="full-cover"
+                                                    src="{{ $portfolio->images?->first()?->full_url }}" alt=""
+                                                    loading="lazy">
+                                                <div
+                                                    class="tag absolute left-4 top-4 bg-tertiary-950/50 rounded-2 px-2 py-1.5 text-white text-3 font-medium leading-none capitalize">
+                                                    {{ $portfolio->category?->rootAncestor?->name }}
+                                                </div>
+                                            </div>
+                                            <div class="text-wrapper py-6 pr-6 sm:p-4">
+                                                <div class="tags flex flex-wrap items-center gap-4">
+                                                    <div class="item flex items-center gap-2">
+                                                        <div
+                                                            class="icon-wrapper w-7.5 aspect-square shrink-0 bg-[#EDF3FE] flex items-center justify-center rounded-full">
+                                                            <div
+                                                                class="icon icon-location-1 text-3.5 h-3.5 block leading-none duration-300 text-[#2675FA]">
+                                                            </div>
+                                                        </div>
+                                                        <div class="text text-3.5 font-medium text-tertiary-950/40">
+                                                            {{ $portfolio->full_address }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="item flex items-center gap-2">
+                                                        <div
+                                                            class="icon-wrapper w-7.5 aspect-square shrink-0 bg-[#EDF3FE] flex items-center justify-center rounded-full">
+                                                            <div
+                                                                class="icon icon-square-meter-1 text-3.5 h-3.5 block leading-none duration-300 text-[#2675FA]">
+                                                            </div>
+                                                        </div>
+                                                        <div class="text text-3.5 font-medium text-tertiary-950/40">
+                                                            {{ $portfolio->net }} m²</div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="title text-tertiary-950 font-semibold text-5 xl:text-4.5 lg:text-4 mt-4">
+                                                    {{ $portfolio->title }}
+                                                </div>
+                                                <div
+                                                    class="price text-tertiary-950 flex items-center gap-1 mt-3 sm:flex-col sm:items-start sm:gap-0">
+                                                    <div
+                                                        class="value font-semibold text-6 2xl:text-5.5 xl:text-5 lg:text-4.5 md:text-4">
+                                                        {{ $portfolio->price }} </div>
+                                                    <div class="joint text-4 xl:text-3.5 font-medium">
+                                                        {{ __('general.general.starting_price') }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @endforeach
+
+                                </div>
+
+                                <a href="{{ route('portfolios', ['filter[user_id]' => $user->id]) }}"
+                                    class="button group/button flex items-center justify-center gap-4 md:gap-3 duration-300 rounded-5 md:rounded-3 h-16 xl:h-14 md:h-12 w-fit mx-auto px-30 2xl:px-24 xl:px-16 lg:px-12 md:px-8 sm:px-6 bg-secondary-700 hover:bg-secondary-600 mt-7.5 text-white">
+
+                                    <div class="text whitespace-nowrap font-medium text-4 md:text-3.5">
+                                        {{ __('general.show_more') }}
+                                    </div>
+
+                                </a>
+                            </div>
+                            <div data-id="tab3" class="item hidden [&.active]:block p-4 pt-12 pb-8">
+
+                                <div class="list-wrapper grid gap-7">
+                                    <template x-for="comment in comments">
+                                        <div class="comment bg-[#F0F2F7] rounded-5 md:rounded-3 px-8 lg:px-6 py-6">
+                                            <div class="name text-4 font-semibold text-[#224391] capitalize"
+                                                x-text="comment.formatted_name"></div>
+
+                                            <div class="text-editor mt-3 capitalize">
+                                                <p x-text="comment.comment"></p>
+                                            </div>
+                                            <div class="date text-[#8AA5D3] text-3.5 font-medium mt-5"
+                                                x-text="comment.formatted_date"></div>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <button @click="fetchComments(nextPageUrl,true)" x-show="nextPageUrl"
+                                    class="button group/button flex items-center justify-center gap-4 md:gap-3 duration-300 rounded-5 md:rounded-3 h-16 xl:h-14 md:h-12 w-fit mx-auto px-30 2xl:px-24 xl:px-16 lg:px-12 md:px-8 sm:px-6 bg-[#2675FA] hover:bg-main-500 mt-7.5 text-white">
+
+                                    <div class="text whitespace-nowrap font-medium text-4 md:text-3.5">
+                                        {{ __('general.show_more') }}
+                                    </div>
+
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        @include('team.share', ['user' => $user])
+
+    </soho-technologies>
+@endsection
+<script>
+    @session('success')
+    alert('Yorumunuz için teşekkürler')
+    @endsession
+</script>

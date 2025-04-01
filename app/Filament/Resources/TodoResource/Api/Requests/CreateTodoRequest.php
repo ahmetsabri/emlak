@@ -22,10 +22,10 @@ class CreateTodoRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'user_id' => 'required|integer',
-			'title' => 'required|string',
-			'status' => 'required|string',
-			'description' => 'required|string'
-		];
+            'user_id' => 'required|integer',
+            'title' => 'required|string',
+            'status' => 'required|string',
+            'description' => 'required|string',
+        ];
     }
 }

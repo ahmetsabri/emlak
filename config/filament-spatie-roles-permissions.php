@@ -203,6 +203,7 @@ return [
             \App\Models\Company::class,
             \App\Models\InfoRealEstate::class,
             \App\Models\Form::class,
+            \App\Models\Department::class,
         ],
 
         'excluded_policy_models' => [

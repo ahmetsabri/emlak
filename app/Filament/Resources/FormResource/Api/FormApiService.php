@@ -1,23 +1,22 @@
 <?php
+
 namespace App\Filament\Resources\FormResource\Api;
 
-use Rupadana\ApiService\ApiService;
 use App\Filament\Resources\FormResource;
-use Illuminate\Routing\Router;
-
+use Rupadana\ApiService\ApiService;
 
 class FormApiService extends ApiService
 {
-    protected static string | null $resource = FormResource::class;
+    protected static ?string $resource = FormResource::class;
 
-    public static function handlers() : array
+    public static function handlers(): array
     {
         return [
             Handlers\CreateHandler::class,
             Handlers\UpdateHandler::class,
             Handlers\DeleteHandler::class,
             Handlers\PaginationHandler::class,
-            Handlers\DetailHandler::class
+            Handlers\DetailHandler::class,
         ];
 
     }

@@ -22,10 +22,10 @@ class UpdateCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'name' => 'required|string',
-			'email' => 'required|string',
-			'phone' => 'required|string',
-			'note' => 'required|string'
-		];
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'phone' => 'required|string',
+            'note' => 'required|string',
+        ];
     }
 }

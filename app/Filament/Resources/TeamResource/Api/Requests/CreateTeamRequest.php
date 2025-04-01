@@ -22,15 +22,15 @@ class CreateTeamRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'company_id' => 'required|integer',
-			'name' => 'required|string',
-			'email' => 'required|string',
-			'phone' => 'required|string',
-			'email_verified_at' => 'required',
-			'password' => 'required|string',
-			'remember_token' => 'required|string',
-			'team_member' => 'required|integer',
-			'ttyb_no' => 'required|string'
-		];
+            'company_id' => 'required|integer',
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'phone' => 'required|string',
+            'email_verified_at' => 'required',
+            'password' => 'required|string',
+            'remember_token' => 'required|string',
+            'team_member' => 'required|integer',
+            'ttyb_no' => 'required|string',
+        ];
     }
 }

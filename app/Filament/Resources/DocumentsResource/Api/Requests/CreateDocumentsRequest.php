@@ -22,9 +22,9 @@ class CreateDocumentsRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'name' => 'required|string',
-			'customer_id' => 'required|integer',
-			'file' => 'required|string'
-		];
+            'name' => 'required|string',
+            'customer_id' => 'required|integer',
+            'file' => 'required|string',
+        ];
     }
 }

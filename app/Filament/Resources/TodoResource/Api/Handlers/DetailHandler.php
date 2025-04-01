@@ -2,29 +2,27 @@
 
 namespace App\Filament\Resources\TodoResource\Api\Handlers;
 
-use App\Filament\Resources\SettingResource;
 use App\Filament\Resources\TodoResource;
+use App\Filament\Resources\TodoResource\Api\Transformers\TodoTransformer;
+use Illuminate\Http\Request;
 use Rupadana\ApiService\Http\Handlers;
 use Spatie\QueryBuilder\QueryBuilder;
-use Illuminate\Http\Request;
-use App\Filament\Resources\TodoResource\Api\Transformers\TodoTransformer;
 
 class DetailHandler extends Handlers
 {
-    public static string | null $uri = '/{id}';
-    public static string | null $resource = TodoResource::class;
+    public static ?string $uri = '/{id}';
 
+    public static ?string $resource = TodoResource::class;
 
     /**
      * Show Todo
      *
-     * @param Request $request
      * @return TodoTransformer
      */
     public function handler(Request $request)
     {
         $id = $request->route('id');
-        
+
         $query = static::getEloquentQuery();
 
         $query = QueryBuilder::for(
@@ -32,7 +30,9 @@ class DetailHandler extends Handlers
         )
             ->first();
 
-        if (!$query) return static::sendNotFoundResponse();
+        if (! $query) {
+            return static::sendNotFoundResponse();
+        }
 
         return new TodoTransformer($query);
     }

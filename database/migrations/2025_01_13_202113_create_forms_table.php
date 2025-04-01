@@ -1,13 +1,12 @@
 <?php
 
-use App\Models\County;
-use App\Models\Province;
 use App\Models\RealEstate;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */

@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Scope;
 class CompanyScope implements Scope
 {
     private $companyId;
+
     public function __construct()
     {
         $this->companyId = auth()->user()->company_id;
     }
+
     public function apply(Builder $builder, Model $model): void
     {
         $builder->where('company_id', $this->companyId);

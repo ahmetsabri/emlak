@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\County;
 use App\Models\District;
 use App\Models\Province;
-use Illuminate\Http\Request;
 
 class CountryController extends Controller
 {

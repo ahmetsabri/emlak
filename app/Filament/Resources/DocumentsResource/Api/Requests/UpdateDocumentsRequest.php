@@ -24,7 +24,7 @@ class UpdateDocumentsRequest extends FormRequest
         return [
             'name' => 'required|string',
             'customer_id' => 'required|integer',
-            'file' => 'required|string'
+            'file' => 'required|string',
         ];
     }
 }

@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
             $supportedLocales = cache('supported_locales')?->pluck('code')->map(fn ($val) => strtolower($val))->toArray();
             FilamentTranslateField::defaultLocales($supportedLocales);
 
-            View::share('languages', array_filter($supportedLocales, fn ($val) =>$val != app()->getLocale()));
+            View::share('languages', array_filter($supportedLocales, fn ($val) => $val != app()->getLocale()));
             View::share('locale', app()->getLocale());
         }
 
@@ -50,7 +50,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::before(function (User $user, string $ability) {
             return $user->isSuperAdmin() ? true : null;
         });
-
 
         View::share('logo', (Storage::disk('public')->url(setting('logo'))));
     }

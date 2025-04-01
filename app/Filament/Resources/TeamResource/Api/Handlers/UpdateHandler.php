@@ -1,29 +1,30 @@
 <?php
+
 namespace App\Filament\Resources\TeamResource\Api\Handlers;
 
-use Illuminate\Http\Request;
-use Rupadana\ApiService\Http\Handlers;
 use App\Filament\Resources\TeamResource;
 use App\Filament\Resources\TeamResource\Api\Requests\UpdateTeamRequest;
+use Rupadana\ApiService\Http\Handlers;
 
-class UpdateHandler extends Handlers {
-    public static string | null $uri = '/{id}';
-    public static string | null $resource = TeamResource::class;
+class UpdateHandler extends Handlers
+{
+    public static ?string $uri = '/{id}';
+
+    public static ?string $resource = TeamResource::class;
 
     public static function getMethod()
     {
         return Handlers::PUT;
     }
 
-    public static function getModel() {
+    public static function getModel()
+    {
         return static::$resource::getModel();
     }
-
 
     /**
      * Update Team
      *
-     * @param UpdateTeamRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function handler(UpdateTeamRequest $request)
@@ -32,12 +33,14 @@ class UpdateHandler extends Handlers {
 
         $model = static::getModel()::find($id);
 
-        if (!$model) return static::sendNotFoundResponse();
+        if (! $model) {
+            return static::sendNotFoundResponse();
+        }
 
         $model->fill($request->all());
 
         $model->save();
 
-        return static::sendSuccessResponse($model, "Successfully Update Resource");
+        return static::sendSuccessResponse($model, 'Successfully Update Resource');
     }
 }

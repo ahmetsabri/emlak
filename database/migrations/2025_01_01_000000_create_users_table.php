@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\Company;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -13,17 +13,29 @@ return new class () extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Company::class)->constrained();
             $table->string('name');
+            $table->json('bio')->nullable();
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
             $table->boolean('team_member')->default(false);
             $table->string('ttyb_no')->nullable();
             $table->string('title')->nullable();
             $table->string('whatsapp')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('youtube')->nullable();
+            $table->json('experience_area')->nullable();
+            $table->text('office_location')->nullable();
+            $table->string('facebook_url')->nullable();
+            $table->string('instagram_url')->nullable();
+            $table->string('address')->nullable();
+            $table->json('experience')->nullable();
+            $table->json('languages')->nullable();
+
+            $table->rememberToken();
+
             $table->timestamps();
         });
 

@@ -36,6 +36,7 @@ class RealEstate extends Model implements HasMedia
     {
         return $this->belongsTo(County::class);
     }
+
     public function district(): BelongsTo
     {
         return $this->belongsTo(District::class);
@@ -154,25 +155,25 @@ class RealEstate extends Model implements HasMedia
 
     public function scopeMinPrice(Builder $builder, $val = 0)
     {
-        if (!str_replace('.', '', $val)) {
+        if (! str_replace('.', '', $val)) {
             return $builder;
         }
 
         $allowedPrices = ['tl', 'eur', 'usd'];
         $col = in_array(request('filter.currency'), $allowedPrices) ? request('filter.currency') : 'tl';
-        return $builder->where("price", '>=', $val);
+
+        return $builder->where('price', '>=', $val);
     }
 
     public function scopeMaxPrice(Builder $builder, $val = 0)
     {
-        if (!str_replace('.', '', $val)) {
+        if (! str_replace('.', '', $val)) {
             return $builder;
         }
         $allowedPrices = ['tl', 'eur', 'usd'];
         $col = in_array(request('filter.currency'), $allowedPrices) ? request('filter.currency') : 'tl';
 
-
-        return $builder->where("price", '<=', $val);
+        return $builder->where('price', '<=', $val);
     }
 
     public function scopeInfo(Builder $builder, ...$val)
@@ -213,6 +214,7 @@ class RealEstate extends Model implements HasMedia
     {
         return $this->media->first()?->original_url;
     }
+
     public function getLastImage()
     {
         return $this->media?->last()?->original_url;

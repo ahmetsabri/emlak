@@ -22,8 +22,8 @@ class UpdateFeatureRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'name' => 'required',
-			'group_id' => 'required|integer'
-		];
+            'name' => 'required',
+            'group_id' => 'required|integer',
+        ];
     }
 }

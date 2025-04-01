@@ -81,7 +81,7 @@ class RealEstateResource extends Resource
                         ->preload()
                         ->columnSpanFull(),
                     Section::make('Bilgiler')
-                    ->label('Bilgiler')
+                        ->label('Bilgiler')
                         ->schema(fn (Get $get): array => self::prepareInfo($get('category_id')))
                         ->key('infoFields')
                         ->dehydrated(),
@@ -191,8 +191,7 @@ class RealEstateResource extends Resource
                         }),
 
                     LocationPicker::make('location')
-                        ->afterStateUpdated(function (string $state) {
-                        })
+                        ->afterStateUpdated(function (string $state) {})
                         ->label('Konum')
                         ->columnSpanFull(),
                 ]

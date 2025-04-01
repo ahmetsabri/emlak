@@ -22,9 +22,9 @@ class CreateInfoRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'name' => 'required',
-			'values' => 'required',
-			'filterable' => 'required|integer'
-		];
+            'name' => 'required',
+            'values' => 'required',
+            'filterable' => 'required|integer',
+        ];
     }
 }

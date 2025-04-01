@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\PagesController;
@@ -8,13 +9,14 @@ use Illuminate\Support\Facades\Route;
 Route::group([''], function () {
 
     Route::post('/portfolio-form', [FormController::class, 'storePortfolioForm'])->name('form.portfolio');
+    Route::post('/portfolio-form', [FormController::class, 'storeJobForm'])->name('form.job');
 
     Route::get('/', [PagesController::class, 'home'])->name('home');
     Route::get('team', [PagesController::class, 'team'])->name('frontend.team.index');
-    Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('team.show');
+    Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('frontend.user.show');
     Route::get('portfolios', [PagesController::class, 'portfolios'])->name('portfolios');
     Route::get('portfolios/{portfolio}', [PagesController::class, 'showPortfolio'])->name('frontend.portfolio.show');
-    Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('frontend.portfolio.show');
+    // Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('frontend.portfolio.show');
     Route::get('contact', [PagesController::class, 'contact'])->name('contact');
     Route::get('blog', [PagesController::class, 'blog'])->name('blog');
     Route::get('blog', [PagesController::class, 'blog'])->name('videos');
@@ -28,19 +30,23 @@ Route::group([''], function () {
     Route::get('blogxsx', [PagesController::class, 'blog'])->name('projects');
     Route::get('ss', [PagesController::class, 'blog'])->name('frontend.faq');
 
+    Route::post('comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::get('comment/{user}', [CommentController::class, 'show'])->name('user.comments');
+
+
 });
 
 Route::get('locale/{locale}', function ($locale) {
     app()->setLocale($locale);
+
     return back();
 })->name('locale');
 
 Route::get('localex/{locale}', function ($locale) {
     app()->setLocale($locale);
+
     return back();
 })->name('currency');
-
-
 
 Route::get('towns/{province?}', [CountryController::class, 'towns'])->name('province.towns');
 Route::get('districts/{town?}', [CountryController::class, 'districts'])->name('towns.districts');

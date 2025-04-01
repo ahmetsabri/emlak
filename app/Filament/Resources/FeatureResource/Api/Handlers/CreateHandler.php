@@ -1,28 +1,30 @@
 <?php
+
 namespace App\Filament\Resources\FeatureResource\Api\Handlers;
 
-use Illuminate\Http\Request;
-use Rupadana\ApiService\Http\Handlers;
 use App\Filament\Resources\FeatureResource;
 use App\Filament\Resources\FeatureResource\Api\Requests\CreateFeatureRequest;
+use Rupadana\ApiService\Http\Handlers;
 
-class CreateHandler extends Handlers {
-    public static string | null $uri = '/';
-    public static string | null $resource = FeatureResource::class;
+class CreateHandler extends Handlers
+{
+    public static ?string $uri = '/';
+
+    public static ?string $resource = FeatureResource::class;
 
     public static function getMethod()
     {
         return Handlers::POST;
     }
 
-    public static function getModel() {
+    public static function getModel()
+    {
         return static::$resource::getModel();
     }
 
     /**
      * Create Feature
      *
-     * @param CreateFeatureRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function handler(CreateFeatureRequest $request)
@@ -33,6 +35,6 @@ class CreateHandler extends Handlers {
 
         $model->save();
 
-        return static::sendSuccessResponse($model, "Successfully Create Resource");
+        return static::sendSuccessResponse($model, 'Successfully Create Resource');
     }
 }
