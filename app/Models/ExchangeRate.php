@@ -8,7 +8,7 @@ class ExchangeRate extends Model
 {
     public static function booted()
     {
-        static::created(function ($model) {
+        static::saved(function ($model) {
             cache()->forget('exchange:rate');
             cache()->rememberForever('exchange:rate', function () use ($model) {
                 return $model;
