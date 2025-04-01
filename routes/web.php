@@ -15,7 +15,7 @@ Route::group([''], function () {
     Route::get('team', [PagesController::class, 'team'])->name('frontend.team.index');
     Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('frontend.user.show');
     Route::get('portfolios', [PagesController::class, 'portfolios'])->name('portfolios');
-    Route::get('portfolios/{portfolio}', [PagesController::class, 'showPortfolio'])->name('frontend.portfolio.show');
+    Route::get('portfolios/{portfolio:slug}', [PagesController::class, 'showPortfolio'])->name('frontend.portfolio.show');
     // Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('frontend.portfolio.show');
     Route::get('contact', [PagesController::class, 'contact'])->name('contact');
     Route::get('blog', [PagesController::class, 'blog'])->name('blog');
