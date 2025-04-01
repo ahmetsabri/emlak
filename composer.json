@@ -19,6 +19,7 @@
         "laravel/framework": "^11.31",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "opcodesio/log-viewer": "^3.15",
         "outerweb/filament-settings": "^1.2",
         "outerweb/filament-translatable-fields": "^2.0",
         "pelmered/filament-money-field": "^1.4",
