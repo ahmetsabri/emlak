@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\Info;
@@ -151,5 +152,12 @@ class PagesController extends Controller
     public function showPost(Post $post)
     {
         return view('themes.main.pages.show_post', compact('post'));
+    }
+    public function about()
+    {
+
+        $about = About::first();
+
+        return view('themes.main.pages.about', compact('about'));
     }
 }

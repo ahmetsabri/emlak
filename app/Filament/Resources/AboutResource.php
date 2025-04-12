@@ -89,8 +89,8 @@ class AboutResource extends Resource
         return $pages;
     }
 
-    public static function canCreate(): bool
-    {
-        return About::count() === 0;
-    }
+       public static function canCreate(): bool
+   {
+      return About::count() === 0;
+   }
 }
