@@ -8,6 +8,8 @@ use App\Models\Info;
 use App\Models\Province;
 use App\Models\RealEstate;
 use App\Models\User;
+use App\Models\Video;
+use App\Models\VideoCategory;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -127,6 +129,17 @@ class PagesController extends Controller
         return view('themes.main.pages.blog', compact('posts'));
     }
 
+    public function videos()
+    {
+
+        $videos = Video::filter(request('category'))->paginate();
+        $categories = VideoCategory::all();
+        $filters = explode(',', request('category'));
+
+        return view('themes.main.pages.video', compact('videos', 'categories', 'filters'));
+
+
+    }
     public function contact()
     {
         return view('themes.main.pages.contact');

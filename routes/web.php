@@ -19,7 +19,7 @@ Route::group([''], function () {
     // Route::get('team/{user}', [PagesController::class, 'showTeam'])->name('frontend.portfolio.show');
     Route::get('contact', [PagesController::class, 'contact'])->name('contact');
     Route::get('blog', [PagesController::class, 'blog'])->name('blog');
-    Route::get('blog', [PagesController::class, 'blog'])->name('videos');
+    Route::get('blog', [PagesController::class, 'videos'])->name('videos');
     Route::get('blogx', [PagesController::class, 'blog'])->name('frontend.about');
     Route::get('blogxx', [PagesController::class, 'blog'])->name('frontend.services');
     Route::get('blogxx', [PagesController::class, 'blog'])->name('frontend.services');

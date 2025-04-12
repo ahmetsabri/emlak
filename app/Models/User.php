@@ -40,7 +40,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     ];
 
     protected $translatable = [
-'title','bio'    ];
+'title','bio'];
     /**
      * The attributes that should be hidden for serialization.
      *
