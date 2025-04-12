@@ -11,7 +11,7 @@ Route::group([''], function () {
     Route::post('/portfolio-form', [FormController::class, 'storePortfolioForm'])->name('form.portfolio');
     Route::post('/portfolio-form', [FormController::class, 'storeJobForm'])->name('form.job');
 
-Route::post('contact-form', [FormController::class, 'storeContactForm'])->name('form.contact');
+    Route::post('contact-form', [FormController::class, 'storeContactForm'])->name('form.contact');
 
     Route::get('/', [PagesController::class, 'home'])->name('home');
     Route::get('team', [PagesController::class, 'team'])->name('frontend.team.index');
@@ -31,8 +31,8 @@ Route::post('contact-form', [FormController::class, 'storeContactForm'])->name('
     Route::get('blogxsx', [PagesController::class, 'blog'])->name('projects');
     Route::get('ss', [PagesController::class, 'blog'])->name('frontend.faq');
 
-    Route::get('locamag', [PagesController::class, 'blog'])->name('frontend.blog');
     Route::get('locamag/{post:slug}', [PagesController::class, 'showPost'])->name('frontend.post.show');
+    Route::get('locamag', [PagesController::class, 'blog'])->name('frontend.blog');
 
     Route::post('comment', [CommentController::class, 'store'])->name('comment.store');
     Route::get('comment/{user}', [CommentController::class, 'show'])->name('user.comments');
