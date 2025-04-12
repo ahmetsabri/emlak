@@ -24,15 +24,15 @@ Route::group([''], function () {
     Route::get('blogx', [PagesController::class, 'blog'])->name('frontend.about');
     Route::get('blogxx', [PagesController::class, 'blog'])->name('frontend.services');
     Route::get('blogxx', [PagesController::class, 'blog'])->name('frontend.services');
-    Route::get('blogxwx', [PagesController::class, 'blog'])->name('frontend.blog');
+    Route::get('blogxwx', [PagesController::class, 'blog'])->name('frontend.blog2');
     Route::get('blogxwwx', [PagesController::class, 'blog'])->name('buy_sell');
     Route::get('blogxwawx', [PagesController::class, 'blog'])->name('career');
     Route::get('blogxwawx', [PagesController::class, 'blog'])->name('career');
     Route::get('blogxsx', [PagesController::class, 'blog'])->name('projects');
     Route::get('ss', [PagesController::class, 'blog'])->name('frontend.faq');
 
-    Route::get('locamag/{post:slug}', [PagesController::class, 'showPost'])->name('frontend.post.show');
     Route::get('locamag', [PagesController::class, 'blog'])->name('frontend.blog');
+    Route::get('locamag/{post:slug}', [PagesController::class, 'showPost'])->name('frontend.post.show');
 
     Route::post('comment', [CommentController::class, 'store'])->name('comment.store');
     Route::get('comment/{user}', [CommentController::class, 'show'])->name('user.comments');
