@@ -1,78 +1,67 @@
-@include('themes.main.header')
+@extends('layouts.frontend')
+@section('title', 'LocaMag | RE/MAX Loca')
+@section('content')
+    <main class="main-field relative pt-[134px] sm:pt-[124px]">
 
-<main id="page-blog" class="header-space">
-    <section class="breadcrumb">
-        <div class="background"><img src="assets/images/breadcrumb/image-5.jpg" alt=""></div>
-        <div class="content">
-            <div class="container">
-                <h1>Blog</h1>
+        <section class="breadcrumb-field px-7 md:px-5">
+            <div
+                class="inner relative overflow-hidden isolate bg-[#8AA5D3]/15 rounded-6 md:rounded-4 py-22 2xl:py-20 xl:py-18 lg:py-12 md:py-10">
+                <div class="image absolute left-0 top-0 w-full h-full bg-tertiary-950"><img class="full-cover opacity-5"
+                        src="{{ asset('image/photo/3.webp') }}" alt="" loading="lazy"></div>
+                <div
+                    class="wrapper max-w-1440 mx-auto w-full px-7.5 relative z-2 flex items-center justify-between gap-7.5 md:flex-col">
+                    <div class="text-editor text-editor-white !gap-2 md:text-center">
+                        <h2><strong>LOCA Magazin</strong></h2>
+                    </div>
+                    <div class="form-outer-wrapper max-w-[300px] w-full">
+                        <form action="{{ route('frontend.blog') }}" class="w-full" method="GET">
+                            <div class="form-wrapper w-full grid gap-4">
+                                <div class="form-el group/form w-full relative">
+                                    <input name="search" type="text" placeholder="LOCA Mag’ta ara"
+                                        class="h-14 duration-300 bg-[#B8D0F7]/6 backdrop-blur-md rounded-4 w-full placeholder:text-[#B8D0F7] font-medium text-3.5 text-white pl-5.5 pr-18 border border-solid border-[#B8D0F7]/10 hover:border-[#B8D0F7] focus:border-[#B8D0F7] group-[&.error]/form:border-secondary-700">
+                                    <button
+                                        class="absolute right-1 top-1 h-12 px-4 bg-transparent rounded-3.5 text-[#2675FA] font-semibold text-3.5 hover:bg-white duration-300 cursor-pointer flex items-center justify-center">
+                                        <div class="icon icon-search text-4 h-4 block leading-none duration-300"></div>
+                                    </button>
+                                    <div
+                                        class="tooltip text-secondary-700 text-3.5 font-medium mt-1 hidden group-[&.error]/form:block">
+                                        Lütfen ilgili alanı doldurunuz.</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <article class="inner">
-        <div class="container">
-            <div class="blog-list">
-                <a href="page-blog-detail.php" class="item wide">
-                    <img src="assets/images/latest-blogs/image-1.jpg" alt="" loading="lazy">
-                    <div class="title">Enerji Verimliliğini Arttırabilmek İçin Yapılması Gerekenler</div>
-                    <div class="text">Enerji verimliliğini terimi bugünlerde çok kullanılmaktadır. Cihazlardaki
-                        etiketler, enerji şirketlerinden gelen reklamlar ve hatt…</div>
-                    <div class="more"><span>Devamını Gör</span></div>
-                </a>
-
-                <a href="page-blog-detail.php" class="item">
-                    <img src="assets/images/latest-blogs/image-2.jpg" alt="" loading="lazy">
-                    <div class="title">Çocuklarla Enerji Tasarrufu için 5 İpucu</div>
-                    <div class="text">Enerji verimliliğini terimi bugünlerde çok kullanılmaktadır. Cihazlardaki
-                        etiketler, enerji şirketlerinden gelen reklamlar ve hatt…</div>
-                    <div class="more"><span>Devamını Gör</span></div>
-                </a>
-
-                <a href="page-blog-detail.php" class="item">
-                    <img src="assets/images/latest-blogs/image-3.jpg" alt="" loading="lazy">
-                    <div class="title">Evden Çalışırken Enerji Tasarrufu Nasıl Yapılır?</div>
-                    <div class="text">Enerji verimliliğini terimi bugünlerde çok kullanılmaktadır. Cihazlardaki
-                        etiketler, enerji şirketlerinden gelen reklamlar ve hatt…</div>
-                    <div class="more"><span>Devamını Gör</span></div>
-                </a>
-
-                <a href="page-blog-detail.php" class="item">
-                    <img src="assets/images/latest-blogs/image-4.jpg" alt="" loading="lazy">
-                    <div class="title">Doğal Enerji Kaynakları Nelerdir? Kaynaklar Nasıl Kullanılır?</div>
-                    <div class="text">Enerji verimliliğini terimi bugünlerde çok kullanılmaktadır. Cihazlardaki
-                        etiketler, enerji şirketlerinden gelen reklamlar ve hatt…</div>
-                    <div class="more"><span>Devamını Gör</span></div>
-                </a>
-
-                <a href="page-blog-detail.php" class="item">
-                    <img src="assets/images/latest-blogs/image-5.jpg" alt="" loading="lazy">
-                    <div class="title">OCR Geri Dönüşümü Nedir? Hangi Alanlarda Kullanılır ?</div>
-                    <div class="text">Enerji verimliliğini terimi bugünlerde çok kullanılmaktadır. Cihazlardaki
-                        etiketler, enerji şirketlerinden gelen reklamlar ve hatt…</div>
-                    <div class="more"><span>Devamını Gör</span></div>
-                </a>
-
-                <a href="page-blog-detail.php" class="item wide">
-                    <img src="assets/images/latest-blogs/image-1.jpg" alt="" loading="lazy">
-                    <div class="title">Enerji Verimliliğini Arttırabilmek İçin Yapılması Gerekenler</div>
-                    <div class="text">Enerji verimliliğini terimi bugünlerde çok kullanılmaktadır. Cihazlardaki
-                        etiketler, enerji şirketlerinden gelen reklamlar ve hatt…</div>
-                    <div class="more"><span>Devamını Gör</span></div>
-                </a>
+        <section class="list-field py-15 2xl:py-14 xl:py-13 lg:py-12 md:py-11 md:pt-11 sm:py-10">
+            <div class="wrapper max-w-1440 mx-auto w-full px-7.5 md:px-5">
+                <div
+                    class="list grid grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-x-5 gap-y-17 2xl:gap-y-15 xl:gap-y-13 lg:gap-y-11 sm:gap-y-9">
+                    @foreach ($posts as $post)
+                        <a href="{{ route('frontend.post.show', $post) }}" class="block item group">
+                            <div class="image aspect-[18/11] rounded-5 md:rounded-3 overflow-hidden isolate translate-z-0">
+                                <img class="full-cover group-hover:scale-105 duration-450 translate-z-0"
+                                    src="{{ $post->media->first()?->original_url }}" alt="" loading="lazy">
+                            </div>
+                            <div class="content px-5 pt-5">
+                                <div class="date text-[#5D5D5D] flex items-center gap-2 mb-2">
+                                    <div class="icon icon-date text-3.5 h-3.5 block leading-none duration-300"></div>
+                                    <div class="text text-3.5 font-medium">{{ $post->created_at->format('d-m-Y') }}</div>
+                                </div>
+                                <div
+                                    class="title text-5.5 2xl:text-5 xl:text-4.5 lg:text-4 font-semibold text-tertiary-950 duration-300 group-hover:text-main-700 leading-tight">
+                                    {{ $post->title }}
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+                <div class="flex justify-center">
+                    {{ $posts->links('vendor.pagination.loca') }}
+                </div>
             </div>
-            <div class="more-button mt--60">
-                <button
-                    class="button button color--endeavour-bg size--fit size--wide size--small icon--right icon--small">
-                    <span>Devamını Gör</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.66 5.08">
-                        <path
-                            d="M4.33,5.08c-.19,0-.38-.07-.53-.22L.22,1.28C-.07,.99-.07,.51,.22,.22S.99-.07,1.28,.22l3.05,3.05L7.38,.22c.29-.29,.77-.29,1.06,0s.29,.77,0,1.06l-3.58,3.58c-.15,.15-.34,.22-.53,.22Z" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </article>
-</main>
+        </section>
 
-@include('themes.main.footer')
+    </main>
+@endsection

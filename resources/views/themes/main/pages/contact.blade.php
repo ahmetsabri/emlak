@@ -1,135 +1,283 @@
-@include('themes.main.header')
+@extends('layouts.frontend')
 
-<main id="page-contact" class="header-space">
-    <section class="breadcrumb">
-        <div class="background"><img src="assets/images/breadcrumb/image-1.jpg" alt=""></div>
-        <div class="content">
-            <div class="container">
-                <h1>İletişim</h1>
-            </div>
-        </div>
-    </section>
+@section('title', ' İletişim | RE/MAX Loca')
+@section('content')
 
-    <article class="inner">
-        <div class="container">
-            <div class="contact-field">
-                <div class="form-field">
-                    <div class="section-heading mb--30">
-                        <div class="title small">İletişim Bilgilerimiz</div>
-                    </div>
-                    <div class="contacts">
-                        <a href="" class="item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.94 21.94">
-                                <path
-                                    d="M11.63,21.94c-.71,0-1.37-.27-1.88-.77-.51-.5-.8-1.17-.81-1.89v-6.29H2.67c-1.06-.01-2.01-.64-2.43-1.59-.29-.65-.31-1.38-.05-2.06,.26-.67,.76-1.2,1.42-1.49L18.26,.17c.61-.22,1.28-.22,1.89,0,.69,.25,1.24,.76,1.55,1.42,.31,.66,.34,1.41,.09,2.1l-7.69,16.67c-.42,.95-1.37,1.57-2.42,1.58h-.03Zm-1.93-10.44h.75v7.78c0,.31,.13,.61,.36,.83,.23,.22,.56,.35,.84,.34,.46,0,.88-.28,1.07-.7L20.39,3.12c.09-.26,.08-.59-.06-.9-.14-.3-.39-.53-.7-.65-.27-.1-.56-.1-.83,0L2.21,9.22c-.3,.13-.52,.37-.63,.66-.11,.3-.11,.62,.02,.91,.19,.42,.61,.7,1.07,.7h7.02Z" />
-                            </svg>
-                            <span>Dumlupınar Mah. 1524 sok. Oğuz İş Merkezi No:2/1 Yenişehir / Mersin(İçel)</span>
-                        </a>
+    <main class="main-field relative pt-[134px] sm:pt-[124px]">
 
-                        <a href="" class="item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.58 23.58">
-                                <path
-                                    d="M11.79,0C5.28,0,0,5.28,0,11.79s5.28,11.79,11.79,11.79c.49-.02,.87-.42,.85-.91-.02-.46-.39-.84-.85-.85-5.54,0-10.03-4.49-10.03-10.03,0-5.54,4.49-10.03,10.03-10.03,5.54,0,10.03,4.49,10.03,10.03v2.73c0,1.02-.83,1.85-1.85,1.85s-1.85-.83-1.85-1.85h0v-2.73c0-3.5-2.83-6.35-6.33-6.36s-6.35,2.83-6.36,6.33,2.83,6.35,6.33,6.36c1.87,0,3.65-.82,4.86-2.25,.75,1.85,2.85,2.74,4.7,1.99,1.36-.55,2.25-1.87,2.25-3.34v-2.73C23.57,5.28,18.3,0,11.79,0Zm0,16.36c-2.53,0-4.57-2.05-4.57-4.57s2.05-4.57,4.57-4.57,4.57,2.05,4.57,4.57-2.05,4.57-4.57,4.57h0Z" />
-                            </svg>
-                            <span>info@remax-loca-mrs.com</span>
-                        </a>
-
-                        <a href="" class="item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.19 21.19">
-                                <path
-                                    d="M15.39,11.91c-.99,0-1.9,.54-2.36,1.41-.28,.4-.17,.95,.23,1.23,.4,.28,.95,.17,1.23-.23h0c.39-.57,.57-.66,.8-.65,1.57,.68,2.96,1.7,4.08,2.99,.08,.21,.07,.44,0,.65-.22,.82-.76,1.51-1.51,1.91-.74,.29-1.56,.26-2.27-.08-3.06-1.22-5.85-3.04-8.2-5.34-2.3-2.35-4.1-5.13-5.32-8.19-.34-.71-.37-1.54-.08-2.27,.4-.75,1.09-1.29,1.91-1.51,.21-.08,.44-.09,.64,0,1.29,1.12,2.31,2.5,2.99,4.07,.01,.25-.08,.42-.64,.81-.4,.28-.51,.83-.23,1.23,.28,.4,.83,.51,1.23,.23h0c.87-.47,1.41-1.37,1.41-2.36C8.56,3.52,7.11,1.54,5.14,.17c-.59-.22-1.23-.22-1.83-.01C2.03,.52,.96,1.41,.37,2.61c-.5,1.18-.49,2.51,.05,3.68,1.31,3.27,3.25,6.25,5.72,8.77l.02,.02c2.52,2.46,5.49,4.4,8.76,5.71,.62,.26,1.29,.4,1.97,.41,.59,0,1.17-.12,1.7-.37,1.2-.6,2.09-1.67,2.45-2.95,.21-.59,.21-1.23-.01-1.82-1.37-1.96-3.35-3.42-5.64-4.14h0Z" />
-                            </svg>
-                            <span>+90 (324) 325-3030</span>
-                        </a>
-
-                        <a href="" class="item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.19 21.19">
-                                <path
-                                    d="M15.39,11.91c-.99,0-1.9,.54-2.36,1.41-.28,.4-.17,.95,.23,1.23,.4,.28,.95,.17,1.23-.23h0c.39-.57,.57-.66,.8-.65,1.57,.68,2.96,1.7,4.08,2.99,.08,.21,.07,.44,0,.65-.22,.82-.76,1.51-1.51,1.91-.74,.29-1.56,.26-2.27-.08-3.06-1.22-5.85-3.04-8.2-5.34-2.3-2.35-4.1-5.13-5.32-8.19-.34-.71-.37-1.54-.08-2.27,.4-.75,1.09-1.29,1.91-1.51,.21-.08,.44-.09,.64,0,1.29,1.12,2.31,2.5,2.99,4.07,.01,.25-.08,.42-.64,.81-.4,.28-.51,.83-.23,1.23,.28,.4,.83,.51,1.23,.23h0c.87-.47,1.41-1.37,1.41-2.36C8.56,3.52,7.11,1.54,5.14,.17c-.59-.22-1.23-.22-1.83-.01C2.03,.52,.96,1.41,.37,2.61c-.5,1.18-.49,2.51,.05,3.68,1.31,3.27,3.25,6.25,5.72,8.77l.02,.02c2.52,2.46,5.49,4.4,8.76,5.71,.62,.26,1.29,.4,1.97,.41,.59,0,1.17-.12,1.7-.37,1.2-.6,2.09-1.67,2.45-2.95,.21-.59,.21-1.23-.01-1.82-1.37-1.96-3.35-3.42-5.64-4.14h0Z" />
-                            </svg>
-                            <span>+90 (532) 427-5936</span>
-                        </a>
-
-                        <a href="" class="item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.19 21.19">
-                                <path
-                                    d="M15.39,11.91c-.99,0-1.9,.54-2.36,1.41-.28,.4-.17,.95,.23,1.23,.4,.28,.95,.17,1.23-.23h0c.39-.57,.57-.66,.8-.65,1.57,.68,2.96,1.7,4.08,2.99,.08,.21,.07,.44,0,.65-.22,.82-.76,1.51-1.51,1.91-.74,.29-1.56,.26-2.27-.08-3.06-1.22-5.85-3.04-8.2-5.34-2.3-2.35-4.1-5.13-5.32-8.19-.34-.71-.37-1.54-.08-2.27,.4-.75,1.09-1.29,1.91-1.51,.21-.08,.44-.09,.64,0,1.29,1.12,2.31,2.5,2.99,4.07,.01,.25-.08,.42-.64,.81-.4,.28-.51,.83-.23,1.23,.28,.4,.83,.51,1.23,.23h0c.87-.47,1.41-1.37,1.41-2.36C8.56,3.52,7.11,1.54,5.14,.17c-.59-.22-1.23-.22-1.83-.01C2.03,.52,.96,1.41,.37,2.61c-.5,1.18-.49,2.51,.05,3.68,1.31,3.27,3.25,6.25,5.72,8.77l.02,.02c2.52,2.46,5.49,4.4,8.76,5.71,.62,.26,1.29,.4,1.97,.41,.59,0,1.17-.12,1.7-.37,1.2-.6,2.09-1.67,2.45-2.95,.21-.59,.21-1.23-.01-1.82-1.37-1.96-3.35-3.42-5.64-4.14h0Z" />
-                            </svg>
-                            <span>+90 (533) 140-3629</span>
-                        </a>
-                    </div>
-                    <div class="section-heading mt--60 mb--30">
-                        <div class="title small">Bizimle İletişime Geç</div>
-                    </div>
-                    <form action="">
-                        <div class="form">
-                            <div class="item width--full">
-                                <label>İsim Soyisim</label>
-                                <input type="text" placeholder="Ahmet Balcı">
-                            </div>
-                            <div class="item width--full">
-                                <label>E-Posta</label>
-                                <input type="email" placeholder="mail@alanadi.com">
-                            </div>
-                            <div class="item width--full">
-                                <label>Telefon</label>
-                                <input type="tel" placeholder="+90 (552) 334 20 50">
-                            </div>
-                            <div class="item width--full">
-                                <label>Mesajınız</label>
-                                <textarea placeholder="Mesajınızı buraya yazınız..."></textarea>
-                            </div>
-                            <div class="item width--half custom-checkbox">
-                                <div class="checkbox">
-                                    <input type="checkbox">
-                                    <div class="box"></div>
-                                </div>
-                                <div class="text">Formu gönderdiğiniz de <a href="" target="_blank">KVKK</a> ve
-                                    <a href="" target="_blank">Gizlilik Şartlarını</a> kabul etmiş olursunuz
-                                </div>
-                            </div>
-                            <div class="item width--half justify--right">
-                                <button class="button button color--maximum-red-bg size--fit size--wider size--medium">
-                                    <span>Gönder</span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="map">
-                    <div class="sticky">
-                        <div class="map-wrapper">
-                            <div class="iframe-wrapper">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12782.927566781105!2d34.5821657!3d36.7769988!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x857e46bb5445fe95!2sREMAX%20LOCA%20Mersin!5e0!3m2!1str!2str!4v1651789261963!5m2!1str!2str"
-                                    style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                            <div class="locations">
-                                <div class="item active"
-                                    data-iframe="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12782.927566781105!2d34.5821657!3d36.7769988!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x857e46bb5445fe95!2sREMAX%20LOCA%20Mersin!5e0!3m2!1str!2str!4v1651789261963!5m2!1str!2str">
-                                    Merkez</div>
-                                <div class="item"
-                                    data-iframe="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3199.043125129745!2d34.4484589155902!3d36.69750158117296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d8778c36c770b7%3A0xaae82ee140cedd1e!2sREMAX%20LOCA%20Tece!5e0!3m2!1str!2str!4v1651789332554!5m2!1str!2str">
-                                    Tece</div>
-                            </div>
-                        </div>
+        <section class="breadcrumb-field px-7 md:px-5">
+            <div
+                class="inner bg-[#8AA5D3]/15 rounded-6 md:rounded-4 pt-28 2xl:pt-24 xl:pt-18 lg:pt-12 md:pt-10 pb-32 2xl:pb-28 xl:pb-22 lg:pb-16 md:pb-10">
+                <div class="wrapper max-w-1440 mx-auto w-full px-7.5">
+                    <div class="text-editor !gap-2 md:text-center">
+                        <!-- .text-editor içerisindeki style attribute değerleri frontendi tasarıma benzetmek adına eklenmiştir, backend aşamasında silinerek panel editöründen tanımlanmalıdır. -->
+                        <h2 style="color:#224391;"><strong>
+                                {{ __('general.contact_us') }}
+                        </h2>
                     </div>
                 </div>
             </div>
-        </div>
-    </article>
-</main>
+        </section>
 
-@include('themes.main.footer')
+        <section class="content-field -mt-8 pb-15 2xl:pb-14 xl:pb-13 lg:pb-12 md:pb-11 md:pt-11 sm:pb-10 sm:pt-10">
+            <div class="wrapper max-w-1440 mx-auto w-full px-7.5 md:px-5 grid grid-cols-2 md:grid-cols-1 md:gap-6">
+                <div class="contact-wrapper grid gap-3">
+                    <div
+                        class="box rounded-6 md:!rounded-3 !rounded-tr-0 !rounded-br-0  bg-gradient-to-tr from-[#182F56] to-tertiary-950 py-11 2xl:py-9 xl:py-7 px-16 2xl:px-12 xl:px-10 md:px-7.5">
+                        <div class="title text-white text-5 xl:text-4.5 lg:text-4 font-semibold mb-6 xl:mb-5 lg:mb-4">
+                            Merkez Ofis</div>
+                        <div class="detail-wrapper grid grid-cols-2 sm:grid-cols-1 gap-6">
+                            <div class="inner grid gap-8 2xl:gap-6 xl:gap-4">
+                                <div class="item-wrapper">
+                                    <a href="https://maps.app.goo.gl/KYeR8YfndhggKMDB8"
+                                        class="flex items-start gap-4 draw-child-underline [--line-color:#FFFFFF]">
+                                        <div
+                                            class="icon icon-location-2 text-6 h-6 block leading-none duration-300 text-[#2675FA] translate-y-15/100">
+                                        </div>
+                                        <div class="text-wrapper">
+                                            <div class="title text-3 text-white">{{ __('general.address') }}</div>
+                                            <div class="text text-white text-3.5 font-medium"><span
+                                                    class="draw-el">Dumlupınar Mahallesi.1524 Sokak. Oğuz İş Merkezi
+                                                    No:2/1 Yenişehir / Mersin</span></div>
+                                        </div>
+                                    </a>
+                                    <div class="button-wrapper ml-4 pl-5 mt-3">
+                                        <a href="https://maps.app.goo.gl/KYeR8YfndhggKMDB8"
+                                            class="button group/button relative duration-300 w-fit flex items-center gap-2 h-8.5 border border-solid border-[#8AA5D3]/25 px-3 rounded-2 hover:border-[#8AA5D3]/50">
+                                            <div
+                                                class="icon icon-map-1 text-3 h-3 block leading-none duration-300 text-[#2675FA]">
+                                            </div>
+                                            <div class="text text-white font-semibold text-3.5 tracking-wider">
+                                                {{ __('general.directions') }}
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
 
-<script>
-    $('#page-contact .map .map-wrapper .locations .item').click(function() {
-        $('#page-contact .map .map-wrapper .locations .item').removeClass('active');
-        $(this).addClass('active');
+                                <a href="mailto:info@remax-loca-mrs.com"
+                                    class="flex items-start gap-4 draw-child-underline [--line-color:#FFFFFF]">
+                                    <div
+                                        class="icon icon-email-2 text-6 h-6 block leading-none duration-300 text-[#2675FA] translate-y-15/100">
+                                    </div>
+                                    <div class="text-wrapper">
+                                        <div class="title text-3 text-white">{{ __('general.email') }}</div>
+                                        <div class="text text-white text-3.5 font-medium"><span
+                                                class="draw-el">info@remax-loca-mrs.com</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="split h-px w-full bg-white/10 hidden sm:block"></div>
+                            <div class="inner grid gap-5 2xl:gap-4 xl:gap-3 justify-end sm:justify-start">
+                                <a href="tel:+90 (324) 325 30 30"
+                                    class="flex items-start gap-4 draw-child-underline [--line-color:#FFFFFF]">
+                                    <div
+                                        class="icon icon-headset-2 text-6 h-6 block leading-none duration-300 text-[#2675FA] translate-y-15/100">
+                                    </div>
+                                    <div class="text-wrapper">
+                                        <div class="title text-3 text-white capitalize">
+                                            {{ __('general.customer_services') }}</div>
+                                        <div class="text text-white text-4 font-medium"><span class="draw-el">+90 (324)
+                                                325 30 30</span></div>
+                                    </div>
+                                </a>
+                                <a href="tel:+90 (532) 427 59 36"
+                                    class="flex items-start gap-4 draw-child-underline [--line-color:#FFFFFF]">
+                                    <div
+                                        class="icon icon-cellphone-2 text-6 h-6 block leading-none duration-300 text-[#2675FA] translate-y-15/100">
+                                    </div>
+                                    <div class="text-wrapper">
+                                        <div class="title text-3 text-white capitalize">{{ __('general.phone') }} 1</div>
+                                        <div class="text text-white text-4 font-medium"><span class="draw-el">+90 (532)
+                                                427 59 36</span></div>
+                                    </div>
+                                </a>
+                                <a href="tel:+90 (533)140 36 29"
+                                    class="flex items-start gap-4 draw-child-underline [--line-color:#FFFFFF]">
+                                    <div
+                                        class="icon icon-cellphone-2 text-6 h-6 block leading-none duration-300 text-[#2675FA] translate-y-15/100">
+                                    </div>
+                                    <div class="text-wrapper">
+                                        <div class="title text-3 text-white capitalize">{{ __('general.phone') }} 2</div>
+                                        <div class="text text-white text-4 font-medium"><span class="draw-el">+90 (533)140
+                                                36 29</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="box rounded-6 md:!rounded-3 !rounded-tr-0 !rounded-br-0  bg-gradient-to-tr from-[#182F56] to-tertiary-950 py-11 2xl:py-9 xl:py-7 px-16 2xl:px-12 xl:px-10 md:px-7.5">
+                        <div class="title text-white text-5 xl:text-4.5 lg:text-4 font-semibold mb-6 xl:mb-5 lg:mb-4">
+                            Tece Ofis</div>
+                        <div class="detail-wrapper grid grid-cols-2 sm:grid-cols-1 gap-6">
+                            <div class="inner grid gap-8 2xl:gap-6 xl:gap-4">
+                                <div class="item-wrapper">
+                                    <a href="https://maps.app.goo.gl/KYeR8YfndhggKMDB8"
+                                        class="flex items-start gap-4 draw-child-underline [--line-color:#FFFFFF]">
+                                        <div
+                                            class="icon icon-location-2 text-6 h-6 block leading-none duration-300 text-[#2675FA] translate-y-15/100">
+                                        </div>
+                                        <div class="text-wrapper">
+                                            <div class="title text-3 text-white">{{ __('general.address') }}</div>
+                                            <div class="text text-white text-3.5 font-medium"><span class="draw-el">Deniz
+                                                    Mahallesi, Gazipaşa Cadddesi, Akbusi Sitesi AltıNo:56/B Mezitli /
+                                                    Mersin</span></div>
+                                        </div>
+                                    </a>
+                                    <div class="button-wrapper ml-4 pl-5 mt-3">
+                                        <a href="https://maps.app.goo.gl/KYeR8YfndhggKMDB8"
+                                            class="button group/button relative duration-300 w-fit flex items-center gap-2 h-8.5 border border-solid border-[#8AA5D3]/25 px-3 rounded-2 hover:border-[#8AA5D3]/50">
+                                            <div
+                                                class="icon icon-map-1 text-3 h-3 block leading-none duration-300 text-[#2675FA]">
+                                            </div>
+                                            <div class="text text-white font-semibold text-3.5 tracking-wider">
 
-        let iframe = $(this).data('iframe');
+                                                {{ __('general.directions') }}
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
 
-        $('#page-contact .map .map-wrapper .iframe-wrapper iframe').attr('src', iframe);
-    })
-</script>
+                                <a href="mailto:info@remax-loca-mrs.com"
+                                    class="flex items-start gap-4 draw-child-underline [--line-color:#FFFFFF]">
+                                    <div
+                                        class="icon icon-email-2 text-6 h-6 block leading-none duration-300 text-[#2675FA] translate-y-15/100">
+                                    </div>
+                                    <div class="text-wrapper">
+                                        <div class="title text-3 text-white">{{ __('general.email') }}</div>
+                                        <div class="text text-white text-3.5 font-medium"><span
+                                                class="draw-el">info@remax-loca-mrs.com</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="split h-px w-full bg-white/10 hidden sm:block"></div>
+                            <div class="inner grid gap-5 2xl:gap-4 xl:gap-3 justify-end sm:justify-start">
+                                <a href="tel:+90 (324)325 30 30"
+                                    class="flex items-start gap-4 draw-child-underline [--line-color:#FFFFFF]">
+                                    <div
+                                        class="icon icon-headset-2 text-6 h-6 block leading-none duration-300 text-[#2675FA] translate-y-15/100">
+                                    </div>
+                                    <div class="text-wrapper">
+                                        <div class="title text-3 text-white capitalize">
+                                            {{ __('general.customer_services') }}
+                                        </div>
+                                        <div class="text text-white text-4   font-medium"><span class="draw-el">+90 (324)325
+                                                30 30</span></div>
+                                    </div>
+                                </a>
+                                <a href="tel:+90 (532)427 59 36"
+                                    class="flex items-start gap-4 draw-child-underline [--line-color:#FFFFFF]">
+                                    <div
+                                        class="icon icon-cellphone-2 text-6 h-6 block leading-none duration-300 text-[#2675FA] translate-y-15/100">
+                                    </div>
+                                    <div class="text-wrapper">
+                                        <div class="title text-3 text-white capitalize">{{ __('general.phone') }} 1</div>
+                                        <div class="text text-white text-4 font-medium"><span class="draw-el">+90 (532)427
+                                                59 36</span></div>
+                                    </div>
+                                </a>
+                                <a href="tel:+90 (533)140 36 29"
+                                    class="flex items-start gap-4 draw-child-underline [--line-color:#FFFFFF]">
+                                    <div
+                                        class="icon icon-cellphone-2 text-6 h-6 block leading-none duration-300 text-[#2675FA] translate-y-15/100">
+                                    </div>
+                                    <div class="text-wrapper">
+                                        <div class="title text-3 text-white capitalize">{{ __('general.phone') }} 2</div>
+                                        <div class="text text-white text-4 font-medium"><span class="draw-el">+90 (533)140
+                                                36 29</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="form-wrapper bg-white rounded-6 md:!rounded-3 !rounded-tl-0 !rounded-bl-0 py-11 2xl:py-9 xl:py-7 px-16 2xl:px-12 xl:px-10 md:px-7.5 flex items-center">
+                    <div class="inner max-w-[425px] md:max-w-none w-full mx-auto">
+                        <div class="title text-5 xl:text-4.5 lg:text-4 font-semibold text-tertiary-950 mb-5">
+                            {{ __('general.contact_us') }}
+                        </div>
+                        <form action="{{ route('form.contact') }}" method="post">
+                            @csrf
+                            <div class="form-wrapper grid gap-3">
+                                <div class="form-el relative group/form w-full">
+                                    <!-- Buraya `error` classı gelince ilgili style değişiyor -->
+                                    <input required name="name" type="text" placeholder="{{ __('general.name') }}"
+                                        class="w-full h-14 md:h-12 duration-300 rounded-4 md:rounded-3 px-7 md:px-5 bg-bodyColor placeholder:text-[#6D6D6D] text-tertiary-950 font-medium text-3.5 border border-solid border-transparent hover:border-[#8AA5D3]/30 focus:border-main-700 group-[&.error]/form:border-secondary-700">
+
+                                    @error('name')
+                                        <div class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-el relative group/form w-full">
+                                    <!-- Buraya `error` classı gelince ilgili style değişiyor -->
+                                    <input required name="email" type="email"
+                                        placeholder="{{ __('general.email') }}"
+                                        class="w-full h-14 md:h-12 duration-300 rounded-4 md:rounded-3 px-7 md:px-5 bg-bodyColor placeholder:text-[#6D6D6D] text-tertiary-950 font-medium text-3.5 border border-solid border-transparent hover:border-[#8AA5D3]/30 focus:border-main-700 group-[&.error]/form:border-secondary-700">
+                                    @error('email')
+                                        <div class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-el relative group/form w-full">
+                                    <!-- Buraya `error` classı gelince ilgili style değişiyor -->
+                                    <input required name="phone" type="tel"
+                                        placeholder="{{ __('general.phone') }}"
+                                        class="w-full h-14 md:h-12 duration-300 rounded-4 md:rounded-3 px-7 md:px-5 bg-bodyColor placeholder:text-[#6D6D6D] text-tertiary-950 font-medium text-3.5 border border-solid border-transparent hover:border-[#8AA5D3]/30 focus:border-main-700 group-[&.error]/form:border-secondary-700">
+                                    @error('phone')
+                                        <div class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-el group/form w-full">
+                                    <!-- Buraya `error` classı gelince ilgili style değişiyor -->
+                                    <textarea required name="message" placeholder="{{ __('general.message') }}"
+                                        class="w-full h-28 md:h-20 duration-300 rounded-4 md:rounded-3 p-7 md:p-5 bg-bodyColor placeholder:text-[#6D6D6D] text-tertiary-950 font-medium text-3.5 border border-solid border-transparent hover:border-[#8AA5D3]/30 focus:border-main-700 group-[&.error]/form:border-secondary-700"></textarea>
+                                    @error('message')
+                                        <div class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-el group/form w-full px-2 my-3 md:my-2">
+                                    <!-- Buraya `error` classı gelince ilgili style değişiyor -->
+                                    <div class="custom-input relative flex items-center gap-2">
+                                        <input required name="agree" type="checkbox"
+                                            class="opacity-0 absolute left-0 top-0 w-full h-full peer z-2 cursor-pointer">
+                                        <div
+                                            class="box relative duration-300 w-4 aspect-square shrink-0 bg-bodyColor rounded-0.75 border border-solid border-[#8AA5D3]/30 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-65/100 before:aspect-square before:rounded-0.5 before:bg-main-700 before:duration-300 before:pointer-events-none before:opacity-0 peer-hover:border-main-700 peer-checked:border-main-700 peer-checked:before:opacity-100">
+                                        </div>
+                                        <div class="text text-[#6D6D6D] text-3.5 font-medium"><a href="#popup-gdpr"
+                                                data-fancybox
+                                                class="text-[#6D6D6D] font-semibold duration-300 hover:text-main-700 relative z-3">KVKK</a>
+                                            ve <a href="#popup-gdpr" data-fancybox
+                                                class="text-[#6D6D6D] font-semibold duration-300 hover:text-main-700 relative z-3">Gizlilik
+                                                Şartları</a>’nı okudum, kabul ediyorum.</div>
+                                    </div>
+                                    <div class="tooltip text-secondary-700 text-3 mt-2 hidden group-[&.error]/form:block">
+                                        Lütfen ilgili alanı doldurunuz.</div>
+                                </div>
+                                <div class="form-el group/form w-full">
+                                    <!-- Buraya `loading` classı gelince ilgili style değişiyor -->
+                                    <button
+                                        class="button group/button relative flex items-center justify-center gap-4 md:gap-3 duration-300 rounded-5 md:rounded-3 after:absolute after:left-[calc(50%-13px)] xl:after:left-[calc(50%-12px)] md:after:left-[calc(50%-10px)] after:top-[calc(50%-13px)] xl:after:top-[calc(50%-12px)] md:after:top-[calc(50%-10px)] after:h-6.5 xl:after:h-6 md:after:h-5 after:aspect-square after:rounded-full after:border-0.5 after:border-solid after:border-white after:[clip-path:polygon(0%_0%,100%_0%,100%_50%,0%_50%)] after:opacity-0 after:duration-300 after:transition-opacity after:animate-spin group-[&.loading]/form:[&_.icon]:opacity-0 group-[&.loading]/form:[&_.text]:opacity-0 group-[&.loading]/form:after:opacity-100 group-[&.loading]/form:pointer-events-none h-16 xl:h-14 md:h-12 w-full px-8 sm:px-6 bg-secondary-700 hover:bg-secondary-600 text-white">
+
+                                        <div
+                                            class="text whitespace-nowrap font-medium text-4 md:text-3.5 transition-opacity duration-300">
+                                            {{ __('general.submit') }}</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+@endsection

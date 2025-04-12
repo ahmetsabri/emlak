@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\Info;
+use App\Models\Post;
 use App\Models\Province;
 use App\Models\RealEstate;
 use App\Models\User;
@@ -121,10 +122,12 @@ class PagesController extends Controller
         return view('themes.main.pages.team-detail', compact('user', 'cateogries', 'portfolios'));
     }
 
-    public function blog()
+    public function blog(Request $request)
     {
-        // todo:post model
-        $posts = [];
+
+        $posts = Post::latest()->select('id', 'created_at', 'title', 'slug')->with('media')->when($request->search, function ($query) use ($request) {
+            $query->where('title->'.app()->getLocale(), 'like', '%'.$request->search.'%');
+        })->paginate();
 
         return view('themes.main.pages.blog', compact('posts'));
     }
@@ -143,5 +146,10 @@ class PagesController extends Controller
     public function contact()
     {
         return view('themes.main.pages.contact');
+    }
+
+    public function showPost(Post $post)
+    {
+        return view('themes.main.pages.show_post', compact('post'));
     }
 }

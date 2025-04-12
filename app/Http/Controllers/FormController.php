@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreContactFormRequest;
 use App\Http\Requests\StoreJobFormRequest;
 use App\Http\Requests\StorePortfolioFormRequest;
 use App\Models\Form;
@@ -21,5 +22,13 @@ class FormController extends Controller
         Form::create($request->safe()->merge(compact('attachment'))->toArray());
 
         return back()->with('success', 'success');
+    }
+
+    public function storeContactForm(StoreContactFormRequest $request)
+    {
+        Form::create($request->validated());
+
+        return back()->with('success', 'success');
+
     }
 }
