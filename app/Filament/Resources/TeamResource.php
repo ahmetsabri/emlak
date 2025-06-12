@@ -26,181 +26,75 @@ class TeamResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Ekip';
-
-    protected static ?string $modelLabel = 'Ekip üyesi';
-
-    protected static ?string $pluralModelLabel = 'Ekip';
-
-    // public static function form(Form $form): Form
-    // {
-    //     return $form
-    //         ->schema([
-    //             TextInput::make('name')->label('Ad Soyad')->required(),
-    //             TextInput::make('email')->label('E-posta')->required()->email()->unique('users', 'email', ignoreRecord: true),
-    //             TextInput::make('phone')->label('Telefon')->required(),
-    //             TextInput::make('ttyb_no')->label('TTYP NO')->nullable(),
-
-    //             SpatieMediaLibraryFileUpload::make('images')
-    //                 ->label('Resim')
-    //                 ->collection('users')
-    //                 ->imageEditor()
-    //                 ->columnSpanFull()
-    //                 ->columns(8),
-
-    //             // todo: check plan
-    //             Checkbox::make('team_member')->label('Panele erişimi ver')->reactive()->nullable()->columnSpanFull()->default(false),
-
-    //             Select::make('permissions')
-    //                 ->label('Yetkiller')
-    //                 ->relationship(name: 'permissions', titleAttribute: 'translated_name')
-    //                 ->saveRelationshipsUsing(function (User $record, $state) {
-    //                     $record->permissions()->sync($state);
-    //                 })
-    //                 ->multiple()
-    //                 ->preload()
-    //                 ->searchable()
-    //                 ->columnSpanFull()
-    //                 ->requiredIfAccepted('team_member')
-    //                 ->visible(fn (callable $get) => ($get('team_member')) == true),
-
-    //             TextInput::make('password')
-    //                 ->label('Şifre')
-    //                 ->requiredIfAccepted('team_member')
-    //                 ->password()
-    //                 ->minLength(6)
-    //                 ->confirmed()
-    //                 ->visible(fn (callable $get) => ($get('team_member')) == true),
-
-    //             TextInput::make('password_confirmation')
-    //                 ->label('Şifre Tekrarla')
-    //                 ->requiredIfAccepted('team_member')
-    //                 ->password()
-    //                 ->minLength(6)
-    //                 ->dehydrated(0)
-    //                 ->visible(fn (callable $get) => ($get('team_member')) == true),
-
-    //             // CheckboxList::make('permissions')
-    //             //     ->label('Yetkiller')
-    //             //     ->relationship('permissions', 'translated_name', function ($query) {
-    //             //         return $query->orderBy('id', 'asc');
-    //             //     })
-    //             //     ->debounce(null)
-    //             //     ->columns(4)
-    //             //     ->columnSpanFull()
-    //             //     ->selectAllAction(
-    //             //         fn (Action $action) => $action->label('aaaa all technologies'),
-    //             //     )
-    //             //     ->searchable(),
-
-    //         ]);
-    // }
-
     public static function form(Form $form): Form
     {
 
         return $form
             ->schema([
-                // Name (Ad Soyad)
                 TextInput::make('name')
-                    ->label('Ad Soyad')
+                    ->label(__('Full Name'))
                     ->required()
-                    ->maxLength(255),
+                    ->placeholder(__('Full Name')),
 
-                // TTYB No
-                TextInput::make('ttyb_no')
-                ->label('TTYB No')
-                ->required()
-                    ->maxLength(255),
-
-                // Phone
-                TextInput::make('phone')
-                    ->label(__('general.phone'))
-                    ->maxLength(255),
-
-                // Email
                 TextInput::make('email')
-                    ->label(__('general.email'))
-                    ->email()
-                    ->maxLength(255),
-
-                // Social Media URLs
-                TextInput::make('facebook_url')
-                    ->label(__('facebook'))
-                    ->url()
-                    ->maxLength(255),
-                TextInput::make('instagram_url')
-                    ->label(__('instagram'))
-                    ->url()
-                    ->maxLength(255),
-                TextInput::make('whatsapp')
-                    ->label(__('whatsapp'))
-                    ->maxLength(255),
-                TextInput::make('youtube')
-                    ->label(__('youtube'))
-                    ->url()
-                    ->maxLength(255),
-                TextInput::make('linkedin')
-                    ->label(__('linkedin'))
-                    ->url()
-                    ->maxLength(255),
-
-                // Office Location
-                TextInput::make('office_location')
-                    ->label(__('general.office') . ' Konumu')
-                    ->maxLength(255),
-
-                // Address
-                TextInput::make('address')
-                    ->label(__('general.address') . ' Bilgileri')
-                    ->maxLength(255),
-
-                // Experience
-                TextInput::make('experience')
-                    ->label(__('general.experience'))
-                    ->placeholder('exp1, exp2, exp3')
-                    ->maxLength(255),
-
-                // Experience Area
-                TextInput::make('experience_area')
-                    ->label(__('general.experience_area'))
-                    ->placeholder('exp1, exp2, exp3')
-                    ->maxLength(255),
-
-                // Languages
-                TextInput::make('languages')
-                    ->label('Diller')
-                    ->placeholder('turkish, english')
-                    ->maxLength(255),
-
-                // Department (Select)
-                Select::make('department_id')
-                    ->label('Departman')
-                    ->relationship('department', 'name') // Assumes a Department relationship exists
+                    ->label(__('Email'))
                     ->required()
-                    ->options(function () {
-                        return \App\Models\Department::pluck('name', 'id')->toArray();
-                    })
-                    ->default(fn ($livewire) => \App\Models\Department::first()->id ?? null),
+                    ->email()
+                    ->unique('users', 'email', ignoreRecord: true)
+                    ->placeholder(__('Email')),
+
+                TextInput::make('phone')
+                    ->label(__('Phone'))
+                    ->required()
+                    ->placeholder(__('Phone')),
+
+                TextInput::make('ttyb_no')
+                    ->label(__('TTYB Number'))
+                    ->nullable()
+                    ->placeholder(__('TTYB Number')),
 
                 SpatieMediaLibraryFileUpload::make('images')
-                    ->label('Resim')
+                    ->label(__('Image'))
                     ->collection('users')
                     ->imageEditor(),
 
-                         Translate::make()->prefixLocaleLabel()
-                    ->schema([
-                        RichEditor::make('bio'),
-                        TextInput::make('title')
-                            ->label('Başlık')
-                            ->required(),
+                Checkbox::make('team_member')
+                    ->label(__('Grant panel access'))
+                    ->reactive()
+                    ->nullable()
+                    ->columnSpanFull()
+                    ->default(false),
 
-                    ])
-                    ->contained(true)
-                    ->prefixLocaleLabel(true)->columnSpanFull(),
+                // Select::make('permissions')
+                //     ->label(__('Permissions'))
+                //     ->relationship(name: 'permissions', titleAttribute: 'translated_name')
+                //     ->saveRelationshipsUsing(function (User $record, $state) {
+                //         $record->permissions()->sync($state);
+                //     })
+                //     ->multiple()
+                //     ->preload()
+                //     ->searchable()
+                //     ->columnSpanFull()
+                //     ->requiredIfAccepted('team_member')
+                //     ->visible(fn (callable $get) => ($get('team_member')) == true),
 
+                TextInput::make('password')
+                    ->label(__('Password'))
+                    ->requiredIfAccepted('team_member')
+                    ->password()
+                    ->minLength(6)
+                    ->confirmed()
+                    ->visible(fn (callable $get) => ($get('team_member')) == true)
+                    ->placeholder(__('Password')),
 
-
+                TextInput::make('password_confirmation')
+                    ->label(__('Confirm Password'))
+                    ->requiredIfAccepted('team_member')
+                    ->password()
+                    ->minLength(6)
+                    ->dehydrated(0)
+                    ->visible(fn (callable $get) => ($get('team_member')) == true)
+                    ->placeholder(__('Confirm Password')),
             ]);
 
     }
@@ -213,8 +107,9 @@ class TeamResource extends Resource
             })
             ->columns([
                 SpatieMediaLibraryImageColumn::make('')->collection('users'),
-                TextColumn::make('name')->label('Ad Soyad')->searchable(),
-                TextColumn::make('department.name')->label('Departman')->searchable(),
+                TextColumn::make('name')->label(__('Full Name'))->searchable(),
+                TextColumn::make('email')->label(__('Email'))->searchable(),
+                TextColumn::make('phone')->label(__('Phone'))->searchable(),
             ])
             ->filters([
                 //
@@ -243,5 +138,20 @@ class TeamResource extends Resource
             'create' => Pages\CreateTeam::route('/create'),
             'edit' => Pages\EditTeam::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Team');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Team Member');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Team');
     }
 }

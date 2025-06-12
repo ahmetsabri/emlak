@@ -10,7 +10,7 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 Artisan::command('exchange-rate', function () {
-    $data = json_decode(file_get_contents(config('services.exchange_rate.url')), 1)['try'];
+    $data = json_decode(file_get_contents(config('services.exchange_rate.url')), 1)['egp'];
 
     ExchangeRate::updateOrCreate([
         'date' => now()->toDateString(),

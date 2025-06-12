@@ -18,57 +18,61 @@ class Settings extends BaseSettings
         return [
             Tabs::make('Settings')
                 ->schema([
-                    Tabs\Tab::make('Dil')
+                    Tabs\Tab::make(__('Languages'))
+
                         ->schema([
                             Select::make('language.default')
-                                ->label('Ana dili')
+                                ->label(__('Default Language'))
                                 ->options(cache('supported_locales')
                                     ->pluck('name', 'code'))
                                 ->selectablePlaceholder(false),
                         ]),
                     Tabs\Tab::make('Logo')
+                    ->label(__('Logo'))
                         ->schema([
                             FileUpload::make('logo')
-                                ->label('Logo')
+                                ->label(__('Logo'))
                                 ->image()
                                 ->imageEditor()
                                 ->required(),
                         ]),
                     Tabs\Tab::make('SEO')
+
                         ->schema([
                             TextInput::make('seo.title')
-                                ->label('Meta başlık (title)')
+                                ->label(__('Meta Title'))
                                 ->nullable(),
                             TextInput::make('seo.description')
-                                ->label('Meta açıklama (description)')
+                                ->label(__('Meta Description'))
                                 ->nullable(),
                             Textarea::make('seo.keywords')
-                                ->label('Meta keywords')
+                                ->label(__('Meta Keywords'))
                                 ->nullable(),
                         ]),
-                    Tabs\Tab::make('İletişim')
+                    Tabs\Tab::make('Contact')
+                    ->label(__('Contact'))
                         ->schema([
                             TextInput::make('social_media.email')
-                                ->label('E-posta')
+                                ->label(__('Email'))
                                 ->email()
                                 ->nullable(),
                             TextInput::make('social_media.phone')
-                                ->label('Telefon')
+                                ->label(__('Phone'))
                                 ->nullable(),
                             TextInput::make('social_media.facebook')
-                                ->label('Facebook')
+                                ->label(__('Facebook'))
                                 ->url()
                                 ->nullable(),
                             TextInput::make('social_media.intagaram')
-                                ->label('Instagaram')
+                                ->label(__('Instagram'))
                                 ->url()
                                 ->nullable(),
                             TextInput::make('social_media.youtube')
-                                ->label('Youtube')
+                                ->label(__('YouTube'))
                                 ->url()
                                 ->nullable(),
                             TextInput::make('social_media.whatsapp')
-                                ->label('whatsapp')
+                                ->label(__('WhatsApp'))
                                 ->placeholder('5xxxxxxxxx')
                                 ->numeric()
                                 ->length(10)
@@ -80,17 +84,17 @@ class Settings extends BaseSettings
 
     public static function getNavigationLabel(): string
     {
-        return __('settings.page.title');
+        return __('Settings');
     }
 
     protected function getSavedNotificationTitle(): ?string
     {
-        return __('settings.notifications.saved');
+        return __('Settings saved successfully');
     }
 
     public function getTitle(): string
     {
-        return __('settings.page.title');
+        return __('Settings');
     }
 
     public function getFormActions(): array

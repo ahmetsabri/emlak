@@ -19,13 +19,18 @@ class CustomerOverview extends BaseWidget
         $totalDoneTodo = Todo::where('status', TodoStatus::DONE)->count();
 
         return [
-            Stat::make('Müşteri Sayısı', $totalCustomer)
+            Stat::make(__('Customer Count'), $totalCustomer)
                 ->icon('heroicon-m-user'),
-            Stat::make('Görevler Sayısı', $totalTodo)
+            Stat::make(__('Todo Count'), $totalTodo)
                 ->icon('heroicon-m-list-bullet'),
-            Stat::make('Tamamlanmış Görevler Sayısı', $totalDoneTodo)
+            Stat::make(__('Completed Todo Count'), $totalDoneTodo)
                 ->icon('heroicon-s-check'),
 
         ];
+    }
+
+    public function getHeading(): string|null
+    {
+        return '';
     }
 }

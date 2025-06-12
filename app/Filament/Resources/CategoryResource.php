@@ -17,11 +17,11 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationLabel = 'Kategoriler';
+    protected static ?string $navigationLabel = 'Categories';
 
-    protected static ?string $modelLabel = 'Kategori';
+    protected static ?string $modelLabel = 'Category';
 
-    protected static ?string $pluralModelLabel = 'Kategoriler';
+    protected static ?string $pluralModelLabel = 'Categories';
 
     protected static ?string $navigationIcon = 'heroicon-s-rectangle-stack';
 
@@ -32,7 +32,7 @@ class CategoryResource extends Resource
                 [
                     Translate::make()
                         ->schema([
-                            TextInput::make('name')->label('Kategori Adı')->required(),
+                            TextInput::make('name')->label(__('Category Name'))->required(),
                         ])->columnSpanFull()->prefixLocaleLabel(),
                 ]
             );
@@ -42,7 +42,7 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label('Kategori')->searchable(),
+                TextColumn::make('name')->label(__('Category'))->searchable(),
             ])
             ->filters([
                 //
@@ -74,5 +74,20 @@ class CategoryResource extends Resource
             'edit' => Pages\EditCategory::route('/{record}/edit'),
             'edit-child' => Pages\EditCategory::route('/{parent}/edit/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Categories');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Category');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Categories');
     }
 }

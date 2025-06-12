@@ -34,12 +34,6 @@ class RealEstateResource extends Resource
 {
     protected static ?string $model = RealEstate::class;
 
-    protected static ?string $navigationLabel = 'İlanlar';
-
-    protected static ?string $modelLabel = 'İlan';
-
-    protected static ?string $pluralModelLabel = 'İlanlar';
-
     protected static ?string $navigationIcon = 'heroicon-s-home-modern';
 
     public static array $infos = [];
@@ -56,8 +50,16 @@ class RealEstateResource extends Resource
 
                     Translate::make()->prefixLocaleLabel()
                         ->schema([
-                            TextInput::make('title')->label('Başlık')->required()->columnSpanFull(),
-                            RichEditor::make('description')->label('Açıklama')->required()->columnSpanFull(),
+                            TextInput::make('title')
+                                ->label(__('Title'))
+                                ->required()
+                                ->columnSpanFull()
+                                ->placeholder(__('Title')),
+                            RichEditor::make('description')
+                                ->label(__('Description'))
+                                ->required()
+                                ->columnSpanFull()
+                                ->placeholder(__('Description')),
                         ])->columnSpanFull()->contained(false),
 
                     SelectTree::make('category_id')
@@ -87,6 +89,7 @@ class RealEstateResource extends Resource
                         ->dehydrated(),
 
                     SpatieMediaLibraryFileUpload::make('images')
+                        ->label(__('Images'))
                         ->reorderable()
                         ->collection('realestates')
                         ->imageEditor()
@@ -98,101 +101,116 @@ class RealEstateResource extends Resource
                         ->maxFiles(20)
                         ->panelLayout('grid'),
 
+                    SelectTree::make('category_id')
+                        ->label(__('Category'))
+                        ->relationship('category', 'name', 'parent_id')
+                        ->withCount()
+                        ->searchable()
+                        ->required()
+                        ->reactive()
+                        ->afterStateUpdated(function (callable $set, $state) {
+                            $set('features', []);
+                        })
+                        ->columnSpanFull(),
+
                     TextInput::make('price')
-                        ->label('Fiyat')
-                        ->required(),
+                        ->label(__('Price'))
+                        ->required()
+                        ->placeholder(__('Price')),
 
                     TextInput::make('net_area')
-                        ->label('Net m2')
-                        ->integer(),
+                        ->label(__('Net Area (m²)'))
+                        ->integer()
+                        ->placeholder(__('Net Area')),
 
                     TextInput::make('gross_area')
-                        ->label('Brüt m2')
-                        ->integer(),
+                        ->label(__('Gross Area (m²)'))
+                        ->integer()
+                        ->placeholder(__('Gross Area')),
 
-                    Select::make('province_id')->label('il')
-                        ->relationship('province', 'name')->searchable()
-                        ->searchDebounce(100)->reactive() // This makes the field trigger updates on change
+                    Select::make('province_id')
+                        ->label(__('Province'))
+                        ->relationship('province', 'name')
+                        ->searchable()
+                        ->searchDebounce(100)
+                        ->reactive()
                         ->afterStateUpdated(function ($state, callable $set) {
                             $set('county_id', null);
                         })
-                        ->preload(),
+                        ->placeholder(__('Select Province')),
 
                     Select::make('county_id')
-                        ->preload()
-                        ->label('İlçe')
+                        ->label(__('County'))
                         ->relationship('county')
                         ->options(function (callable $get) {
                             $provinceId = $get('province_id');
-
-                            if ($provinceId) {
-                                return County::where('province_id', $provinceId)->pluck('name', 'id');
-                            }
-
-                            return [];
+                            return $provinceId ? County::where('province_id', $provinceId)->pluck('name', 'id') : [];
                         })
                         ->getSearchResultsUsing(function (string $search, callable $get) {
                             $provinceId = $get('province_id');
-
-                            return County::where('province_id', $provinceId)->where('name', 'like', "%$search%")->pluck('name', 'id');
+                            return County::where('province_id', $provinceId)
+                                ->where('name', 'like', "%$search%")
+                                ->pluck('name', 'id');
                         })
                         ->reactive()
                         ->searchable()
                         ->searchDebounce(200)
                         ->afterStateUpdated(function ($state, callable $set) {
                             $set('district_id', null);
-                        }),
+                        })
+                        ->placeholder(__('Select County')),
 
                     Select::make('district_id')
-                        ->preload()
-                        ->label('Mahalle / Köy')
+                        ->label(__('Neighborhood/Village'))
                         ->options(function (callable $get) {
                             $countyId = $get('county_id');
-
-                            if ($countyId) {
-                                return District::where('county_id', $countyId)->pluck('name', 'id');
-                            }
-
-                            return [];
-                        })->getSearchResultsUsing(function (string $search, callable $get) {
+                            return $countyId ? District::where('county_id', $countyId)->pluck('name', 'id') : [];
+                        })
+                        ->getSearchResultsUsing(function (string $search, callable $get) {
                             $countyId = $get('county_id');
+                            return District::where('county_id', $countyId)
+                                ->where('name', 'like', "%$search%")
+                                ->pluck('name', 'id');
+                        })
+                        ->searchable()
+                        ->searchDebounce(200)
+                        ->placeholder(__('Select Neighborhood/Village')),
 
-                            return District::where('county_id', $countyId)->where('name', 'like', "%$search%")->pluck('name', 'id');
-                        })->searchable()->searchDebounce(200),
+                    Select::make('status')
+                        ->label(__('Status'))
+                        ->options($statuses)
+                        ->default(RealestateStatus::AVAILABLE->value)
+                        ->selectablePlaceholder(false),
 
-                    Select::make('status')->label('Durum')->options(
-                        $statuses
-                    )->default(RealestateStatus::AVAILABLE->value)->selectablePlaceholder(false),
                     TextInput::make('3d_link')
-                        ->label('3D linki')
+                        ->label(__('3D Link'))
                         ->nullable()
-                        ->url(),
+                        ->url()
+                        ->placeholder(__('3D Link URL')),
 
                     CheckboxList::make('features')
-                        ->label('Özelliklerler')
+                        ->label(__('Features'))
                         ->relationship('features')
                         ->searchable()
                         ->required()
                         ->options(function (callable $get) {
                             $categoryId = $get('category_id');
-                            if (! $categoryId) {
+                            if (!$categoryId) {
                                 return [];
                             }
-                            $category = Category::findOrFail($categoryId)->load('features');
-
-                            return $category->features
+                            return Category::findOrFail($categoryId)
+                                ->features
                                 ->pluck('formattedName', 'id')
                                 ->toArray();
                         })
                         ->columns(3)
                         ->columnSpanFull()
                         ->visible(function (callable $get) {
-                            return ! is_null($get('category_id'));
+                            return !is_null($get('category_id'));
                         }),
 
                     LocationPicker::make('location')
-                        ->afterStateUpdated(function (string $state) {})
-                        ->label('Konum')
+                        ->label(__('Location'))
                         ->columnSpanFull(),
                 ]
             );
@@ -201,66 +219,61 @@ class RealEstateResource extends Resource
     public static function table(Table $table): Table
     {
         $categories = Category::isRoot()->get()->pluck('name', 'id');
-
         $statuses = array_column(RealestateStatus::cases(), 'value');
         $statuses = array_combine(array_column(RealestateStatus::cases(), 'value'), $statuses);
 
         return $table
             ->reorderable('sort')
             ->columns([
-                TextColumn::make('title')->label('Başlık')
+                TextColumn::make('title')
+                    ->label(__('Title'))
                     ->searchable(),
-                TextColumn::make('price_in_try')
-                    ->label('Fiyat (₺)')
+                TextColumn::make('price')
+                    ->label(__('Price (₺)'))
                     ->sortable(),
                 TextColumn::make('price_in_usd')
-                    ->label('Fiyat ($)'),
+                    ->label(__('Price ($)')),
                 TextColumn::make('price_in_eur')
-                    ->label('Fiyat (€)'),
-                SelectColumn::make('status')->label('Durum')
+                    ->label(__('Price (€)')),
+                SelectColumn::make('status')
+                    ->label(__('Status'))
                     ->options($statuses)
                     ->selectablePlaceholder(false)
                     ->afterStateUpdated(function ($record, $state) {
                         return Notification::make()
-                            ->title('Durum Güncellendi')
+                            ->title(__('Status Updated'))
                             ->success()
                             ->send();
                     }),
-
-                TextColumn::make('CategoryTree')->label('kategori'),
-
+                TextColumn::make('CategoryTree')
+                    ->label(__('Category')),
             ])
             ->filters([
-                SelectFilter::make('Kategori')
+                SelectFilter::make('category_id')
+                    ->label(__('Category'))
                     ->query(function ($query, array $data) {
-                        if (is_null($data['value'])) {
+                        if (empty($data['value'])) {
                             return $query;
                         }
                         $values = Category::find($data['value'])?->descendants->pluck('id');
-
-                        if (! $values) {
-                            return $query->whereIn('category_id', [$values]);
-                        }
-                        $query->whereIn('category_id', $values->toArray());
+                        return $values ? $query->whereIn('category_id', $values) : $query;
                     })
-                    ->options($categories->toArray())
-                    ->attribute('category_id'),
+                    ->options($categories->toArray()),
             ])
             ->actions([
                 ActionGroup::make([
-                    Tables\Actions\EditAction::make()->color('primary'),
+                    Tables\Actions\EditAction::make()
+                        ->color('primary'),
                     Tables\Actions\DeleteAction::make(),
                     Tables\Actions\ReplicateAction::make('copy')
-
-                        ->label('Kopyala')
+                        ->label(__('Copy'))
                         ->color(Color::Indigo)
                         ->modal(false)
                         ->successNotification(
                             Notification::make()
                                 ->success()
-                                ->title('Kopyalandı')
+                                ->title(__('Copied'))
                         ),
-
                 ]),
             ])
             ->bulkActions([
@@ -272,9 +285,7 @@ class RealEstateResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
@@ -286,35 +297,18 @@ class RealEstateResource extends Resource
         ];
     }
 
-    public static function prepareInfo(?int $categoryId): array
+    public static function getNavigationLabel(): string
     {
-        $infos = Info::whereRelation('categories', 'category_id', '=', $categoryId)
-            ->get();
-
-        if (! $infos) {
-            return [];
-        }
-        $schema = [];
-        foreach ($infos as $info) {
-            if ($info->values) {
-                $schema[] = Select::make('info_'.$info->id)
-                    ->options($info->values)
-                    ->label($info->name)
-                    ->default('weq')
-                    ->selectablePlaceholder(false);
-
-                continue;
-            }
-
-            $schema[] = TextInput::make('info_'.$info->id)
-                ->label($info->name);
-        }
-
-        return $schema;
+        return __('Listings');
     }
 
-    public static function getRecord()
+    public static function getModelLabel(): string
     {
-        return self::$record;
+        return __('Listing');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Listings');
     }
 }

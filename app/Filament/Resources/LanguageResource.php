@@ -21,18 +21,13 @@ class LanguageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-language';
 
-    protected static ?string $navigationLabel = 'Diller';
-
-    protected static ?string $modelLabel = 'Dil';
-
-    protected static ?string $pluralModelLabel = 'Diller';
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name')->required()->label('Dil'),
-                TextInput::make('code')->required()->label('Kod')->placeholder('tr'),
+                TextInput::make('name')->required()->label(__('Language'))
+                    ->placeholder(__('English')),
+                TextInput::make('code')->required()->label(__('Code'))->placeholder('tr'),
             ]);
     }
 
@@ -42,12 +37,12 @@ class LanguageResource extends Resource
 
         return $table
             ->columns([
-                TextColumn::make('name')->label('Dil'),
-                TextColumn::make('code')->label('Kod'),
-                ToggleColumn::make('is_active')->label('Durum')->disabled($isSingleLanguage)
+                TextColumn::make('name')->label(__('Language')),
+                TextColumn::make('code')->label(__('Code')),
+                ToggleColumn::make('is_active')->label(__('Status'))->disabled($isSingleLanguage)
                     ->afterStateUpdated(function ($record, $state) {
                         return Notification::make()
-                            ->title('Durum Güncellendi')
+                            ->title(__('Updated Successfully'))
                             ->success()
                             ->send();
                     }),
@@ -72,5 +67,19 @@ class LanguageResource extends Resource
         return [
             'index' => Pages\ManageLanguages::route('/'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Languages');
+    }
+    public static function getModelLabel(): string
+    {
+        return __('Language');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Languages');
     }
 }

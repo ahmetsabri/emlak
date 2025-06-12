@@ -21,32 +21,49 @@ class CustomerResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
-    protected static ?string $navigationLabel = 'CRM';
-
-    protected static ?string $modelLabel = 'Müşteri';
-
-    protected static ?string $pluralModelLabel = 'Müşteriler';
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name')->label('Ad soyad')->required()->columnSpanFull(),
-                TextInput::make('phone')->label('Telefon')->required()->columnSpanFull(),
-                TextInput::make('email')->label('E-posta')->columnSpanFull(),
-                Textarea::make('note')->label('Not')->columnSpanFull(),
+                TextInput::make('name')
+                    ->label(__('Full Name'))
+                    ->required()
+                    ->columnSpanFull()
+                    ->placeholder(__('Full Name')),
+                TextInput::make('phone')
+                    ->label(__('Phone'))
+                    ->required()
+                    ->columnSpanFull()
+                    ->placeholder(__('Phone')),
+                TextInput::make('email')
+                    ->label(__('Email'))
+                    ->columnSpanFull()
+                    ->placeholder(__('Email')),
+                Textarea::make('note')
+                    ->label(__('Note'))
+                    ->columnSpanFull()
+                    ->placeholder(__('Note')),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-
             ->columns([
-                TextColumn::make('name')->label('Ad Soyad')->searchable()->sortable(),
-                TextColumn::make('phone')->label('Telefon')->searchable(),
-                TextColumn::make('email')->label('E-posta')->searchable(),
-                TextColumn::make('created_at')->label('Oluşturulma Tarihi')->date('Y-F-d H:i')->sortable(),
+                TextColumn::make('name')
+                    ->label(__('Full Name'))
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('phone')
+                    ->label(__('Phone'))
+                    ->searchable(),
+                TextColumn::make('email')
+                    ->label(__('Email'))
+                    ->searchable(),
+                TextColumn::make('created_at')
+                    ->label(__('Creation Date'))
+                    ->date('d \ F \ Y')
+                    ->sortable(),
             ])
             ->filters([
                 //
@@ -62,7 +79,6 @@ class CustomerResource extends Resource
                         ExcelExport::make()->fromTable()->withColumns([
                             Column::make('note'),
                         ]),
-
                     ]),
                 ]),
             ]);
@@ -73,5 +89,20 @@ class CustomerResource extends Resource
         return [
             'index' => Pages\ManageCustomers::route('/'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('CRM');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Customer');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Customers');
     }
 }

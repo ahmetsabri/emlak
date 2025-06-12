@@ -59,7 +59,6 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])->plugins([
                 FilamentTranslateFieldPlugin::make(),
-                FilamentSpatieRolesPermissionsPlugin::make(),
                 FilamentSettingsPlugin::make(),
                 ApiServicePlugin::make()->middleware([]),
             ])->breadcrumbs(true);

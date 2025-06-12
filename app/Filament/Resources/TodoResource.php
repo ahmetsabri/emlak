@@ -17,23 +17,16 @@ use Filament\Tables\Table;
 
 class TodoResource extends Resource
 {
-    // Görevleri
     protected static ?string $model = Todo::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
-
-    protected static ?string $navigationLabel = 'Görevler';
-
-    protected static ?string $modelLabel = 'Görev';
-
-    protected static ?string $pluralModelLabel = 'Görevler';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('title')->label('Başlık')->required()->columnSpanFull(),
-                Textarea::make('description')->label('Açıklama')->nullable()->columnSpanFull(),
+                TextInput::make('title')->label(__('Title'))->required()->columnSpanFull(),
+                Textarea::make('description')->label(__('Description'))->nullable()->columnSpanFull(),
             ]);
     }
 
@@ -44,18 +37,18 @@ class TodoResource extends Resource
 
         return $table
             ->columns([
-                TextColumn::make('title')->label('Başlık')->searchable(),
-                TextColumn::make('description')->label('Açıklama')->searchable()->limit(100),
-                SelectColumn::make('status')->label('Durum')
+                TextColumn::make('title')->label(__('Title'))->searchable(),
+                TextColumn::make('description')->label(__('Description'))->searchable()->limit(100),
+                SelectColumn::make('status')->label(__('Status'))
                     ->options($statuses)
                     ->selectablePlaceholder(false)
                     ->afterStateUpdated(function ($record, $state) {
                         return Notification::make()
-                            ->title('Durum Güncellendi')
+                            ->title(__('Status Updated'))
                             ->success()
                             ->send();
                     }),
-                TextColumn::make('created_at')->label('Oluşturma Tarihi')->sortable(),
+                TextColumn::make('created_at')->label(__('Created At'))->sortable(),
             ])
             ->filters([
                 //
@@ -76,5 +69,20 @@ class TodoResource extends Resource
         return [
             'index' => Pages\ManageTodos::route('/'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Tasks');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Task');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Tasks');
     }
 }

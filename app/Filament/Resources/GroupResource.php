@@ -16,13 +16,8 @@ class GroupResource extends Resource
 {
     protected static ?string $model = Group::class;
 
-    protected static ?string $navigationLabel = 'Gruplar';
-
-    protected static ?string $modelLabel = 'Grup';
-
-    protected static ?string $pluralModelLabel = 'Gruplar';
-
     protected static ?string $navigationIcon = 'heroicon-s-folder-open';
+
 
     public static function form(Form $form): Form
     {
@@ -31,8 +26,10 @@ class GroupResource extends Resource
                 [
                     Translate::make()->prefixLocaleLabel()
                         ->schema([
-                            TextInput::make('name')->label('Group Adı')->placeholder('örnek: Cephe, Muhit , Dış Özellikler
- vs...')->required(),
+                            TextInput::make('name')
+                                ->label(__('Group Name'))
+                                ->placeholder(__('e.g., Facade, Neighborhood, Exterior Features, etc.'))
+                                ->required(),
                         ])->columnSpanFull(),
                 ]
             );
@@ -42,9 +39,11 @@ class GroupResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label('Group Adı')->searchable(query: function ($query, array $data) {
-                    dump($data);
-                }),
+                TextColumn::make('name')
+                    ->label(__('Group Name'))
+                    ->searchable(query: function ($query, array $data) {
+                        dump($data);
+                    }),
             ])
             ->filters([
                 //
@@ -65,5 +64,20 @@ class GroupResource extends Resource
         return [
             'index' => Pages\ManageGroups::route('/'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Groups');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Group');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Groups');
     }
 }
