@@ -102,6 +102,7 @@ class RealEstateResource extends Resource
                         ->searchable()
                         ->searchDebounce(100)
                         ->reactive()
+                        ->preload()
                         ->afterStateUpdated(function ($state, callable $set) {
                             $set('county_id', null);
                         })
@@ -110,6 +111,7 @@ class RealEstateResource extends Resource
                     Select::make('county_id')
                         ->label(__('County'))
                         ->relationship('county')
+                        ->preload()
                         ->options(function (callable $get) {
                             $provinceId = $get('province_id');
                             return $provinceId ? County::where('province_id', $provinceId)->pluck('name', 'id') : [];
@@ -122,6 +124,7 @@ class RealEstateResource extends Resource
                         })
                         ->reactive()
                         ->searchable()
+                        ->preload()
                         ->searchDebounce(200)
                         ->afterStateUpdated(function ($state, callable $set) {
                             $set('district_id', null);
@@ -130,6 +133,7 @@ class RealEstateResource extends Resource
 
                     Select::make('district_id')
                         ->label(__('Neighborhood/Village'))
+                        ->preload()
                         ->options(function (callable $get) {
                             $countyId = $get('county_id');
                             return $countyId ? District::where('county_id', $countyId)->pluck('name', 'id') : [];
