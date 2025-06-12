@@ -17,21 +17,21 @@ class ServiceResource extends Resource
 {
     protected static ?string $model = Service::class;
 
-    protected static ?string $navigationLabel = 'Hizmetler';
-
-    protected static ?string $modelLabel = 'Hizmetler';
-
-    protected static ?string $pluralModelLabel = 'Hizmetlerimiz';
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $navigationLabel = 'Services';
+
+    protected static ?string $modelLabel = 'Service';
+
+    protected static ?string $pluralModelLabel = 'Services';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Translate::make()->prefixLocaleLabel()->schema([
-                    TextInput::make('title')->label('Başlık')->default('Hizmetlerimiz')->required()->columnSpanFull(),
-                    RichEditor::make('content')->label('İçerik')->required()->columnSpanFull(),
+                    TextInput::make('title')->label(__('Title'))->default(__('Our Services'))->required()->columnSpanFull(),
+                    RichEditor::make('content')->label(__('Content'))->required()->columnSpanFull(),
                 ])->contained(false)->columnSpanFull(),
             ]);
     }
@@ -40,7 +40,7 @@ class ServiceResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')->label('Başlık'),
+                TextColumn::make('title')->label(__('Title')),
             ])
             ->filters([
                 //
@@ -69,5 +69,20 @@ class ServiceResource extends Resource
             'create' => Pages\CreateService::route('/create'),
             'edit' => Pages\EditService::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Services');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Service');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Services');
     }
 }

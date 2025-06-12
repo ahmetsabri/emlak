@@ -18,19 +18,14 @@ class AboutUsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Hakkımızda';
-
-    protected static ?string $modelLabel = 'Hakkımızda';
-
-    protected static ?string $pluralModelLabel = 'Hakkımızda';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Translate::make()->prefixLocaleLabel()->schema([
-                    TextInput::make('title')->label('Başlık')->default('Hakkımızda')->required()->columnSpanFull(),
-                    RichEditor::make('content')->label('İçerik')->required()->columnSpanFull(),
+                    TextInput::make('title')->label(__('Title'))->default(__('About Us'))->required()->columnSpanFull(),
+                    RichEditor::make('content')->label(__('Content'))->required()->columnSpanFull(),
                 ])->contained(false)->columnSpanFull(),
             ]);
     }
@@ -68,5 +63,20 @@ class AboutUsResource extends Resource
             'create' => Pages\CreateAboutUs::route('/create'),
             'edit' => Pages\EditAboutUs::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('About Us');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('About Us');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('About Us');
     }
 }

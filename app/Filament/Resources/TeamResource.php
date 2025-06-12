@@ -24,73 +24,76 @@ class TeamResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Ekip';
-
-    protected static ?string $modelLabel = 'Ekip üyesi';
-
-    protected static ?string $pluralModelLabel = 'Ekip';
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name')->label('Ad Soyad')->required(),
-                TextInput::make('email')->label('E-posta')->required()->email()->unique('users', 'email', ignoreRecord: true),
-                TextInput::make('phone')->label('Telefon')->required(),
-                TextInput::make('ttyb_no')->label('TTYP NO')->nullable(),
+                TextInput::make('name')
+                    ->label(__('Full Name'))
+                    ->required()
+                    ->placeholder(__('Full Name')),
+
+                TextInput::make('email')
+                    ->label(__('Email'))
+                    ->required()
+                    ->email()
+                    ->unique('users', 'email', ignoreRecord: true)
+                    ->placeholder(__('Email')),
+
+                TextInput::make('phone')
+                    ->label(__('Phone'))
+                    ->required()
+                    ->placeholder(__('Phone')),
+
+                TextInput::make('ttyb_no')
+                    ->label(__('TTYB Number'))
+                    ->nullable()
+                    ->placeholder(__('TTYB Number')),
 
                 SpatieMediaLibraryFileUpload::make('images')
-                    ->label('Resim')
+                    ->label(__('Image'))
                     ->collection('users')
                     ->imageEditor()
                     ->columnSpanFull()
                     ->columns(8),
 
-                //todo: check plan
-                Checkbox::make('team_member')->label('Panele erişimi ver')->reactive()->nullable()->columnSpanFull()->default(false),
-
-                Select::make('permissions')
-                    ->label('Yetkiller')
-                    ->relationship(name: 'permissions', titleAttribute: 'translated_name')
-                    ->saveRelationshipsUsing(function (User $record, $state) {
-                        $record->permissions()->sync($state);
-                    })
-                    ->multiple()
-                    ->preload()
-                    ->searchable()
+                Checkbox::make('team_member')
+                    ->label(__('Grant panel access'))
+                    ->reactive()
+                    ->nullable()
                     ->columnSpanFull()
-                    ->requiredIfAccepted('team_member')
-                    ->visible(fn (callable $get) => ($get('team_member')) == true),
+                    ->default(false),
+
+                // Select::make('permissions')
+                //     ->label(__('Permissions'))
+                //     ->relationship(name: 'permissions', titleAttribute: 'translated_name')
+                //     ->saveRelationshipsUsing(function (User $record, $state) {
+                //         $record->permissions()->sync($state);
+                //     })
+                //     ->multiple()
+                //     ->preload()
+                //     ->searchable()
+                //     ->columnSpanFull()
+                //     ->requiredIfAccepted('team_member')
+                //     ->visible(fn (callable $get) => ($get('team_member')) == true),
 
                 TextInput::make('password')
-                    ->label('Şifre')
+                    ->label(__('Password'))
                     ->requiredIfAccepted('team_member')
                     ->password()
                     ->minLength(6)
                     ->confirmed()
-                    ->visible(fn (callable $get) => ($get('team_member')) == true),
+                    ->visible(fn (callable $get) => ($get('team_member')) == true)
+                    ->placeholder(__('Password')),
 
                 TextInput::make('password_confirmation')
-                    ->label('Şifre Tekrarla')
+                    ->label(__('Confirm Password'))
                     ->requiredIfAccepted('team_member')
                     ->password()
                     ->minLength(6)
                     ->dehydrated(0)
-                    ->visible(fn (callable $get) => ($get('team_member')) == true),
-
-                // CheckboxList::make('permissions')
-                //     ->label('Yetkiller')
-                //     ->relationship('permissions', 'translated_name', function ($query) {
-                //         return $query->orderBy('id', 'asc');
-                //     })
-                //     ->debounce(null)
-                //     ->columns(4)
-                //     ->columnSpanFull()
-                //     ->selectAllAction(
-                //         fn (Action $action) => $action->label('aaaa all technologies'),
-                //     )
-                //     ->searchable(),
-
+                    ->visible(fn (callable $get) => ($get('team_member')) == true)
+                    ->placeholder(__('Confirm Password')),
             ]);
     }
 
@@ -102,9 +105,9 @@ class TeamResource extends Resource
             })
             ->columns([
                 SpatieMediaLibraryImageColumn::make('')->collection('users'),
-                TextColumn::make('name')->label('Ad Soyad')->searchable(),
-                TextColumn::make('email')->label('E-post')->searchable(),
-                TextColumn::make('phone')->label('Telefon')->searchable(),
+                TextColumn::make('name')->label(__('Full Name'))->searchable(),
+                TextColumn::make('email')->label(__('Email'))->searchable(),
+                TextColumn::make('phone')->label(__('Phone'))->searchable(),
             ])
             ->filters([
                 //
@@ -133,5 +136,20 @@ class TeamResource extends Resource
             'create' => Pages\CreateTeam::route('/create'),
             'edit' => Pages\EditTeam::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Team');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Team Member');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Team');
     }
 }

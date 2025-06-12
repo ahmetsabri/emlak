@@ -13,11 +13,9 @@ class RealEstateOverview extends BaseWidget
 {
     protected static ?int $sort = 2;
 
-    protected ?string $heading = 'Gayrimenkul';
 
     protected function getStats(): array
     {
-        $this->description = 'Gayrimenkul ';
 
         $realestate = RealEstate::count();
         $totalPriceInTl = RealEstate::sum('price');
@@ -27,12 +25,12 @@ class RealEstateOverview extends BaseWidget
         $category = Category::whereNull('parent_id')->count();
 
         return [
-            Stat::make('Toplam Gayrimenkul Sayısı', $realestate)
+            Stat::make(__('Listing Count'), $realestate)
                 ->icon('heroicon-m-home-modern'),
-            Stat::make('Toplam Gayrimenkul Değeri', $totalPrice.'₺')
+            Stat::make(__('Total Listing Value'), $totalPrice.'₺')
                 ->description(new HtmlString($totalInUsd.'<br>'.$totalInEur))
                 ->icon('heroicon-m-banknotes'),
-            Stat::make('Toplam Kategori Sayısı', $category)
+            Stat::make(__('Category Count'), $category)
                 ->icon('heroicon-m-rectangle-group'),
         ];
     }

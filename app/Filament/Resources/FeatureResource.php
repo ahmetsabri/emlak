@@ -22,11 +22,11 @@ class FeatureResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-sparkles';
 
-    protected static ?string $navigationLabel = 'Özelliklerler';
+    protected static ?string $navigationLabel = 'Features';
 
-    protected static ?string $modelLabel = 'Özellik';
+    protected static ?string $modelLabel = 'Feature';
 
-    protected static ?string $pluralModelLabel = 'Özelliklerler';
+    protected static ?string $pluralModelLabel = 'Features';
 
     public static function form(Form $form): Form
     {
@@ -36,20 +36,20 @@ class FeatureResource extends Resource
                     Translate::make()->prefixLocaleLabel()
                         ->schema([
                             TextInput::make('name')
-                                ->label('Özellik Adı')
+                                ->label(__('Feature Name'))
                                 ->required(),
                         ])->columnSpanFull()
                         ->contained(false)
                         ->prefixLocaleLabel(true),
 
                     Select::make('group_id')
-                        ->label('Grup')
+                        ->label(__('Group'))
                         ->relationship('group', 'name')
                         ->required()
                         ->columnSpanFull(),
 
                     SelectTree::make('categories')
-                        ->label('Kategoriler')
+                        ->label(__('Categories'))
                         ->relationship('categories', 'name', 'parent_id')
                         ->searchable()
                         ->required()
@@ -63,9 +63,8 @@ class FeatureResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label('Ad')->searchable(),
-                TextColumn::make('group.name')->label('Grup'),
-
+                TextColumn::make('name')->label(__('Name'))->searchable(),
+                TextColumn::make('group.name')->label(__('Group')),
             ])
             ->filters([
                 //
@@ -86,5 +85,20 @@ class FeatureResource extends Resource
         return [
             'index' => Pages\ManageFeatures::route('/'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Features');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Feature');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Features');
     }
 }

@@ -12,13 +12,10 @@ class LanguageSeeder extends Seeder
      */
     public function run(): void
     {
-        Language::firstOrCreate(['code' => 'TR'], [
-            'name' => 'Türkçe',
-            'code' => 'TR',
-        ]);
-        Language::firstOrCreate(['code' => 'EN'], [
-            'name' => 'İnglizce',
-            'code' => 'EN',
+
+        Language::firstOrCreate(['code' => 'AR'], [
+            'name' => 'عربي',
+            'code' => 'AR',
         ]);
     }
 }

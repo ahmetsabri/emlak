@@ -22,22 +22,34 @@ class DocumentsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
 
-    protected static ?string $navigationLabel = 'Belgeler';
-
-    protected static ?string $modelLabel = 'Belge';
-
-    protected static ?string $pluralModelLabel = 'Belgeler';
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name')->label('Belge adı')->placeholder('örnek: sozleşme, tapu ..')->required()->columnSpanFull(),
+                TextInput::make('name')
+                    ->label(__('Document Name'))
+                    ->placeholder(__('e.g. contract, deed ...'))
+                    ->required()
+                    ->columnSpanFull(),
 
-                Select::make('customer_id')->relationship('customer', 'name')->searchable()->required()->columnSpanFull()->preload()
-                    ->getSearchResultsUsing(fn (string $search): array => Customer::where('name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id')->toArray()),
+                Select::make('customer_id')
+                ->label(__('Customer'))
+                    ->relationship('customer', 'name')
+                    ->searchable()
+                    ->required()
+                    ->columnSpanFull()
+                    ->preload()
+                    ->getSearchResultsUsing(fn (string $search): array =>
+                        Customer::where('name', 'like', "%{$search}%")
+                            ->limit(50)
+                            ->pluck('name', 'id')
+                            ->toArray()),
 
-                FileUpload::make('path')->required()->acceptedFileTypes(['application/pdf', 'application/docx', 'image/*'])->columnSpanFull(),
+                FileUpload::make('path')
+                    ->required()
+                    ->acceptedFileTypes(['application/pdf', 'application/docx', 'image/*'])
+                    ->columnSpanFull()
+                    ->label(__('File')),
             ]);
     }
 
@@ -45,8 +57,8 @@ class DocumentsResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('customer.name')->label('Müşteri'),
-                TextColumn::make('name')->label('Belge'),
+                TextColumn::make('customer.name')->label(__('Customer')),
+                TextColumn::make('name')->label(__('Document')),
             ])
             ->filters([
                 //
@@ -56,12 +68,11 @@ class DocumentsResource extends Resource
                 Tables\Actions\DeleteAction::make(),
 
                 Tables\Actions\Action::make('Download')
-                    ->label('İndir')
+                    ->label(__('Download'))
                     ->action(fn ($record) => Storage::disk('public')->download($record->path))
                     ->link()
                     ->icon('heroicon-o-arrow-down-tray')
                     ->color(Color::Indigo),
-
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -75,5 +86,20 @@ class DocumentsResource extends Resource
         return [
             'index' => Pages\ManageDocuments::route('/'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Documents');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Document');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Documents');
     }
 }

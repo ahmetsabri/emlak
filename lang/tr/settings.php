@@ -3,14 +3,14 @@
 return [
     'form' => [
         'actions' => [
-            'save' => 'Kaydet',
+            'save' => 'حفظ',
         ],
     ],
     'page' => [
-        'title' => 'Ayarlar',
-        'navigation_label' => 'Ayarlar',
+        'title' => 'الإعدادات',
+        'navigation_label' => 'الإعدادات',
     ],
     'notifications' => [
-        'saved' => 'Kaydedildi',
+        'saved' => 'تم الحفظ',
     ],
 ];

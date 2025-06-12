@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Group;
 use Illuminate\Database\Seeder;
 
@@ -14,60 +13,93 @@ class GroupSeeder extends Seeder
     public function run(): void
     {
         $groups = [
-            'Cephe' => ['Batı', 'Doğu', 'Güney', 'Kuzey'],
-            'İç Özellikler' => [
-                'ADSL', 'Ahşap Doğrama', 'Akıllı Ev', 'Alarm (Hırsız)', 'Alarm (Yangın)',
-                'Alaturka Tuvalet', 'Alüminyum Doğrama', 'Amerikan Kapı', 'Amerikan Mutfak',
-                'Ankastre Fırın', 'Barbekü', 'Beyaz Eşya', 'Boyalı', 'Bulaşık Makinesi',
-                'Buzdolabı', 'Çamaşır Kurutma Makinesi', 'Çamaşır Makinesi', 'Çamaşır Odası',
-                'Çelik Kapı', 'Duşakabin', 'Duvar Kağıdı', 'Ebeveyn Banyosu', 'Fırın',
-                'Fiber İnternet', 'Giyinme Odası', 'Gömme Dolap', 'Görüntülü Diafon',
-                'Hilton Banyo', 'Intercom Sistemi', 'Isıcam', 'Jakuzi', 'Kartonpiyer',
-                'Kiler', 'Klima', 'Küvet', 'Laminat Zemin', 'Marley', 'Mobilya',
-                'Mutfak (Ankastre)', 'Mutfak (Laminat)', 'Mutfak Doğalgazı', 'Panjur/Jaluzi',
-                'Parke Zemin', 'PVC Doğrama', 'Seramik Zemin', 'Set Üstü Ocak',
-                'Spot Aydınlatma', 'Şofben', 'Şömine', 'Teras', 'Termosifon', 'Vestiyer',
-                'Wi-Fi', 'Yüz Tanıma & Parmak İzi',
+            [
+                'name' => [
+                    'tr' => 'Cephe',
+                    'ar' => 'الواجهة'
+                ],
+                'features' => [
+                    ['tr' => 'Batı', 'ar' => 'غرب'],
+                    ['tr' => 'Doğu', 'ar' => 'شرق'],
+                    ['tr' => 'Güney', 'ar' => 'جنوب'],
+                    ['tr' => 'Kuzey', 'ar' => 'شمال'],
+                ]
             ],
-            'Dış Özellikler' => [
-                'Araç Şarj İstasyonu', '24 Saat Güvenlik', 'Apartman Görevlisi', 'Buhar Odası',
-                'Çocuk Oyun Parkı', 'Hamam', 'Hidrofor', 'Isı Yalıtımı', 'Jeneratör',
-                'Kablo TV', 'Kamera Sistemi', 'Kreş', 'Müstakil Havuzlu', 'Sauna',
-                'Ses Yalıtımı', 'Siding', 'Spor Alanı', 'Su Deposu', 'Tenis Kortu',
-                'Uydu', 'Yangın Merdiveni', 'Yüzme Havuzu (Açık)', 'Yüzme Havuzu (Kapalı)',
-            ],
-            'Muhit' => [
-                'Alışveriş Merkezi', 'Belediye', 'Cami', 'Cemevi', 'Denize Sıfır',
-                'Eczane', 'Eğlence Merkezi', 'Fuar', 'Göle Sıfır', 'Hastane', 'Havra',
-                'İlkokul-Ortaokul', 'İtfaiye', 'Kilise', 'Lise', 'Market', 'Park',
-                'Plaj', 'Polis Merkezi', 'Sağlık Ocağı', 'Semt Pazarı', 'Spor Salonu',
-                'Şehir Merkezi', 'Üniversite',
-            ],
-            'Ulaşım' => [
-                'Anayol', 'Avrasya Tüneli', 'Boğaz Köprüleri', 'Cadde', 'Deniz Otobüsü',
-                'Dolmuş', 'E-5', 'Havaalanı', 'İskele', 'Marmaray', 'Metro', 'Metrobüs',
-                'Minibüs', 'Otobüs Durağı', 'Sahil', 'Teleferik', 'TEM', 'Tramvay',
-                'Tren İstasyonu', 'Troleybüs',
-            ],
-            'Manzara' => ['Boğaz', 'Deniz', 'Doğa', 'Göl', 'Havuz', 'Park & Yeşil Alan', 'Şehir'],
-            'Konut Tipi' => [
-                'Ara Kat', 'Ara Kat Dubleks', 'Bahçe Dubleksi', 'Bahçe Katı', 'Bahçeli',
-                'Çatı Dubleksi', 'En Üst Kat', 'Forleks', 'Garaj / Dükkan Üstü', 'Giriş Katı',
-                'Kat Dubleksi', 'Loft', 'Müstakil Girişli', 'Ters Dubleks', 'Tripleks',
-                'Zemin Kat',
-            ],
-            'Engelliye ve Yaşlıya Uygun' => [
-                'Araç Park Yeri', 'Asansör', 'Banyo', 'Geniş Koridor', 'Giriş / Rampa',
-                'Merdiven', 'Mutfak', 'Oda Kapısı', 'Park', 'Priz / Elektrik Anahtarı',
-                'Tutamak / Korkuluk', 'Tuvalet', 'Yüzme Havuzu',
+            [
+                'name' => [
+                    'tr' => 'İç Özellikler',
+                    'ar' => 'الميزات'
+                ],
+                'features' => [
+                    ['tr' => 'ADSL', 'ar' => 'ADSL'],
+                    ['tr' => 'Ahşap Doğrama', 'ar' => 'نوافذ خشبية'],
+                    ['tr' => 'Akıllı Ev', 'ar' => 'منزل ذكي'],
+                    ['tr' => 'Alarm (Hırsız)', 'ar' => 'إنذار (لصوص)'],
+                    ['tr' => 'Alarm (Yangın)', 'ar' => 'إنذار (حريق)'],
+                    ['tr' => 'Alaturka Tuvalet', 'ar' => 'مرحاض تركي'],
+                    ['tr' => 'Alüminyum Doğrama', 'ar' => 'نوافذ ألمنيوم'],
+                    ['tr' => 'Amerikan Kapı', 'ar' => 'باب أمريكي'],
+                    ['tr' => 'Amerikan Mutfak', 'ar' => 'مطبخ أمريكي'],
+                    ['tr' => 'Ankastre Fırın', 'ar' => 'فرن مطبخ مدمج'],
+                    ['tr' => 'Barbekü', 'ar' => 'شواية'],
+                    ['tr' => 'Beyaz Eşya', 'ar' => 'أجهزة منزلية'],
+                    ['tr' => 'Boyalı', 'ar' => 'مطلي'],
+                    ['tr' => 'Bulaşık Makinesi', 'ar' => 'غسالة صحون'],
+                    ['tr' => 'Buzdolabı', 'ar' => 'ثلاجة'],
+                    ['tr' => 'Çamaşır Kurutma Makinesi', 'ar' => 'مجفف ملابس'],
+                    ['tr' => 'Çamaşır Makinesi', 'ar' => 'غسالة ملابس'],
+                    ['tr' => 'Çamaşır Odası', 'ar' => 'غرفة غسيل'],
+                    ['tr' => 'Çelik Kapı', 'ar' => 'باب حديد'],
+                    ['tr' => 'Duşakabin', 'ar' => 'كابينة دش'],
+                    ['tr' => 'Duvar Kağıdı', 'ar' => 'ورق حائط'],
+                    ['tr' => 'Ebeveyn Banyosu', 'ar' => 'حمام رئيسي'],
+                    ['tr' => 'Fırın', 'ar' => 'فرن'],
+                    ['tr' => 'Fiber İnternet', 'ar' => 'إنترنت ليفي'],
+                    ['tr' => 'Giyinme Odası', 'ar' => 'غرفة تبديل ملابس'],
+                    ['tr' => 'Gömme Dolap', 'ar' => 'خزانة حائط'],
+                    ['tr' => 'Görüntülü Diafon', 'ar' => 'اتصال داخلي مرئي'],
+                    ['tr' => 'Hilton Banyo', 'ar' => 'حمام فاخر'],
+                    ['tr' => 'Intercom Sistemi', 'ar' => 'نظام اتصال داخلي'],
+                    ['tr' => 'Isıcam', 'ar' => 'نوافذ مزدوجة'],
+                    ['tr' => 'Jakuzi', 'ar' => 'جاكوزي'],
+                    ['tr' => 'Kartonpiyer', 'ar' => 'زخارف سقف'],
+                    ['tr' => 'Kiler', 'ar' => 'مخزن'],
+                    ['tr' => 'Klima', 'ar' => 'مكيف هواء'],
+                    ['tr' => 'Küvet', 'ar' => 'حوض استحمام'],
+                    ['tr' => 'Laminat Zemin', 'ar' => 'أرضية لامعة'],
+                    ['tr' => 'Marley', 'ar' => 'أرضية مرلي'],
+                    ['tr' => 'Mobilya', 'ar' => 'أثاث'],
+                    ['tr' => 'Mutfak (Ankastre)', 'ar' => 'مطبخ (مدمج)'],
+                    ['tr' => 'Mutfak (Laminat)', 'ar' => 'مطبخ (لامع)'],
+                    ['tr' => 'Mutfak Doğalgazı', 'ar' => 'غاز المطبخ'],
+                    ['tr' => 'Panjur/Jaluzi', 'ar' => 'ستائر خارجية/جلوازي'],
+                    ['tr' => 'Parke Zemin', 'ar' => 'أرضية باركيه'],
+                    ['tr' => 'PVC Doğrama', 'ar' => 'نوافذ PVC'],
+                    ['tr' => 'Seramik Zemin', 'ar' => 'أرضية سيراميك'],
+                    ['tr' => 'Set Üstü Ocak', 'ar' => 'موقد علوي'],
+                    ['tr' => 'Spot Aydınlatma', 'ar' => 'إضاءة سبوت'],
+                    ['tr' => 'Şofben', 'ar' => 'سخان ماء'],
+                    ['tr' => 'Şömine', 'ar' => 'مدفأة'],
+                    ['tr' => 'Teras', 'ar' => 'شرفة'],
+                    ['tr' => 'Termosifon', 'ar' => 'سخان مياه'],
+                    ['tr' => 'Vestiyer', 'ar' => 'مكان تعليق الملابس'],
+                    ['tr' => 'Wi-Fi', 'ar' => 'واي فاي'],
+                    ['tr' => 'Yüz Tanıma & Parmak İzi', 'ar' => 'تعرف على الوجه وبصمة الإصبع'],
+                ]
             ],
         ];
 
-        foreach ($groups as $group => $features) {
-            $group = Group::firstOrCreate(['name' => $group]);
-            foreach ($features as $feature) {
-                $feature = $group->features()->create(['name'=>$feature]);
-                $feature->categories()->sync([2,3]);
+        foreach ($groups as $groupData) {
+            $group = Group::create([
+                'name' => $groupData['name']
+            ]);
+
+            foreach ($groupData['features'] as $featureData) {
+                $feature = $group->features()->create([
+                    'name' => $featureData
+                ]);
+
+                // $feature->categories()->sync([1,2]);
             }
         }
     }
