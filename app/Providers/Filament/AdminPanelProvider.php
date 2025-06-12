@@ -60,7 +60,7 @@ class AdminPanelProvider extends PanelProvider
             ])->plugins([
                 FilamentTranslateFieldPlugin::make(),
                 FilamentSettingsPlugin::make(),
-                ApiServicePlugin::make()->middleware([]),
+
             ])->breadcrumbs(true);
     }
 }

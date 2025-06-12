@@ -26,6 +26,9 @@ class TranslatePermissions extends Command
      */
     public function handle()
     {
+        return;
+
+        // Todo: Translate permissions
         $modelTranlations = [
             'AboutUs' => 'Hakkımızda',
             'Category' => 'Kategori',
