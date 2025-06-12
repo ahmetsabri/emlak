@@ -101,7 +101,7 @@ class Settings extends BaseSettings
     {
         return [
             Action::make('save')
-                ->label(__('settings.form.actions.save'))
+                ->label(__('Save'))
                 ->submit('data')
                 ->keyBindings(['mod+s']),
         ];
