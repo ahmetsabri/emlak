@@ -16,7 +16,7 @@ class RealEstateOverview extends BaseWidget
 
     protected function getStats(): array
     {
-
+        return [];
         $realestate = RealEstate::count();
         $totalPriceInTl = RealEstate::sum('price');
         $totalPrice = Number::format($totalPriceInTl);

@@ -24,6 +24,8 @@ class FeatureResource extends Resource
 
     protected static ?string $navigationLabel = 'Features';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $modelLabel = 'Feature';
 
     protected static ?string $pluralModelLabel = 'Features';

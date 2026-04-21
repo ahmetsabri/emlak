@@ -2,12 +2,12 @@
     <div x-data="{
         state: $wire.$entangle('{{ $getStatePath() }}'),
         init() {
-            const map = L.map('map').setView([41.0082, 28.9784], 17);
+            const map = L.map('map').setView([30.06, 31.25], 17);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
             }).addTo(map);
 
-            const marker = L.marker(['{{ $getRecord()->lat ?? 41.0082 }}', '{{ $getRecord()->lng ?? 28.9784 }}'], {
+            const marker = L.marker(['{{ $getRecord()->lat ?? 30.06 }}', '{{ $getRecord()->lng ?? 31.25 }}'], {
                 draggable: true
             }).addTo(map);
 

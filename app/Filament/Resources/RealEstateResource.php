@@ -6,7 +6,6 @@ use App\Filament\Resources\RealEstateResource\Pages;
 use App\Forms\Components\LocationPicker;
 use App\Models\Category;
 use App\Models\County;
-use App\Models\District;
 use App\Models\Feature;
 use App\Models\RealEstate;
 use App\RealestateStatus;
@@ -36,8 +35,9 @@ class RealEstateResource extends Resource
 
     public static function form(Form $form): Form
     {
-        $statuses = array_column(RealestateStatus::cases(), 'value');
-        $statuses = array_combine(array_column(RealestateStatus::cases(), 'value'), $statuses);
+        $statuses = collect(RealestateStatus::cases())
+            ->mapWithKeys(fn($s) => [$s->value => __($s->value)])
+            ->toArray();
 
         return $form
             ->schema(
@@ -62,7 +62,7 @@ class RealEstateResource extends Resource
                         ->collection('realestates')
                         ->imageEditor()
                         ->multiple()
-                        ->responsiveImages(false)
+                        ->responsiveImages()
                         ->live()
                         ->columnSpanFull()
                         ->minFiles(1)
@@ -90,11 +90,6 @@ class RealEstateResource extends Resource
                         ->label(__('Net Area (m²)'))
                         ->integer()
                         ->placeholder(__('Net Area')),
-
-                    TextInput::make('gross_area')
-                        ->label(__('Gross Area (m²)'))
-                        ->integer()
-                        ->placeholder(__('Gross Area')),
 
                     Select::make('province_id')
                         ->label(__('Province'))
@@ -131,54 +126,16 @@ class RealEstateResource extends Resource
                         })
                         ->placeholder(__('Select County')),
 
-                    Select::make('district_id')
-                        ->label(__('Neighborhood/Village'))
-                        ->preload()
-                        ->options(function (callable $get) {
-                            $countyId = $get('county_id');
-                            return $countyId ? District::where('county_id', $countyId)->pluck('name', 'id') : [];
-                        })
-                        ->getSearchResultsUsing(function (string $search, callable $get) {
-                            $countyId = $get('county_id');
-                            return District::where('county_id', $countyId)
-                                ->where('name', 'like', "%$search%")
-                                ->pluck('name', 'id');
-                        })
-                        ->searchable()
-                        ->searchDebounce(200)
-                        ->placeholder(__('Select Neighborhood/Village')),
+                    TextInput::make('address')
+                        ->label(__('Address'))
+                        ->placeholder(__('Address'))
+                        ->columnSpanFull(),
 
                     Select::make('status')
                         ->label(__('Status'))
                         ->options($statuses)
                         ->default(RealestateStatus::AVAILABLE->value)
                         ->selectablePlaceholder(false),
-
-                    TextInput::make('3d_link')
-                        ->label(__('3D Link'))
-                        ->nullable()
-                        ->url()
-                        ->placeholder(__('3D Link URL')),
-
-                    CheckboxList::make('features')
-                        ->label(__('Features'))
-                        ->relationship('features')
-                        ->required()
-                        ->options(function (callable $get) {
-                            $categoryId = $get('category_id');
-                            if (!$categoryId) {
-                                return [];
-                            }
-                            return Category::findOrFail($categoryId)
-                                ->features
-                                ->pluck('formattedName', 'id')
-                                ->toArray();
-                        })
-                        ->columns(3)
-                        ->columnSpanFull()
-                        ->visible(function (callable $get) {
-                            return !is_null($get('category_id'));
-                        }),
 
                     LocationPicker::make('location')
                         ->label(__('Location'))
@@ -190,8 +147,9 @@ class RealEstateResource extends Resource
     public static function table(Table $table): Table
     {
         $categories = Category::isRoot()->get()->pluck('name', 'id');
-        $statuses = array_column(RealestateStatus::cases(), 'value');
-        $statuses = array_combine(array_column(RealestateStatus::cases(), 'value'), $statuses);
+        $statuses = collect(RealestateStatus::cases())
+            ->mapWithKeys(fn($s) => [$s->value => __($s->value)])
+            ->toArray();
 
         return $table
             ->reorderable('sort')
@@ -202,10 +160,6 @@ class RealEstateResource extends Resource
                 TextColumn::make('price')
                     ->label(__('Price (₺)'))
                     ->sortable(),
-                TextColumn::make('price_in_usd')
-                    ->label(__('Price ($)')),
-                TextColumn::make('price_in_eur')
-                    ->label(__('Price (€)')),
                 SelectColumn::make('status')
                     ->label(__('Status'))
                     ->options($statuses)

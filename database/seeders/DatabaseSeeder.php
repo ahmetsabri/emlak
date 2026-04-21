@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             CustomerSeeder::class,
             CategorySeeder::class,
-            GroupSeeder::class,
+            // GroupSeeder::class,
         ]);
     }
 }

@@ -21,6 +21,8 @@ class ServiceResource extends Resource
 
     protected static ?string $navigationLabel = 'Services';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $modelLabel = 'Service';
 
     protected static ?string $pluralModelLabel = 'Services';

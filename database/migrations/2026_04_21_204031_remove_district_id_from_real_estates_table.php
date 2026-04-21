@@ -11,7 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        \DB::unprepared(file_get_contents(public_path('cities.sql')));
+        Schema::table('real_estates', function (Blueprint $table) {
+            $table->dropColumn('district_id');
+            $table->text('address')->nullable();
+        });
     }
 
     /**
@@ -19,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('real_estates', function (Blueprint $table) {
+            $table->dropColumn('address');
+        });
     }
 };

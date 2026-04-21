@@ -12,6 +12,7 @@ class StatsOverview extends BaseWidget
 
     protected function getStats(): array
     {
+        return [];
         $exchangeRate = cache('exchange:rate');
         $this->description = __('Updated at').': '.$exchangeRate->date;
 

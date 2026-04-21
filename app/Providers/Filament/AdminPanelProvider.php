@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 use App\Filament\Widgets\CustomerOverview;
 use App\Filament\Widgets\RealEstateOverview;
 use Filament\Http\Middleware\Authenticate;
@@ -40,7 +39,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                RealEstateOverview::class,
+                // RealEstateOverview::class,
                 CustomerOverview::class,
             ])
             ->middleware([
